@@ -1,4 +1,4 @@
-package rmit.ad.e_commerce_app;
+package rmit.ad.e_commerce_app.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+
+import rmit.ad.e_commerce_app.R;
 
 public class AddProduct extends AppCompatActivity {
     EditText TitleField, DescriptionField, StockQuantityField, PriceField;
