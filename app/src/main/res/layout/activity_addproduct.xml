@@ -114,11 +114,17 @@
         android:id="@+id/CategoryPicker"
         android:layout_width="215dp"
         android:layout_height="33dp"
-        android:layout_marginTop="192dp"
+        android:layout_marginTop="200dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.433"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <SearchView
+        android:layout_width="213dp"
+        android:layout_height="32dp"
+        tools:layout_editor_absoluteX="85dp"
+        tools:layout_editor_absoluteY="149dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
