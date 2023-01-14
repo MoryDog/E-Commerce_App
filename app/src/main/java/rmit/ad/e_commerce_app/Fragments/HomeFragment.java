@@ -61,8 +61,7 @@ public class HomeFragment extends Fragment {
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(m_name, m_imageUrl, getContext());
         recyclerView.setAdapter(adapter);
 
-
-
+        // Category slider
         ImageSlider imageSlider = root.findViewById(R.id.image_slider);
         List<SlideModel> slideModels = new ArrayList<>();
         slideModels.add(new SlideModel(R.drawable.image1, ScaleTypes.CENTER_CROP));
