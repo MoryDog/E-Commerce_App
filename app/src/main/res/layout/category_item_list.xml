@@ -24,8 +24,7 @@
                 android:scaleType="centerCrop"
                 android:layout_marginTop="10dp"
                 android:layout_centerHorizontal="true"
-                android:src="@drawable/ic_launcher_background"
-                ></de.hdodenhof.circleimageview.CircleImageView>
+                android:src="@drawable/ic_launcher_background" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -40,8 +39,7 @@
                 android:layout_marginBottom="5dp"
                 android:autoSizeMinTextSize="8dp"
                 android:autoSizeMaxTextSize="15dp"
-                android:autoSizeTextType="uniform"
-                ></TextView>
+                android:autoSizeTextType="uniform" />
 
 
         </RelativeLayout>

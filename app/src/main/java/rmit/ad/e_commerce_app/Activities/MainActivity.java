@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         // remove status bar (temporary)
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
 
         drawerLayout = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle Toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open,R.string.navigation_drawer_close);
