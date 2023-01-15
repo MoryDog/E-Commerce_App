@@ -1,4 +1,4 @@
-package rmit.ad.e_commerce_app;
+package rmit.ad.e_commerce_app.Adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import rmit.ad.e_commerce_app.R;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 

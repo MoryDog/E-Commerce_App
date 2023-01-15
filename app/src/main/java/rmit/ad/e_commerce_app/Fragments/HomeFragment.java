@@ -2,8 +2,6 @@ package rmit.ad.e_commerce_app.Fragments;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,24 +18,32 @@ import com.denzcoskun.imageslider.models.SlideModel;
 import java.util.ArrayList;
 import java.util.List;
 
-import rmit.ad.e_commerce_app.ProductAdapter;
+import rmit.ad.e_commerce_app.ModelClasses.ProductModel;
+import rmit.ad.e_commerce_app.Adapter.ProductAdapter;
 import rmit.ad.e_commerce_app.R;
-import rmit.ad.e_commerce_app.RecyclerViewAdapter;
+import rmit.ad.e_commerce_app.Adapter.RecyclerViewAdapter;
 
 public class HomeFragment extends Fragment {
 
-    private static final String TAG = "HomeFragment";
     private ArrayList<String> m_name = new ArrayList<>();
     private ArrayList<String> m_imageUrl = new ArrayList<>();
     private ArrayList<String> mName = new ArrayList<>();
     private ArrayList<String> mImageUrl = new ArrayList<>();
     private ArrayList<String> mPrice = new ArrayList<>();
+    ProductAdapter adapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-        HomeFragment homeFragment = new HomeFragment();
+
+
+        RecyclerView recyclerView1 = root.findViewById(R.id.new_product_rec);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this.getContext(), 2);
+        recyclerView1.setLayoutManager(gridLayoutManager);
+        adapter = new ProductAdapter(InitProductData(), this.getContext());
+        recyclerView1.setAdapter(adapter);
+
 
         m_imageUrl = new ArrayList<>();
         m_name = new ArrayList<>();
@@ -65,56 +71,13 @@ public class HomeFragment extends Fragment {
         m_imageUrl.add("https://cdn-icons-png.flaticon.com/512/641/641825.png");
         m_name.add("Laptops");
 
-        RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.rec_category);
+        RecyclerView recyclerView = root.findViewById(R.id.rec_category);
         LinearLayoutManager layoutManager
                 = new LinearLayoutManager(this.getContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(layoutManager);
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(m_name, m_imageUrl, this.getContext());
         recyclerView.setAdapter(adapter);
 
-
-        mImageUrl = new ArrayList<>();
-        mName = new ArrayList<>();
-        mPrice = new ArrayList<>();
-        mImageUrl.add("https://orbitvu.com/wp-content/uploads/2021/11/sport-shoe-white-background.jpg");
-        mPrice.add("999999 VNĐ");
-        mName.add("Shoes");
-
-        mImageUrl.add("https://chapel.vn/wp-content/uploads/2021/07/hn.jpg");
-        mPrice.add("999999 VNĐ");
-        mName.add("T-Shirts");
-
-        mImageUrl.add("https://transform.octanecdn.com/fitLogo/400x500/https://dynamix-cdn.s3.amazonaws.com/jacobandcocom/jacobandcocom_423193262.png");
-        mPrice.add("999999 VNĐ");
-        mName.add("Watches");
-
-        mImageUrl.add("https://www.svstore.vn/uploads/source/iphone-13prm/iphone-13-pro-max-blue-select.png");
-        mPrice.add("999999 VNĐ");
-        mName.add("iPhone 13 Pro");
-
-        mImageUrl.add("https://product.hstatic.net/1000341646/product/hera-sensual-powder-matte-499-rosy-suede-2_60f6f3f63e0e414c9a3e63d333e19e11.jpg");
-        mPrice.add("999999 VNĐ");
-        mName.add("Cosmetic");
-
-        mImageUrl.add("https://cdn.nguyenkimmall.com/images/detailed/727/10049167-binh-dun-sieu-toc-sharp-ekj-10dvps-bk-1.jpg");
-        mPrice.add("999999 VNĐ");
-        mName.add("Household");
-
-        mImageUrl.add("https://bucket.nhanh.vn/store/4726/ps/20210819/19082021040855_DSCF0825.png");
-        mPrice.add("999999 VNĐ");
-        mName.add("Health");
-
-        mImageUrl.add("https://m.media-amazon.com/images/I/71NIJloNGoL._SL1500_.jpg");
-        mPrice.add("999999 VNĐ");
-        mName.add("Laptops");
-
-        recyclerView.setAdapter(adapter);
-
-        RecyclerView recyclerView1 = (RecyclerView) root.findViewById(R.id.new_product_rec);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this.getContext(),2);
-        recyclerView1.setLayoutManager(gridLayoutManager);
-        ProductAdapter adapter1 = new ProductAdapter(mName, mImageUrl, mPrice, this.getContext());
-        recyclerView1.setAdapter(adapter1);
 
         ImageSlider imageSlider = root.findViewById(R.id.image_slider);
         List<SlideModel> slideModels = new ArrayList<>();
@@ -127,8 +90,33 @@ public class HomeFragment extends Fragment {
         return root;
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public ArrayList<ProductModel> InitProductData(){
+        ArrayList<ProductModel> holder = new ArrayList<>();
+        ProductModel ob1 = new ProductModel(1, "iPhone 13", "99999 $", "https://www.svstore.vn/uploads/source/iphone-13prm/iphone-13-pro-max-blue-select.png", "Phone", "Apple", 1);
+        holder.add(ob1);
+
+        ProductModel ob2 = new ProductModel(1, "T-Shirt", "99999 $", "https://chapel.vn/wp-content/uploads/2021/07/hn.jpg", "Phone", "Apple", 1);
+        holder.add(ob2);
+
+        ProductModel ob3 = new ProductModel(1, "Rolex", "99999 $", "https://transform.octanecdn.com/fitLogo/400x500/https://dynamix-cdn.s3.amazonaws.com/jacobandcocom/jacobandcocom_423193262.png", "Phone", "Apple", 1);
+        holder.add(ob3);
+
+        ProductModel ob4 = new ProductModel(1, "Shoes", "99999 $", "https://cdn.shopify.com/s/files/1/1626/5391/products/Balenciaga-Triple-S-Nude-Transparent-Sole-Crepslocker-Side_f26facf3-2c43-448b-b5f5-a75381a6b209.jpg?v=1652088899", "Phone", "Apple", 1);
+        holder.add(ob4);
+
+        ProductModel ob5 = new ProductModel(1, "Cosmetic", "99999 $", "https://product.hstatic.net/1000341646/product/hera-sensual-powder-matte-499-rosy-suede-2_60f6f3f63e0e414c9a3e63d333e19e11.jpg", "Phone", "Apple", 1);
+        holder.add(ob5);
+
+        ProductModel ob6 = new ProductModel(1, "Household", "99999 $", "https://cdn.nguyenkimmall.com/images/detailed/727/10049167-binh-dun-sieu-toc-sharp-ekj-10dvps-bk-1.jpg", "Phone", "Apple", 1);
+        holder.add(ob6);
+
+        ProductModel ob7 = new ProductModel(1, "Health", "99999 $", "https://bucket.nhanh.vn/store/4726/ps/20210819/19082021040855_DSCF0825.png", "Phone", "Apple", 1);
+        holder.add(ob7);
+
+        ProductModel ob8 = new ProductModel(1, "Laptops", "99999 $", "https://m.media-amazon.com/images/I/71NIJloNGoL._SL1500_.jpg", "Phone", "Apple", 1);
+        holder.add(ob8);
+
+
+        return holder;
     }
 }

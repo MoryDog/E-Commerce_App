@@ -6,30 +6,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 
-import java.util.ArrayList;
-
 import rmit.ad.e_commerce_app.Fragments.HomeFragment;
 import rmit.ad.e_commerce_app.Fragments.ShoppingCartFragment;
 import rmit.ad.e_commerce_app.Fragments.FavoriteFragment;
 import rmit.ad.e_commerce_app.Fragments.NotificationFragment;
 import rmit.ad.e_commerce_app.R;
-import rmit.ad.e_commerce_app.RecyclerViewAdapter;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -17,29 +17,33 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:scaleType="centerCrop"
-            android:layout_marginLeft="35dp"
-            android:src="@drawable/ic_launcher_background"></ImageView>
+            android:layout_centerHorizontal="true"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_launcher_background" />
 
         <TextView
             android:id="@+id/product_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/product_img"
-            android:layout_marginLeft="35dp"
+            android:textAlignment="center"
             android:text="This is the product name"
             android:textColor="#000"
             android:textSize="18.5dp"
-            android:textStyle="bold"></TextView>
+            android:autoSizeTextType="uniform"
+            android:textStyle="normal" />
 
         <TextView
             android:id="@+id/product_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/product_name"
-            android:layout_marginLeft="35dp"
+            android:textAlignment="center"
             android:text="This is the product price"
-            android:textColor="@color/purple_700"
-            android:textSize="15dp"></TextView>
+            android:textColor="@color/red"
+            android:autoSizeTextType="uniform"
+            android:textStyle="bold"
+            android:textSize="17dp" />
 
     </RelativeLayout>
 
