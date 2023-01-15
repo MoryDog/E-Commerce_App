@@ -18,14 +18,14 @@
         android:id="@+id/tool_bar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@drawable/fading_background"
+        android:background="@drawable/fading_background_2"
         android:elevation="50dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:fillViewport="true"
         android:layout_marginTop="40dp">
 
@@ -124,7 +124,8 @@
                 android:layout_marginTop="50dp"
                 android:layout_marginLeft="6dp"
                 android:layout_marginRight="6dp"
-                android:background="@drawable/fading_background"/>
+                android:background="@drawable/fading_background"
+                app:backgroundTint = "@null"/>
 
 
         </LinearLayout>
