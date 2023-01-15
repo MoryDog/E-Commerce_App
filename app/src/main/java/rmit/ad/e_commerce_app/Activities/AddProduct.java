@@ -41,7 +41,6 @@ public class AddProduct extends AppCompatActivity {
                 R.array.categories_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         CategoryPicker.setAdapter(adapter);
-
     }
 
 }
