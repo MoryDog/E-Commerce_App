@@ -8,7 +8,7 @@
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/product_images_viewpager"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="220dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -131,7 +131,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="@font/regular"
         android:text="Available Size"
         android:textColor="@color/black"
@@ -156,9 +156,11 @@
         android:id="@+id/DescriptionText"
         android:layout_width="338dp"
         android:layout_height="45dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="24dp"
         android:text="TextView"
-        tools:layout_editor_absoluteX="36dp"
-        tools:layout_editor_absoluteY="591dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
