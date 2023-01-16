@@ -59,4 +59,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ViewHolder> {
     public int getItemCount() {
         return data.size();
     }
+
+    public void setFilteredList(ArrayList<ProductModel> filteredList) {
+        this.data = filteredList;
+        notifyDataSetChanged();
+    }
 }

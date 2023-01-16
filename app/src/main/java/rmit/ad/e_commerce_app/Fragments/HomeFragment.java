@@ -1,6 +1,8 @@
 package rmit.ad.e_commerce_app.Fragments;
 
 import android.os.Bundle;
+
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -27,15 +29,30 @@ public class HomeFragment extends Fragment {
 
     private ArrayList<String> m_name = new ArrayList<>();
     private ArrayList<String> m_imageUrl = new ArrayList<>();
-    private ArrayList<String> mName = new ArrayList<>();
-    private ArrayList<String> mImageUrl = new ArrayList<>();
-    private ArrayList<String> mPrice = new ArrayList<>();
+    ArrayList<ProductModel> holder;
+    private SearchView searchView;
+
     ProductAdapter adapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+
+        searchView = root.findViewById(R.id.SearchView);
+        searchView.clearFocus();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filterList(newText);
+                return true;
+            }
+        });
         RecyclerView recyclerView1 = root.findViewById(R.id.new_product_rec);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this.getContext(), 2);
         recyclerView1.setLayoutManager(gridLayoutManager);
@@ -88,8 +105,25 @@ public class HomeFragment extends Fragment {
         return root;
     }
 
+    private void filterList(String newText) {
+        ArrayList<ProductModel> filteredList = new ArrayList<>();
+        for (ProductModel product: holder){
+            if (product.getName().toLowerCase().contains(newText.toLowerCase())){
+                filteredList.add(product);
+            }
+        }
+
+        if (filteredList.isEmpty()){
+            Toast.makeText(this.getContext(), "No data found", Toast.LENGTH_SHORT).show();
+        } else {
+            adapter.setFilteredList(filteredList);
+        }
+    }
+
+
+
     public ArrayList<ProductModel> InitProductData(){
-        ArrayList<ProductModel> holder = new ArrayList<>();
+        holder = new ArrayList<>();
         ProductModel ob1 = new ProductModel(1, "iPhone 13", "99999 $", "https://www.svstore.vn/uploads/source/iphone-13prm/iphone-13-pro-max-blue-select.png", "Phone", "Apple", 1);
         holder.add(ob1);
 
