@@ -52,7 +52,8 @@
             android:paddingTop="11dp"
             android:text="Categories"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="#F000"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rec_category"
@@ -80,24 +81,34 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
-                        android:paddingTop="11dp"
                         android:fontFamily="@font/amethysta"
+                        android:paddingTop="11dp"
                         android:text="Products"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:textColor="#F000"/>
 
                     <TextView
                         android:id="@+id/newProducts_see_all"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
-                        android:paddingTop="11dp"
                         android:layout_marginRight="15dp"
                         android:fontFamily="@font/amethysta"
+                        android:paddingTop="11dp"
                         android:text="See All"
                         android:textColor="@color/red"
                         android:textSize="18sp"
                         android:textStyle="normal" />
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginRight="70dp"
+                        android:src="@drawable/ic_sort"
+                        android:backgroundTint="@color/white"/>
+
                 </RelativeLayout>
 
                 <androidx.recyclerview.widget.RecyclerView

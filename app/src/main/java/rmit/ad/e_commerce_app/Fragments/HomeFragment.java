@@ -29,7 +29,7 @@ public class HomeFragment extends Fragment {
 
     private ArrayList<String> m_name = new ArrayList<>();
     private ArrayList<String> m_imageUrl = new ArrayList<>();
-    ArrayList<ProductModel> holder;
+    ArrayList<ProductModel> ProductList;
     private SearchView searchView;
 
     ProductAdapter adapter;
@@ -107,7 +107,7 @@ public class HomeFragment extends Fragment {
 
     private void filterList(String newText) {
         ArrayList<ProductModel> filteredList = new ArrayList<>();
-        for (ProductModel product: holder){
+        for (ProductModel product: ProductList){
             if (product.getName().toLowerCase().contains(newText.toLowerCase())){
                 filteredList.add(product);
             }
@@ -120,35 +120,32 @@ public class HomeFragment extends Fragment {
         }
     }
 
-
-
     public ArrayList<ProductModel> InitProductData(){
-        holder = new ArrayList<>();
+        ProductList = new ArrayList<>();
         ProductModel ob1 = new ProductModel(1, "iPhone 13", "99999 $", "https://www.svstore.vn/uploads/source/iphone-13prm/iphone-13-pro-max-blue-select.png", "Phone", "Apple", 1);
-        holder.add(ob1);
+        ProductList.add(ob1);
 
         ProductModel ob2 = new ProductModel(1, "T-Shirt", "99999 $", "https://chapel.vn/wp-content/uploads/2021/07/hn.jpg", "Phone", "Apple", 1);
-        holder.add(ob2);
+        ProductList.add(ob2);
 
         ProductModel ob3 = new ProductModel(1, "Rolex", "99999 $", "https://transform.octanecdn.com/fitLogo/400x500/https://dynamix-cdn.s3.amazonaws.com/jacobandcocom/jacobandcocom_423193262.png", "Phone", "Apple", 1);
-        holder.add(ob3);
+        ProductList.add(ob3);
 
         ProductModel ob4 = new ProductModel(1, "Shoes", "99999 $", "https://cdn.shopify.com/s/files/1/1626/5391/products/Balenciaga-Triple-S-Nude-Transparent-Sole-Crepslocker-Side_f26facf3-2c43-448b-b5f5-a75381a6b209.jpg?v=1652088899", "Phone", "Apple", 1);
-        holder.add(ob4);
+        ProductList.add(ob4);
 
         ProductModel ob5 = new ProductModel(1, "Cosmetic", "99999 $", "https://product.hstatic.net/1000341646/product/hera-sensual-powder-matte-499-rosy-suede-2_60f6f3f63e0e414c9a3e63d333e19e11.jpg", "Phone", "Apple", 1);
-        holder.add(ob5);
+        ProductList.add(ob5);
 
         ProductModel ob6 = new ProductModel(1, "Household", "99999 $", "https://cdn.nguyenkimmall.com/images/detailed/727/10049167-binh-dun-sieu-toc-sharp-ekj-10dvps-bk-1.jpg", "Phone", "Apple", 1);
-        holder.add(ob6);
+        ProductList.add(ob6);
 
         ProductModel ob7 = new ProductModel(1, "Health", "99999 $", "https://bucket.nhanh.vn/store/4726/ps/20210819/19082021040855_DSCF0825.png", "Phone", "Apple", 1);
-        holder.add(ob7);
+        ProductList.add(ob7);
 
         ProductModel ob8 = new ProductModel(1, "Laptops", "99999 $", "https://m.media-amazon.com/images/I/71NIJloNGoL._SL1500_.jpg", "Phone", "Apple", 1);
-        holder.add(ob8);
+        ProductList.add(ob8);
 
-
-        return holder;
+        return ProductList;
     }
 }
