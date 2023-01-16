@@ -32,15 +32,13 @@ public class AddProduct extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addproduct);
 
-
         Toolbar toolbar = findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
 
-
-        drawerLayout = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle Toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open,R.string.navigation_drawer_close);
-        drawerLayout.addDrawerListener(Toggle);
-        Toggle.syncState();
+//        drawerLayout = findViewById(R.id.drawer_layout);
+//        ActionBarDrawerToggle Toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+//        drawerLayout.addDrawerListener(Toggle);
+//        Toggle.syncState();
 
         // Adapter for dropdown menu
         autoCompleteTextView = findViewById(R.id.autoCompleteTextView);
@@ -56,13 +54,13 @@ public class AddProduct extends AppCompatActivity {
 
     }
 
-    @Override
-    public void onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)){
-            drawerLayout.closeDrawer(GravityCompat.START);
-        } else{
-            super.onBackPressed();
-        }
-    }
+//    @Override
+//    public void onBackPressed() {
+//        if (drawerLayout.isDrawerOpen(GravityCompat.START)){
+//            drawerLayout.closeDrawer(GravityCompat.START);
+//        } else{
+//            super.onBackPressed();
+//        }
+//    }
 
 }
