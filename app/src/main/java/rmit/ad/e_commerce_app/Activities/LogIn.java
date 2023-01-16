@@ -1,10 +1,8 @@
 package rmit.ad.e_commerce_app.Activities;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -59,7 +57,7 @@ public class LogIn extends AppCompatActivity {
         });
 
         login_button2 = findViewById(R.id.login_button2);
-        username_field = findViewById(R.id.username_field);
+        username_field = findViewById(R.id.registerUsername);
         password_field = findViewById(R.id.password_field);
         login_view = findViewById(android.R.id.content);
 
