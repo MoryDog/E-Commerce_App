@@ -17,6 +17,13 @@
         android:usesCleartextTraffic="true"
         >
         <activity
+            android:name=".Activities.ShoesCategory"
+            android:exported="true">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".Activities.Register"
             android:exported="true">
             <meta-data
