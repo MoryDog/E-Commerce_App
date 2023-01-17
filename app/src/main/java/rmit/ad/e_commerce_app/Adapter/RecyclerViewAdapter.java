@@ -2,13 +2,13 @@ package rmit.ad.e_commerce_app.Adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import rmit.ad.e_commerce_app.Activities.ShoesCategory;
 import rmit.ad.e_commerce_app.R;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
@@ -50,11 +51,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 .load(m_imageUrl.get(position))
                 .into(holder.circleImageView);
         holder.category_name.setText(m_name.get(position));
-
         holder.circleImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d(TAG, "onClick: Clicked on an image: " + m_name.get(position));
+                String category_name = m_name.get(position);
+                if (category_name.equals("Shoes")){
+                    Intent intent = new Intent(m_context, ShoesCategory.class);
+                    m_context.startActivity(intent);
+                }
                 Toast.makeText(m_context, m_name.get(position), Toast.LENGTH_SHORT).show();
             }
         });
@@ -73,7 +78,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             super(itemView);
             circleImageView = itemView.findViewById(R.id.category_img);
             category_name = itemView.findViewById(R.id.category_name);
-
         }
 
     }

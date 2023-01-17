@@ -1,5 +1,7 @@
 package rmit.ad.e_commerce_app.Fragments;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.SearchView;
@@ -11,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.denzcoskun.imageslider.ImageSlider;
@@ -24,13 +27,15 @@ import rmit.ad.e_commerce_app.ModelClasses.ProductModel;
 import rmit.ad.e_commerce_app.Adapter.ProductAdapter;
 import rmit.ad.e_commerce_app.R;
 import rmit.ad.e_commerce_app.Adapter.RecyclerViewAdapter;
+import rmit.ad.e_commerce_app.Utils;
 
 public class HomeFragment extends Fragment {
 
     private ArrayList<String> m_name = new ArrayList<>();
     private ArrayList<String> m_imageUrl = new ArrayList<>();
-    ArrayList<ProductModel> ProductList;
+    List<String> SortTypelist;
     private SearchView searchView;
+    ImageButton filterBtn;
 
     ProductAdapter adapter;
     @Override
@@ -38,6 +43,13 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+        filterBtn = root.findViewById(R.id.filter_button);
+        filterBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CreateAlertDialog();
+            }
+        });
 
         searchView = root.findViewById(R.id.SearchView);
         searchView.clearFocus();
@@ -53,10 +65,12 @@ public class HomeFragment extends Fragment {
                 return true;
             }
         });
+
         RecyclerView recyclerView1 = root.findViewById(R.id.new_product_rec);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this.getContext(), 2);
         recyclerView1.setLayoutManager(gridLayoutManager);
-        adapter = new ProductAdapter(InitProductData(), this.getContext());
+        adapter = new ProductAdapter(this.getContext());
+        adapter.SetUpProducts(Utils.obtainInstance().getAllProducts());
         recyclerView1.setAdapter(adapter);
 
 
@@ -105,9 +119,54 @@ public class HomeFragment extends Fragment {
         return root;
     }
 
+    private void CreateAlertDialog() {
+        SortTypelist = new ArrayList<>();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext());
+        builder.setTitle("Sort Product");
+        builder.setSingleChoiceItems(R.array.SortType, -1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int position) {
+                String arr[] = getResources().getStringArray(R.array.SortType);
+                if(position == 0){
+                    SortTypelist.add(arr[0]);
+                    SortTypelist.remove(arr[1]);
+                    SortTypelist.remove(arr[2]);
+                } else if (position == 1) {
+                    SortTypelist.add(arr[1]);
+                    SortTypelist.remove(arr[0]);
+                    SortTypelist.remove(arr[2]);
+                } else if (position == 2){
+                    SortTypelist.add(arr[2]);
+                    SortTypelist.remove(arr[1]);
+                    SortTypelist.remove(arr[0]);
+                }
+            }
+        });
+
+        builder.setPositiveButton("Sort", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                String data = "";
+                for (String item:SortTypelist){
+                    data = data + "" + item;
+                }
+                Toast.makeText(getActivity(), data, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
+
+        builder.create();
+        builder.show();
+    }
+
     private void filterList(String newText) {
         ArrayList<ProductModel> filteredList = new ArrayList<>();
-        for (ProductModel product: ProductList){
+        for (ProductModel product: Utils.obtainInstance().getAllProducts()){
             if (product.getName().toLowerCase().contains(newText.toLowerCase())){
                 filteredList.add(product);
             }
@@ -118,34 +177,5 @@ public class HomeFragment extends Fragment {
         } else {
             adapter.setFilteredList(filteredList);
         }
-    }
-
-    public ArrayList<ProductModel> InitProductData(){
-        ProductList = new ArrayList<>();
-        ProductModel ob1 = new ProductModel(1, "iPhone 13", "99999 $", "https://www.svstore.vn/uploads/source/iphone-13prm/iphone-13-pro-max-blue-select.png", "Phone", "Apple", 1);
-        ProductList.add(ob1);
-
-        ProductModel ob2 = new ProductModel(1, "T-Shirt", "99999 $", "https://chapel.vn/wp-content/uploads/2021/07/hn.jpg", "Phone", "Apple", 1);
-        ProductList.add(ob2);
-
-        ProductModel ob3 = new ProductModel(1, "Rolex", "99999 $", "https://transform.octanecdn.com/fitLogo/400x500/https://dynamix-cdn.s3.amazonaws.com/jacobandcocom/jacobandcocom_423193262.png", "Phone", "Apple", 1);
-        ProductList.add(ob3);
-
-        ProductModel ob4 = new ProductModel(1, "Shoes", "99999 $", "https://cdn.shopify.com/s/files/1/1626/5391/products/Balenciaga-Triple-S-Nude-Transparent-Sole-Crepslocker-Side_f26facf3-2c43-448b-b5f5-a75381a6b209.jpg?v=1652088899", "Phone", "Apple", 1);
-        ProductList.add(ob4);
-
-        ProductModel ob5 = new ProductModel(1, "Cosmetic", "99999 $", "https://product.hstatic.net/1000341646/product/hera-sensual-powder-matte-499-rosy-suede-2_60f6f3f63e0e414c9a3e63d333e19e11.jpg", "Phone", "Apple", 1);
-        ProductList.add(ob5);
-
-        ProductModel ob6 = new ProductModel(1, "Household", "99999 $", "https://cdn.nguyenkimmall.com/images/detailed/727/10049167-binh-dun-sieu-toc-sharp-ekj-10dvps-bk-1.jpg", "Phone", "Apple", 1);
-        ProductList.add(ob6);
-
-        ProductModel ob7 = new ProductModel(1, "Health", "99999 $", "https://bucket.nhanh.vn/store/4726/ps/20210819/19082021040855_DSCF0825.png", "Phone", "Apple", 1);
-        ProductList.add(ob7);
-
-        ProductModel ob8 = new ProductModel(1, "Laptops", "99999 $", "https://m.media-amazon.com/images/I/71NIJloNGoL._SL1500_.jpg", "Phone", "Apple", 1);
-        ProductList.add(ob8);
-
-        return ProductList;
     }
 }

@@ -3,12 +3,17 @@ package rmit.ad.e_commerce_app.Fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import rmit.ad.e_commerce_app.Adapter.ProductAdapter;
 import rmit.ad.e_commerce_app.R;
+import rmit.ad.e_commerce_app.Utils;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -17,6 +22,7 @@ import rmit.ad.e_commerce_app.R;
  */
 public class FavoriteFragment extends Fragment {
 
+    ProductAdapter adapter;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -61,6 +67,15 @@ public class FavoriteFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favorite, container, false);
+        View root = inflater.inflate(R.layout.fragment_favorite, container, false);
+        RecyclerView recyclerView1 = root.findViewById(R.id.favorite_rec);
+        LinearLayoutManager layoutManager
+                = new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false);
+        recyclerView1.setLayoutManager(layoutManager);
+        adapter = new ProductAdapter(this.getContext());
+        adapter.SetUpProducts(Utils.obtainInstance().getAllProducts());
+        recyclerView1.setAdapter(adapter);
+
+        return root;
     }
 }

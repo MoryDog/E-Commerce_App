@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="10dp"
     android:elevation="4dp"
-    app:cardUseCompatPadding="true">
+    app:cardUseCompatPadding="true"
+    android:id="@+id/parent"
+    android:paddingBottom="20dp">
 
     <RelativeLayout
         android:layout_width="200dp"
@@ -16,9 +18,9 @@
             android:id="@+id/product_img"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:scaleType="centerCrop"
             android:layout_centerHorizontal="true"
             android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
             android:src="@drawable/ic_launcher_background" />
 
         <TextView
@@ -26,11 +28,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/product_img"
-            android:textAlignment="center"
+            android:autoSizeTextType="uniform"
             android:text="This is the product name"
+            android:textAlignment="center"
             android:textColor="#000"
             android:textSize="18.5dp"
-            android:autoSizeTextType="uniform"
             android:textStyle="normal" />
 
         <TextView
@@ -38,12 +40,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/product_name"
-            android:textAlignment="center"
-            android:text="This is the product price"
-            android:textColor="@color/red"
             android:autoSizeTextType="uniform"
-            android:textStyle="bold"
-            android:textSize="17dp" />
+            android:text="This is the product price"
+            android:textAlignment="center"
+            android:textColor="@color/red"
+            android:textSize="17dp"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 

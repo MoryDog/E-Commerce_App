@@ -43,16 +43,16 @@
         app:layout_constraintTop_toBottomOf="@+id/viewPager_indicator" />
 
     <TextView
-        android:id="@+id/ProductSubTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="12dp"
-        android:fontFamily="@font/regular"
-        android:text="SubTitle"
+        android:id="@+id/sellerName"
+        android:layout_width="120dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="72dp"
+        android:fontFamily="@font/bold"
+        android:text="SellerName"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ProductTitle" />
+        app:layout_constraintStart_toEndOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/viewPager_indicator" />
 
     <LinearLayout
         android:layout_width="136dp"
@@ -155,12 +155,23 @@
     <TextView
         android:id="@+id/DescriptionText"
         android:layout_width="338dp"
-        android:layout_height="45dp"
+        android:layout_height="67dp"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         android:text="TextView"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="16dp"
+        android:text="Sold By:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ProductTitle" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

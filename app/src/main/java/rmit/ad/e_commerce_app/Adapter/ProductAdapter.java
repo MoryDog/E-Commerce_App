@@ -1,7 +1,10 @@
 package rmit.ad.e_commerce_app.Adapter;
 
+import static rmit.ad.e_commerce_app.Activities.ProductDetails.KEY_ID_PRODUCT;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +18,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
+import rmit.ad.e_commerce_app.Activities.ProductDetails;
 import rmit.ad.e_commerce_app.ModelClasses.ProductModel;
 import rmit.ad.e_commerce_app.R;
 
@@ -24,8 +28,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ViewHolder> {
     private ArrayList<ProductModel> data = new ArrayList<>();
     Context context;
 
-    public ProductAdapter(ArrayList<ProductModel> data, Context context) {
-        this.data = data;
+    public ProductAdapter(Context context) {
         this.context = context;
     }
 
@@ -46,11 +49,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ViewHolder> {
                 .into(holder.product_image);
 
         //Trigger when click on the product image and toast their name
-        holder.product_image.setOnClickListener(new View.OnClickListener() {
+        holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d(TAG, "onClick: Clicked on an image: " + data.get(position).getName());
                 Toast.makeText(context, data.get(position).getName(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, ProductDetails.class);
+                intent.putExtra(KEY_ID_PRODUCT, data.get(position).getID());
+                context.startActivity(intent);
             }
         });
     }
@@ -62,6 +68,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     public void setFilteredList(ArrayList<ProductModel> filteredList) {
         this.data = filteredList;
+        notifyDataSetChanged();
+    }
+
+    public void SetUpProducts(ArrayList<ProductModel> productModels) {
+        this.data = productModels;
         notifyDataSetChanged();
     }
 }

@@ -9,7 +9,6 @@ public class ProductModel {
     private String supplier;
     private int quantity;
 
-
     public ProductModel(long ID, String title, String price, String img_name, String category, String supplier, int quantity) {
         this.name = title;
         this.price = price;

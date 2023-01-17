@@ -1,17 +1,14 @@
 package rmit.ad.e_commerce_app.Adapter;
 
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
-
 import java.util.List;
 
-import rmit.ad.e_commerce_app.R;
+
 
 public class ProductImagesAdapter extends PagerAdapter {
     private List<Integer> productImages;
