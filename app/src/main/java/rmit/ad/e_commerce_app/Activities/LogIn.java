@@ -65,7 +65,7 @@ public class LogIn extends AppCompatActivity {
         login_button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (username_field.getText().toString().trim().equals("") || password_field.getText().toString().equals("")) {
+                if (username_field.getText().toString().trim().isEmpty() || password_field.getText().toString().isEmpty()) {
                     Snackbar.make(login_view, "Username and Password cannot be empty!", Snackbar.LENGTH_SHORT).show();
                 } else if (username_field.getText().toString().trim().length() > 0 || password_field.getText().toString().length() > 0) {
                     Intent intent = new Intent(LogIn.this, MainActivity.class);

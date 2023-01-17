@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/login_background"
-    tools:context=".Activities.ConfirmationCode">
+    tools:context=".Activities.Verification">
 
     <ImageView
         android:id="@+id/back_button3"
         android:layout_width="40dp"
         android:layout_height="33dp"
-        android:layout_marginStart="35dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="60dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
