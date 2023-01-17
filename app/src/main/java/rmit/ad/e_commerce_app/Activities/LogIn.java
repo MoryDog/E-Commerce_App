@@ -44,7 +44,8 @@ public class LogIn extends AppCompatActivity {
         signup_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(login_view, "Feature in Development", Snackbar.LENGTH_SHORT).show();
+                Intent intent = new Intent(LogIn.this, Register.class);
+                startActivity(intent);
             }
         });
 
