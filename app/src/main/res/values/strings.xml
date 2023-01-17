@@ -9,4 +9,10 @@
         <item> By Price </item>
         <item> From A to Z </item>
     </string-array>
+
+    <string-array name="Genders">
+        <item> Gender </item>
+        <item> male </item>
+        <item> female </item>
+    </string-array>
 </resources>

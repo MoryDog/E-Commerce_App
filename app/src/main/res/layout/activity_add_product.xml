@@ -124,7 +124,7 @@
                 android:layout_marginTop="50dp"
                 android:layout_marginLeft="6dp"
                 android:layout_marginRight="6dp"
-                android:backgroundTint="#2cc7fb"
+                android:background="@drawable/fading_background"
                 app:backgroundTint = "@null"/>
 
 
