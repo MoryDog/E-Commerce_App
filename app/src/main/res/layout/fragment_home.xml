@@ -101,9 +101,10 @@
                         android:textSize="18sp"
                         android:textStyle="normal" />
 
-                    <androidx.appcompat.widget.AppCompatImageButton
+                    <ImageButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:id="@+id/filter_button"
                         android:layout_alignParentEnd="true"
                         android:layout_marginRight="70dp"
                         android:src="@drawable/ic_sort"
