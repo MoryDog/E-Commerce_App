@@ -12,7 +12,6 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">#02bbf1</item>
 
-
         <!-- Customize your theme here. -->
         <item name="windowActionBarOverlay">false</item>
         <item name="android:windowTranslucentStatus">false</item>
