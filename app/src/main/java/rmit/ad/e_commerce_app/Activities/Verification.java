@@ -20,7 +20,7 @@ public class Verification extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_confirmation_code);
+        setContentView(R.layout.activity_verification);
 
         CodeField = findViewById(R.id.codeField);
         ConfirmButton = findViewById(R.id.ConfirmButton);
