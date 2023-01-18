@@ -16,6 +16,14 @@ public interface UploadApis {
     @Multipart
     @POST("upload")
     Call<RequestBody> uploadMultiImage(@Part MultipartBody.Part[] multiplePart,
-                                       @Part("accessToken") RequestBody accessToken);
+                                       @Part("accessToken") RequestBody accessToken,
+                                       @Part("category") RequestBody category,
+                                       @Part("title") RequestBody title,
+                                       @Part("price") RequestBody price,
+                                       @Part("colors") RequestBody colors,
+                                       @Part("sizes") RequestBody sizes,
+                                       @Part("description") RequestBody description,
+                                       @Part("brand") RequestBody brand,
+                                       @Part("quantity") RequestBody quantity);
 
 }

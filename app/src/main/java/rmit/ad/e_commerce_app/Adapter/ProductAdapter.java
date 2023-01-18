@@ -23,7 +23,7 @@ import rmit.ad.e_commerce_app.ModelClasses.ProductModel;
 import rmit.ad.e_commerce_app.R;
 
 public class ProductAdapter extends RecyclerView.Adapter<ViewHolder> {
-
+    private String s3 = "https://androidecommercebucket.s3.ap-southeast-1.amazonaws.com/";
     private static final String TAG = "ProductAdapter";
     private ArrayList<ProductModel> data = new ArrayList<>();
     Context context;
@@ -45,7 +45,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ViewHolder> {
         holder.product_price.setText(data.get(position).getPrice());
         Glide.with(context)
                 .asBitmap()
-                .load(data.get(position).getImg_name())
+                .load(s3 + data.get(position).getThumbnail())
                 .into(holder.product_image);
 
         //Trigger when click on the product image and toast their name

@@ -1,6 +1,7 @@
 package rmit.ad.e_commerce_app.Adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -12,13 +13,11 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-
-
-public class ProductImagesAdapter extends PagerAdapter {
-    private List<String> productImages;
+public class OfflineProductImageAdapter extends PagerAdapter {
+    private List<Bitmap> productImages;
     Context context;
 
-    public ProductImagesAdapter(List<String> productImages, Context context) {
+    public OfflineProductImageAdapter(List<Bitmap> productImages, Context context) {
         this.productImages = productImages;
         this.context = context;
     }
@@ -28,7 +27,8 @@ public class ProductImagesAdapter extends PagerAdapter {
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         ImageView productImage = new ImageView(container.getContext());
         productImage.setScaleType(ImageView.ScaleType.FIT_XY);
-        Glide.with(context).load(productImages.get(position)).into(productImage);
+        //Glide.with(context).load(productImages.get(position)).into(productImage);
+        productImage.setImageBitmap(productImages.get(position));
         //productImage.setImageResource(productImages.get(position));
         container.addView(productImage, 0);
         return productImage;

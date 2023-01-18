@@ -46,6 +46,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import rmit.ad.e_commerce_app.Adapter.OfflineProductImageAdapter;
 import rmit.ad.e_commerce_app.Adapter.ProductImagesAdapter;
 import rmit.ad.e_commerce_app.Fragments.HomeFragment;
 import rmit.ad.e_commerce_app.HttpClasses.UploadApis;
@@ -71,6 +72,14 @@ public class AddProduct extends AppCompatActivity {
    TextInputEditText quantity;
    TextInputEditText description;
 
+    GlobalUserAccess globalUserAccess;
+
+    String local = "http://192.168.10.3:3000/";
+    String server = "http://54.151.194.4:3000/";
+
+    List<Uri> uris = new ArrayList<>();
+    List<Bitmap> bitmaps = new ArrayList<>();
+
    String[] categories = {"Shoes","Shirts","Watches","Phones"};
 
     @Override
@@ -86,7 +95,6 @@ public class AddProduct extends AppCompatActivity {
         brand = findViewById(R.id.brandText);
         quantity = findViewById(R.id.quantityText);
         description = findViewById(R.id.desciptionText);
-
 
 
         Toolbar toolbar = findViewById(R.id.tool_bar);
@@ -107,20 +115,6 @@ public class AddProduct extends AppCompatActivity {
             }
         });
 
-        // Add images for new product
-        addProductImagesViewPager = findViewById(R.id.addProduct_images_viewpager);
-        viewPagerIndicator2 = findViewById(R.id.viewPager_indicator2);
-
-        List<String> productImages = new ArrayList<>();
-        productImages.add("https://androidecommercebucket.s3.ap-southeast-1.amazonaws.com/image%253A457073.jpg");
-        productImages.add("https://androidecommercebucket.s3.ap-southeast-1.amazonaws.com/image%253A457162.jpeg");
-        productImages.add("https://androidecommercebucket.s3.ap-southeast-1.amazonaws.com/318751445_2569676449842092_1285895474581622008_n.jpg.png");
-        productImages.add("https://androidecommercebucket.s3.ap-southeast-1.amazonaws.com/318751445_2569676449842092_1285895474581622008_n.jpg.png");
-
-        ProductImagesAdapter productImagesAdapter = new ProductImagesAdapter(productImages, this);
-        addProductImagesViewPager.setAdapter(productImagesAdapter);
-
-        viewPagerIndicator2.setupWithViewPager(addProductImagesViewPager, true);
 
         addProductButton = findViewById(R.id.addProductButton);
         addProductButton.setOnClickListener(new View.OnClickListener() {
@@ -138,6 +132,11 @@ public class AddProduct extends AppCompatActivity {
                 String des = description.getText().toString();
                 System.out.println(des);
 
+                try {
+                    uploadImages(AddProduct.this,uris,bitmaps, category.getText().toString(), title.getText().toString(), price.getText().toString(), color.getText().toString(), size.getText().toString(), des, brand.getText().toString() ,quantity.getText().toString());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -148,6 +147,7 @@ public class AddProduct extends AppCompatActivity {
                 // thieu code lay link URL tu database
                 // new LoadImage().execute(fileUrl) (tren mang);
                 Toast.makeText(AddProduct.this, "Missing add image from url function", Toast.LENGTH_SHORT).show();
+                pickImages();
             }
         });
 
@@ -179,7 +179,6 @@ public class AddProduct extends AppCompatActivity {
         intent.setType("image/*");
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
         startActivityForResult(intent, 1);
-
     }
 
     @Override
@@ -188,9 +187,6 @@ public class AddProduct extends AppCompatActivity {
 
         if(requestCode == 1 && resultCode == RESULT_OK){
             //ImageView imageView = findViewById(R.id.imageView);
-
-            List<Uri> uris = new ArrayList<>();
-            List<Bitmap> bitmaps = new ArrayList<>();
 
             ClipData clipData = data.getClipData();
 
@@ -209,11 +205,6 @@ public class AddProduct extends AppCompatActivity {
                     }
                 }
 
-                try {
-                    uploadImages(this,uris,bitmaps);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
 
             } else{
                 Uri imageUri = data.getData();
@@ -226,37 +217,43 @@ public class AddProduct extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
+                /*
                 try {
                     uploadImages(this,uris,bitmaps);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
+                 */
             }
 
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    for (final Bitmap b: bitmaps) {
+            // Add images for new product
+            addProductImagesViewPager = findViewById(R.id.addProduct_images_viewpager);
+            viewPagerIndicator2 = findViewById(R.id.viewPager_indicator2);
 
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
 
-                                //imageView.setImageBitmap(b);
-                            }
-                        });
-                        try {
-                            Thread.sleep(3000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-            }).start();
+        List<Bitmap> productImages = new ArrayList<>();
+        for(int i = 0; i< bitmaps.size();i++){
+            productImages.add(bitmaps.get(i));
+        }
+        /*
+        productImages.add("https://androidecommercebucket.s3.ap-southeast-1.amazonaws.com/image%253A457073.jpg");
+        productImages.add("https://androidecommercebucket.s3.ap-southeast-1.amazonaws.com/image%253A457162.jpeg");
+        productImages.add("https://androidecommercebucket.s3.ap-southeast-1.amazonaws.com/318751445_2569676449842092_1285895474581622008_n.jpg.png");
+        productImages.add("https://androidecommercebucket.s3.ap-southeast-1.amazonaws.com/318751445_2569676449842092_1285895474581622008_n.jpg.png");
+        */
+
+
+            OfflineProductImageAdapter productImagesAdapter = new OfflineProductImageAdapter(productImages, this);
+            addProductImagesViewPager.setAdapter(productImagesAdapter);
+
+            viewPagerIndicator2.setupWithViewPager(addProductImagesViewPager, true);
+
+            ;
         }
     }
 
-    private void uploadImages(Context context, List<Uri> uris, List<Bitmap> bitmaps) throws IOException {
+    private void uploadImages(Context context, List<Uri> uris, List<Bitmap> bitmaps, String category, String title, String price, String colors, String sizes, String description, String brand, String quantity) throws IOException {
 
         List<File> files = new ArrayList<>();
         List<String> imageNames = new ArrayList<>();
@@ -265,7 +262,7 @@ public class AddProduct extends AppCompatActivity {
         for (int i  =0; i < bitmaps.size(); i ++) {
 
             String imageName = uris.get(i).toString();
-            int lastSlash = imageName.lastIndexOf('/') + 1;
+            int lastSlash = imageName.lastIndexOf('%') + 1;
             imageName = imageName.substring(lastSlash,imageName.length());
 
             File f = new File(context.getCacheDir(), imageName);
@@ -293,26 +290,35 @@ public class AddProduct extends AppCompatActivity {
             files.add(f);
             imageNames.add(imageName);
         }
-        String testJson = "eyJraWQiOiJWT3JcL1RvY1BKU3hpQWJqUXdDTU5YYU9sdnBtcUkxRkZwb0JMYVlEejBYQT0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIxMzQzNjljZi00NzZkLTQ5YzYtOTI1Yy0wYTU5MWVjNmNiZWYiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAuYXAtc291dGhlYXN0LTEuYW1hem9uYXdzLmNvbVwvYXAtc291dGhlYXN0LTFfRnM3SWNIMWtyIiwiY2xpZW50X2lkIjoiN3VnaDNxbWhlZTlhNGtqbDdvODNrMmg4ZDEiLCJvcmlnaW5fanRpIjoiNTc1ODgxMzktZDM5NS00Mzg2LWJkYTMtZTA2NmFhNjIxNjMzIiwiZXZlbnRfaWQiOiJkNDI1NTAyMi0zZTQ2LTQzNzctOGEwYy0xY2Q1NjEzOTRlNWMiLCJ0b2tlbl91c2UiOiJhY2Nlc3MiLCJzY29wZSI6ImF3cy5jb2duaXRvLnNpZ25pbi51c2VyLmFkbWluIiwiYXV0aF90aW1lIjoxNjc0MDIyMzAwLCJleHAiOjE2NzQwMjU5MDAsImlhdCI6MTY3NDAyMjMwMCwianRpIjoiMzZiNGRkMjMtZjM1Yy00MTQxLTg4MDMtZjkzM2YwYWZlZTE0IiwidXNlcm5hbWUiOiJtaW5odnU1In0.giwRaDJh6qOE-PSAkGuF4f3PveDXVrBr3Z9UZnnf2APXVfRlqJF7huIYjunccomTLDAQG_3mj7HiAP6rTp5ueZrRZ2xSx2LKITS-h8pFxyqBgyWSx9kNXn1qhsryIy4aOz1bq8HHBlndBLp_1LVAjFHnRoJG10NjiqvOwIselSsK2f9TkJEf9C4XA0Buh7pa8RpH9-qS80xpUYr7me6SqOKWuJ51Ts2XqZmQO_qRs2pUePjvlbDM_jSo0LjJNiOHi0wmIVR1W2PyWMli6AD3k0Xscj5EVdi7-Vw1ywBdmk2uc9C3UVKbIWqjejrbWlMtdykhbKcz5J7sSlTCRZRLoA";
-        RequestBody test = RequestBody.create( MediaType.parse("text/plain"), testJson);
-        //Product product1 = new Product(1, "car", "eyJraWQiOiJWT3JcL1RvY1BKU3hpQWJqUXdDTU5YYU9sdnBtcUkxRkZwb0JMYVlEejBYQT0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIxMzQzNjljZi00NzZkLTQ5YzYtOTI1Yy0wYTU5MWVjNmNiZWYiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAuYXAtc291dGhlYXN0LTEuYW1hem9uYXdzLmNvbVwvYXAtc291dGhlYXN0LTFfRnM3SWNIMWtyIiwiY2xpZW50X2lkIjoiN3VnaDNxbWhlZTlhNGtqbDdvODNrMmg4ZDEiLCJvcmlnaW5fanRpIjoiZTE4NDkzOGItMjUyNi00NGRiLThiMjYtMGI4MTJjMTdlOGViIiwiZXZlbnRfaWQiOiI4N2I0ZTI1Yi1jNmI0LTQ5NWUtYWE0Zi1kNGIzNjgzYmI2Y2UiLCJ0b2tlbl91c2UiOiJhY2Nlc3MiLCJzY29wZSI6ImF3cy5jb2duaXRvLnNpZ25pbi51c2VyLmFkbWluIiwiYXV0aF90aW1lIjoxNjc0MDE3NTQ5LCJleHAiOjE2NzQwMjExNDksImlhdCI6MTY3NDAxNzU0OSwianRpIjoiZDU4ZmQ4MjQtYmYyNi00M2RhLWEyNDYtZWNjMjFkM2FiOTUwIiwidXNlcm5hbWUiOiJtaW5odnU1In0.Eg--Bsb4EHdWXSqFBFvmsP2jXQt-CVO3r9i2xRhcxsBUWQJ1BeHlLwHDetHH_acGri23nHPI07sBM9V_zZTGlVRwy6RB02yKUL34Ur1USyONr4EGj64iV4xGsQYYUrrv0803XYLvwzJbxWmN4b4tHNpVScNMCk2Hdm16WjVJ-GZYYjMEwSOL6BA_D5XKRCks8OJxz5KbtWFhXa7L3HyZiPtR83js4BXrnzPx9D1kW6urLskKjxw262TMVKHqt2y_tO9SoaZhKdv5mosB6lqcWysYqGd9W-_SuyvW-XxgCO_VJsrc47-X0NTiKEx5TaIAOnXi9sKu7-cjnX6QMrNiUQ");
 
+        globalUserAccess = ((GlobalUserAccess)getApplicationContext());
+
+        //String testJson = "eyJraWQiOiJWT3JcL1RvY1BKU3hpQWJqUXdDTU5YYU9sdnBtcUkxRkZwb0JMYVlEejBYQT0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIxMzQzNjljZi00NzZkLTQ5YzYtOTI1Yy0wYTU5MWVjNmNiZWYiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAuYXAtc291dGhlYXN0LTEuYW1hem9uYXdzLmNvbVwvYXAtc291dGhlYXN0LTFfRnM3SWNIMWtyIiwiY2xpZW50X2lkIjoiN3VnaDNxbWhlZTlhNGtqbDdvODNrMmg4ZDEiLCJvcmlnaW5fanRpIjoiNTc1ODgxMzktZDM5NS00Mzg2LWJkYTMtZTA2NmFhNjIxNjMzIiwiZXZlbnRfaWQiOiJkNDI1NTAyMi0zZTQ2LTQzNzctOGEwYy0xY2Q1NjEzOTRlNWMiLCJ0b2tlbl91c2UiOiJhY2Nlc3MiLCJzY29wZSI6ImF3cy5jb2duaXRvLnNpZ25pbi51c2VyLmFkbWluIiwiYXV0aF90aW1lIjoxNjc0MDIyMzAwLCJleHAiOjE2NzQwMjU5MDAsImlhdCI6MTY3NDAyMjMwMCwianRpIjoiMzZiNGRkMjMtZjM1Yy00MTQxLTg4MDMtZjkzM2YwYWZlZTE0IiwidXNlcm5hbWUiOiJtaW5odnU1In0.giwRaDJh6qOE-PSAkGuF4f3PveDXVrBr3Z9UZnnf2APXVfRlqJF7huIYjunccomTLDAQG_3mj7HiAP6rTp5ueZrRZ2xSx2LKITS-h8pFxyqBgyWSx9kNXn1qhsryIy4aOz1bq8HHBlndBLp_1LVAjFHnRoJG10NjiqvOwIselSsK2f9TkJEf9C4XA0Buh7pa8RpH9-qS80xpUYr7me6SqOKWuJ51Ts2XqZmQO_qRs2pUePjvlbDM_jSo0LjJNiOHi0wmIVR1W2PyWMli6AD3k0Xscj5EVdi7-Vw1ywBdmk2uc9C3UVKbIWqjejrbWlMtdykhbKcz5J7sSlTCRZRLoA";
+        //RequestBody test = RequestBody.create( MediaType.parse("text/plain"), testJson);
+
+        RequestBody accessToken = RequestBody.create(MediaType.parse("text/plain"), globalUserAccess.getAccessToken());
+        RequestBody categoryBody = RequestBody.create(MediaType.parse("text/plain"), category);
+        RequestBody titleBody = RequestBody.create(MediaType.parse("text/plain"), title);
+        RequestBody priceBody = RequestBody.create(MediaType.parse("text/plain"), price);
+        RequestBody colorsBody = RequestBody.create(MediaType.parse("text/plain"), colors);
+        RequestBody sizesBody = RequestBody.create(MediaType.parse("text/plain"), sizes);
+        RequestBody descriptionBody = RequestBody.create(MediaType.parse("text/plain"), description);
+        RequestBody brandBody = RequestBody.create(MediaType.parse("text/plain"), brand);
+        RequestBody quantityBody = RequestBody.create(MediaType.parse("text/plain"), quantity);
         MultipartBody.Part[] multipart = new MultipartBody.Part[files.size()];
         for(int i = 0; i < files.size(); i ++){
             RequestBody surveyBody = RequestBody.create(MediaType.parse("image/*"), files.get(i));
             multipart[i] = MultipartBody.Part.createFormData("images", files.get(i).getPath(), surveyBody);
         }
-        String local = "http://192.168.10.3:3000/";
-        String server = "http://13.213.54.188:3000/";
+
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(local)
+                .baseUrl(server)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         UploadApis uploadApis = retrofit.create(UploadApis.class);
 
-
-        uploadApis.uploadMultiImage(multipart,test).enqueue(new Callback<RequestBody>() {
+        uploadApis.uploadMultiImage(multipart, accessToken, categoryBody, titleBody, priceBody, colorsBody, sizesBody,descriptionBody, brandBody, quantityBody).enqueue(new Callback<RequestBody>() {
             @Override
             public void onResponse(Call<RequestBody> call, Response<RequestBody> response) {
                 System.out.println(response);
@@ -326,61 +332,5 @@ public class AddProduct extends AppCompatActivity {
         });
 
     }
-
-
-    // Function load image tu tren mang (not sure if work :)))
-    // https://stackoverflow.com/questions/34124222/user-inputs-a-url-for-an-image-and-it-displays-in-a-imageview
-
-//    public Bitmap getBitmapFromURL(String src)
-//    {
-//        try
-//        {
-//            java.net.URL url = new java.net.URL(src);
-//            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-//            connection.setDoInput(true);
-//            connection.connect();
-//
-//            InputStream input = connection.getInputStream();
-//            Bitmap bitmap = BitmapFactory.decodeStream(input);
-//            return bitmap;
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            return null;
-//        }
-//    }
-//
-//
-//    private class LoadImage extends AsyncTask<String, String, Bitmap>
-//    {
-//        @Override
-//        protected Bitmap doInBackground(String... args) {
-//            try {
-//                bitmap = BitmapFactory.decodeStream((InputStream)new URL(args[0]).getContent());
-//
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//            return bitmap;
-//        }
-//
-//        @Override
-//        protected void onPreExecute()
-//        {
-//            super.onPreExecute();
-//            Toast.makeText(AddProduct.this, "Loading Image ...", Toast.LENGTH_SHORT).show();
-//        }
-//
-//        protected void onPostExecute(Bitmap image) {
-//
-//            if(image != null){
-//                ImageView img = new ImageView(AddProduct.this);
-//                img.setImageBitmap(bitmap);
-//            }else{
-//                Toast.makeText(AddProduct.this, "Image Does Not exist or Network Error", Toast.LENGTH_SHORT).show();
-//
-//            }
-//        }
-//    }
-
 
 }

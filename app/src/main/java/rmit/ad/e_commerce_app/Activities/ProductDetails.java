@@ -6,22 +6,29 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import rmit.ad.e_commerce_app.Adapter.ProductImagesAdapter;
+import rmit.ad.e_commerce_app.HttpClasses.HttpHandler;
 import rmit.ad.e_commerce_app.ModelClasses.ProductModel;
 import rmit.ad.e_commerce_app.R;
 import rmit.ad.e_commerce_app.Utils;
@@ -35,8 +42,11 @@ public class ProductDetails extends AppCompatActivity {
     View product_detail_view;
     Button addToCartButton;
     ToggleButton toggleFavorite;
-
-
+    String jsonString = "";
+    long ProductID;
+    List<String> imageLinks = new ArrayList<>();
+    ProductModel UpComingProducts;
+    private String s3 = "https://androidecommercebucket.s3.ap-southeast-1.amazonaws.com/";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,14 +55,21 @@ public class ProductDetails extends AppCompatActivity {
 
         Intent intent = getIntent();
         if (intent != null){
-            long ProductID = intent.getLongExtra(KEY_ID_PRODUCT, -1);
+            ProductID = intent.getLongExtra(KEY_ID_PRODUCT, -1);
             if (ProductID != -1){
-                ProductModel UpComingProducts = Utils.obtainInstance().GetProductByID(ProductID);
+                UpComingProducts = Utils.obtainInstance().GetProductByID(ProductID);
                 if (UpComingProducts != null){
-                    InitProductData(UpComingProducts);
+                    Toast.makeText(ProductDetails.this, "Product id = " + ProductID, Toast.LENGTH_SHORT).show();
+                    //InitProductData(UpComingProducts);
+                    new getData().execute();
                 }
             }
         }
+
+        productImagesViewPager = findViewById(R.id.product_images_viewpager);
+        viewPagerIndicator = findViewById(R.id.viewPager_indicator);
+        product_detail_view = findViewById(android.R.id.content);
+
 
         Toolbar toolbar = findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
@@ -60,20 +77,6 @@ public class ProductDetails extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        productImagesViewPager = findViewById(R.id.product_images_viewpager);
-        viewPagerIndicator = findViewById(R.id.viewPager_indicator);
-
-        List<String> productImages = new ArrayList<>();
-        productImages.add("https://androidecommercebucket.s3.ap-southeast-1.amazonaws.com/318751445_2569676449842092_1285895474581622008_n.jpg.png");
-        productImages.add("https://androidecommercebucket.s3.ap-southeast-1.amazonaws.com/318751445_2569676449842092_1285895474581622008_n.jpg.png");
-        productImages.add("https://androidecommercebucket.s3.ap-southeast-1.amazonaws.com/318751445_2569676449842092_1285895474581622008_n.jpg.png");
-        productImages.add("https://androidecommercebucket.s3.ap-southeast-1.amazonaws.com/318751445_2569676449842092_1285895474581622008_n.jpg.png");
-
-        ProductImagesAdapter productImagesAdapter = new ProductImagesAdapter(productImages, this);
-        productImagesViewPager.setAdapter(productImagesAdapter);
-        product_detail_view = findViewById(android.R.id.content);
-
-        viewPagerIndicator.setupWithViewPager(productImagesViewPager, true);
 
         addToCartButton = findViewById(R.id.addToCartButton);
         addToCartButton.setOnClickListener(new View.OnClickListener() {
@@ -90,6 +93,16 @@ public class ProductDetails extends AppCompatActivity {
     }
 
     private void InitProductData(ProductModel productModel) {
+        for(int i =0; i < imageLinks.size(); i++){
+            System.out.println(imageLinks);
+        }
+        List<String> productImages = new ArrayList<>(imageLinks);
+
+        ProductImagesAdapter productImagesAdapter = new ProductImagesAdapter(productImages, this);
+        productImagesViewPager.setAdapter(productImagesAdapter);
+
+        viewPagerIndicator.setupWithViewPager(productImagesViewPager, true);
+
         product_detail_title.setText(productModel.getTitle());
         product_price.setText(productModel.getPrice());
     }
@@ -116,5 +129,31 @@ public class ProductDetails extends AppCompatActivity {
     // favorite button toggle
     public void onCustomToggleClick(View view) {
         Snackbar.make(product_detail_view, "Product added to favorite", Snackbar.LENGTH_SHORT).show();
+    }
+
+    private class getData extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... voids) {
+            jsonString = HttpHandler.getRequest("http://54.151.194.4:3000/getimages?product_id="+ProductID);
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void unused) {
+            super.onPostExecute(unused);
+            try {
+                JSONArray jsonArray = new JSONArray(jsonString);
+                for(int i =0; i < jsonArray.length(); i++){
+                    JSONObject jsonObject = (JSONObject) jsonArray.get(i);
+                    imageLinks.add(s3 + jsonObject.get("link").toString());
+                }
+                InitProductData(UpComingProducts);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 }
