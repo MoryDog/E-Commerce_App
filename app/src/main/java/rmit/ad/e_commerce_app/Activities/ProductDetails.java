@@ -68,7 +68,7 @@ public class ProductDetails extends AppCompatActivity {
     }
 
     private void InitProductData(ProductModel productModel) {
-        product_detail_title.setText(productModel.getName());
+        product_detail_title.setText(productModel.getTitle());
         product_price.setText(productModel.getPrice());
     }
 

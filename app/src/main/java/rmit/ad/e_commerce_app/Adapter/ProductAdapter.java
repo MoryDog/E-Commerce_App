@@ -41,7 +41,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        holder.product_name.setText(data.get(position).getName());
+        holder.product_name.setText(data.get(position).getTitle());
         holder.product_price.setText(data.get(position).getPrice());
         Glide.with(context)
                 .asBitmap()
@@ -52,8 +52,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ViewHolder> {
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(TAG, "onClick: Clicked on an image: " + data.get(position).getName());
-                Toast.makeText(context, data.get(position).getName(), Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "onClick: Clicked on an image: " + data.get(position).getTitle());
+                Toast.makeText(context, data.get(position).getTitle(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context, ProductDetails.class);
                 intent.putExtra(KEY_ID_PRODUCT, data.get(position).getID());
                 context.startActivity(intent);
