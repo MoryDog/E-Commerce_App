@@ -17,11 +17,13 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import rmit.ad.e_commerce_app.Activities.LaptopCategory;
-import rmit.ad.e_commerce_app.Activities.PhoneCategory;
-import rmit.ad.e_commerce_app.Activities.ShirtCategory;
-import rmit.ad.e_commerce_app.Activities.ShoesCategory;
-import rmit.ad.e_commerce_app.Activities.WatchCategory;
+
+import rmit.ad.e_commerce_app.CategoryActivities.LaptopCategory;
+import rmit.ad.e_commerce_app.CategoryActivities.PhoneCategory;
+import rmit.ad.e_commerce_app.CategoryActivities.ShirtCategory;
+import rmit.ad.e_commerce_app.CategoryActivities.ShoesCategory;
+import rmit.ad.e_commerce_app.CategoryActivities.WatchCategory;
+
 import rmit.ad.e_commerce_app.R;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {

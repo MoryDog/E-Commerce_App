@@ -1,4 +1,4 @@
-package rmit.ad.e_commerce_app.Activities;
+package rmit.ad.e_commerce_app.CategoryActivities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;

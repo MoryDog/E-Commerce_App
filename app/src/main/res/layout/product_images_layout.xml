@@ -31,10 +31,10 @@
 
     <TextView
         android:id="@+id/ProductTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="180dp"
+        android:layout_height="38dp"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:fontFamily="@font/bold"
         android:text="Title"
         android:textColor="@color/black"
@@ -45,9 +45,9 @@
     <TextView
         android:id="@+id/sellerName"
         android:layout_width="120dp"
-        android:layout_height="21dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="64dp"
         android:fontFamily="@font/bold"
         android:text="SellerName"
         android:textSize="16sp"
@@ -56,9 +56,9 @@
 
     <LinearLayout
         android:layout_width="136dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="68dp"
-        android:layout_marginEnd="16dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="4dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -104,12 +104,12 @@
         android:id="@+id/PriceText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="48dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="44dp"
         android:fontFamily="@font/bold"
         android:text="Price"
         android:textColor="@color/black"
-        android:textSize="26sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/viewPager_indicator" />
 
@@ -155,9 +155,9 @@
     <TextView
         android:id="@+id/DescriptionText"
         android:layout_width="338dp"
-        android:layout_height="67dp"
+        android:layout_height="100dp"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:text="TextView"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -168,8 +168,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:text="Sold By:"
+        android:textSize="15sp"
+        android:gravity="left"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ProductTitle" />
 
