@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -34,6 +35,7 @@ public class ProductDetails extends AppCompatActivity {
     TextView product_price;
     View product_detail_view;
     Button addToCartButton;
+    ImageView back_button;
     ToggleButton toggleFavorite;
 
 
@@ -75,6 +77,7 @@ public class ProductDetails extends AppCompatActivity {
 
         viewPagerIndicator.setupWithViewPager(productImagesViewPager, true);
 
+        // add to shopping cart button
         addToCartButton = findViewById(R.id.addToCartButton);
         addToCartButton.setOnClickListener(new View.OnClickListener() {
             @Override

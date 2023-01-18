@@ -41,7 +41,7 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_log_in);
+        setContentView(R.layout.activity_login);
         globalUserAccess = ((GlobalUserAccess)getApplicationContext());
 
         // Set transparent status bar
