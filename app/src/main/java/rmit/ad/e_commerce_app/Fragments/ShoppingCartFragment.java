@@ -72,7 +72,7 @@ public class ShoppingCartFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView1.setLayoutManager(linearLayoutManager);
         adapter = new ProductAdapter(this.getContext());
-        adapter.SetUpProducts(Utils.obtainInstance().getAllProducts());
+        adapter.SetUpProducts(Utils.obtainInstance().getCartProducts());
         recyclerView1.setAdapter(adapter);
 
         return root;

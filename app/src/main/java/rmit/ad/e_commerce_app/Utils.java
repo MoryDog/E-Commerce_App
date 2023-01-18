@@ -168,7 +168,9 @@ public class Utils {
         return FavoriteProducts;
     }
 
-    public ArrayList<ProductModel> getCartProducts() {return CartProducts;}
+    public ArrayList<ProductModel> getCartProducts() {
+        return CartProducts;
+    }
 
     public boolean AddToFavorite(ProductModel productModel){
         return FavoriteProducts.add(productModel);
