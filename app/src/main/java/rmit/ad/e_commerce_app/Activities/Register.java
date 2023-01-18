@@ -35,10 +35,13 @@ public class Register extends AppCompatActivity {
     String[] genders = {"male","female"};
     String[] roles = {"buyer","seller"};
 
+    GlobalUserAccess globalUserAccess;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        globalUserAccess = ((GlobalUserAccess) getApplicationContext());
 
         registerEmail = findViewById(R.id.registerEmail);
         registerUsername = findViewById(R.id.registerUsername);
@@ -68,23 +71,24 @@ public class Register extends AppCompatActivity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (registerEmail.getText().toString().trim().isEmpty() || registerUsername.getText().toString().trim().isEmpty()
-                        || registerPassword.getText().toString().isEmpty() || registerDOB.getText().toString().trim().isEmpty()
-                || registerGender.getEditText().getText().toString().trim().isEmpty() || registerRole.getEditText().getText().toString().trim().isEmpty()) {
-                    Snackbar.make(register_view, "Please enter information for all required fields", Snackbar.LENGTH_SHORT).show();
-
-                } else  {
-                    Intent intent = new Intent(Register.this, Verification.class);
-                    // Send notification to user about new account creation
-                    NotificationCompat.Builder builder = new NotificationCompat.Builder(Register.this,"Notifications");
-                    builder.setContentTitle("New Account Created");
-                    builder.setContentText("Please check your email to receive confirmation code");
-                    builder.setSmallIcon(R.drawable.ic_baseline_lock);
-                    builder.setAutoCancel(true);
-                    NotificationManagerCompat managerCompat = NotificationManagerCompat.from(Register.this);
-                    managerCompat.notify(10, builder.build());
-                    startActivity(intent);
-                }
+                System.out.println(globalUserAccess.toString());
+//                if (registerEmail.getText().toString().trim().isEmpty() || registerUsername.getText().toString().trim().isEmpty()
+//                        || registerPassword.getText().toString().isEmpty() || registerDOB.getText().toString().trim().isEmpty()
+//                || registerGender.getEditText().getText().toString().trim().isEmpty() || registerRole.getEditText().getText().toString().trim().isEmpty()) {
+//                    Snackbar.make(register_view, "Please enter information for all required fields", Snackbar.LENGTH_SHORT).show();
+//
+//                } else  {
+//                    Intent intent = new Intent(Register.this, Verification.class);
+//                    // Send notification to user about new account creation
+//                    NotificationCompat.Builder builder = new NotificationCompat.Builder(Register.this,"Notifications");
+//                    builder.setContentTitle("New Account Created");
+//                    builder.setContentText("Please check your email to receive confirmation code");
+//                    builder.setSmallIcon(R.drawable.ic_baseline_lock);
+//                    builder.setAutoCancel(true);
+//                    NotificationManagerCompat managerCompat = NotificationManagerCompat.from(Register.this);
+//                    managerCompat.notify(10, builder.build());
+//                    startActivity(intent);
+//                }
 
             }
         });

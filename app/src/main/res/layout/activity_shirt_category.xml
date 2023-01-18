@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.ShirtCategory">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/new_product_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:fontFamily="@font/amethysta"
+                android:paddingTop="11dp"
+                android:text="Products"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#F000"/>
+
+            <TextView
+                android:id="@+id/newProducts_see_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="15dp"
+                android:fontFamily="@font/amethysta"
+                android:paddingTop="11dp"
+                android:text="See All"
+                android:textColor="@color/red"
+                android:textSize="18sp"
+                android:textStyle="normal" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/filter_button"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="70dp"
+                android:src="@drawable/ic_sort"
+                android:backgroundTint="@color/white"/>
+
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/new_product_rec"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            android:padding="5dp"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,7 +17,12 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import rmit.ad.e_commerce_app.Activities.LaptopCategory;
+import rmit.ad.e_commerce_app.Activities.LogIn;
+import rmit.ad.e_commerce_app.Activities.PhoneCategory;
+import rmit.ad.e_commerce_app.Activities.ShirtCategory;
 import rmit.ad.e_commerce_app.Activities.ShoesCategory;
+import rmit.ad.e_commerce_app.Activities.WatchCategory;
 import rmit.ad.e_commerce_app.R;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
@@ -60,6 +65,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 if (category_name.equals("Shoes")){
                     Intent intent = new Intent(m_context, ShoesCategory.class);
                     m_context.startActivity(intent);
+                } else if (category_name.equals("T-Shirts")) {
+                    Intent intent1 = new Intent(m_context, ShirtCategory.class);
+                    m_context.startActivity(intent1);
+                } else if (category_name.equals("Phones")) {
+                    Intent intent1 = new Intent(m_context, PhoneCategory.class);
+                    m_context.startActivity(intent1);
+                } else if (category_name.equals("Watches")) {
+                    Intent intent1 = new Intent(m_context, WatchCategory.class);
+                    m_context.startActivity(intent1);
+                } else if (category_name.equals("Laptops")) {
+                    Intent intent1 = new Intent(m_context, LaptopCategory.class);
+                    m_context.startActivity(intent1);
                 }
                 Toast.makeText(m_context, m_name.get(position), Toast.LENGTH_SHORT).show();
             }

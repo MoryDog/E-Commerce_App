@@ -17,8 +17,10 @@ public class Utils {
 
     private static ArrayList<ProductModel> Products = new ArrayList<>();
     private static ArrayList<ProductModel> ShoeProducts;
-
-
+    private static ArrayList<ProductModel> ShirtProducts;
+    private static ArrayList<ProductModel> PhoneProducts;
+    private static ArrayList<ProductModel> WatchProducts;
+    private static ArrayList<ProductModel> LaptopProducts;
 
     public Utils() {
 
@@ -29,12 +31,38 @@ public class Utils {
             ShoeProducts = new ArrayList<>();
             SetShoesData();
         }
+        if (ShirtProducts == null){
+            ShirtProducts = new ArrayList<>();
+            SetShirtData();
+        }
 
+        if (PhoneProducts == null){
+            PhoneProducts = new ArrayList<>();
+            SetPhoneData();
+        }
+
+        if (WatchProducts == null){
+            WatchProducts = new ArrayList<>();
+            SetWatchData();
+        }
+
+        if (LaptopProducts == null){
+            LaptopProducts = new ArrayList<>();
+            SetLaptopData();
+        }
     }
 
+    private void SetLaptopData() {
+        LaptopProducts.add(new ProductModel(8, "Laptops", "799999 $", "https://m.media-amazon.com/images/I/71NIJloNGoL._SL1500_.jpg", "Phone", "Apple", 1));
+    }
 
+    private void SetWatchData() {
+        WatchProducts.add(new ProductModel(3, "Rolex", "299999 $", "https://transform.octanecdn.com/fitLogo/400x500/https://dynamix-cdn.s3.amazonaws.com/jacobandcocom/jacobandcocom_423193262.png", "Phone", "Apple", 1));
+    }
 
-
+    private void SetPhoneData() {
+        PhoneProducts.add(new ProductModel(1, "iPhone 13", "99999 $", "https://androidecommercebucket.s3.ap-southeast-1.amazonaws.com/image%253A457075.png", "Phone", "Apple", 1));
+    }
 
     public void setData(String data){
         try {
@@ -76,12 +104,15 @@ public class Utils {
         */
     }
 
-
     private void SetShoesData() {
 
         ShoeProducts.add(new ProductModel(4, "Shoes", "399999 $", "https://cdn.shopify.com/s/files/1/1626/5391/products/Balenciaga-Triple-S-Nude-Transparent-Sole-Crepslocker-Side_f26facf3-2c43-448b-b5f5-a75381a6b209.jpg?v=1652088899", "Phone", "Apple", 1));
     }
 
+    private void SetShirtData() {
+
+        ShirtProducts.add(new ProductModel(2, "T-Shirt", "199999 $", "https://chapel.vn/wp-content/uploads/2021/07/hn.jpg", "Phone", "Apple", 1));
+    }
 
     public static Utils obtainInstance() {
         if (null == instance) {
@@ -100,6 +131,9 @@ public class Utils {
         }
         return null;
     }
+    public ArrayList<ProductModel> getLaptopProducts() {
+        return LaptopProducts;
+    }
 
     public ArrayList<ProductModel> getAllProducts() {
         return Products;
@@ -107,5 +141,17 @@ public class Utils {
 
     public ArrayList<ProductModel> getShoeProducts() {
         return ShoeProducts;
+    }
+
+    public ArrayList<ProductModel> getShirtProducts() {
+        return ShirtProducts;
+    }
+
+    public ArrayList<ProductModel> getPhoneProducts() {
+        return PhoneProducts;
+    }
+
+    public ArrayList<ProductModel> getWatchProducts() {
+        return WatchProducts;
     }
 }
