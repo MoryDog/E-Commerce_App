@@ -86,8 +86,6 @@ public class HomeFragment extends Fragment {
         new GetData().execute();
 
 
-
-
         m_imageUrl = new ArrayList<>();
         m_name = new ArrayList<>();
         m_imageUrl.add("https://cdn-icons-png.flaticon.com/512/314/314434.png");

@@ -80,6 +80,100 @@ public class HttpHandler {
         return status;
     }
 
+    public static String postVerification(String urlStr, String username, String confirm_code) {
+        String status="";
+        try {
+            //Step 1 - prepare the connection
+            URL url = new URL(urlStr);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type","application/json");
+            conn.setRequestProperty("Accept", "application/json");
+            //Step 2 - prepare the JSON object
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("username", username);
+            jsonObject.put("confirm_code", confirm_code);
+            //Step 3 - Writing data to webservice
+            DataOutputStream os = new DataOutputStream(conn.getOutputStream());
+            os.writeBytes(jsonObject.toString());
+            os.flush();
+            os.close();
+
+            BufferedReader br = null;
+            if (100 <= conn.getResponseCode() && conn.getResponseCode() <= 399) {
+                br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            } else {
+                br = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+            }
+            StringBuilder response = new StringBuilder();
+            String currentLine;
+
+            while ((currentLine = br.readLine()) != null)
+                response.append(currentLine);
+
+
+            status = response.toString();
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return status;
+    }
+
+
+    public static String postRegister(String urlStr, String email, String username, String userpassword,
+        String gender, String birthdate, String user_role) {
+        String status="";
+        try {
+            //Step 1 - prepare the connection
+            URL url = new URL(urlStr);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type","application/json");
+            conn.setRequestProperty("Accept", "application/json");
+            //Step 2 - prepare the JSON object
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("email", email);
+            jsonObject.put("username", username);
+            jsonObject.put("password", userpassword);
+            jsonObject.put("gender", gender);
+            jsonObject.put("birthdate", birthdate);
+            jsonObject.put("user_role", user_role);
+            //Step 3 - Writing data to webservice
+            DataOutputStream os = new DataOutputStream(conn.getOutputStream());
+            os.writeBytes(jsonObject.toString());
+            os.flush();
+            os.close();
+
+            BufferedReader br = null;
+            if (100 <= conn.getResponseCode() && conn.getResponseCode() <= 399) {
+                br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            } else {
+                br = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+            }
+            StringBuilder response = new StringBuilder();
+            String currentLine;
+
+            while ((currentLine = br.readLine()) != null)
+                response.append(currentLine);
+
+
+            status = response.toString();
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return status;
+    }
+
     public static String postSignout(String urlStr, String accessToken){
         String status="";
         try {

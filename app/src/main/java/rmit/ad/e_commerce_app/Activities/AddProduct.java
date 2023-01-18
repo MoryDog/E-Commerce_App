@@ -48,9 +48,9 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import rmit.ad.e_commerce_app.Adapter.OfflineProductImageAdapter;
 import rmit.ad.e_commerce_app.Adapter.ProductImagesAdapter;
-import rmit.ad.e_commerce_app.Fragments.HomeFragment;
 import rmit.ad.e_commerce_app.HttpClasses.UploadApis;
 import rmit.ad.e_commerce_app.R;
+import rmit.ad.e_commerce_app.seller.SellerActivity;
 
 public class AddProduct extends AppCompatActivity {
     private DrawerLayout drawerLayout;
@@ -95,7 +95,6 @@ public class AddProduct extends AppCompatActivity {
         brand = findViewById(R.id.brandText);
         quantity = findViewById(R.id.quantityText);
         description = findViewById(R.id.desciptionText);
-
 
         Toolbar toolbar = findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
@@ -156,16 +155,17 @@ public class AddProduct extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.back_button) {
-            onBackPressed();
+            Intent intent = new Intent(AddProduct.this, SellerActivity.class);
+            startActivity(intent);
         }
-        return super.onOptionsItemSelected(item);
+        Toast.makeText(AddProduct.this,"Error occured", Toast.LENGTH_SHORT).show();
+        return false;
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
     }
-
 
     private void pickImages(){
         if(ActivityCompat.checkSelfPermission(this,
@@ -253,11 +253,11 @@ public class AddProduct extends AppCompatActivity {
         }
     }
 
+
     private void uploadImages(Context context, List<Uri> uris, List<Bitmap> bitmaps, String category, String title, String price, String colors, String sizes, String description, String brand, String quantity) throws IOException {
 
         List<File> files = new ArrayList<>();
         List<String> imageNames = new ArrayList<>();
-
 
         for (int i  =0; i < bitmaps.size(); i ++) {
 

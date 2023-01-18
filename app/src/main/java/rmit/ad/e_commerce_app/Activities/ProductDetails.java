@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -28,7 +29,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rmit.ad.e_commerce_app.Adapter.ProductImagesAdapter;
+
 import rmit.ad.e_commerce_app.HttpClasses.HttpHandler;
+
+import rmit.ad.e_commerce_app.Fragments.FavoriteFragment;
+
 import rmit.ad.e_commerce_app.ModelClasses.ProductModel;
 import rmit.ad.e_commerce_app.R;
 import rmit.ad.e_commerce_app.Utils;
@@ -41,6 +46,7 @@ public class ProductDetails extends AppCompatActivity {
     TextView product_price;
     View product_detail_view;
     Button addToCartButton;
+    ImageView back_button;
     ToggleButton toggleFavorite;
     String jsonString = "";
     long ProductID;
@@ -59,9 +65,14 @@ public class ProductDetails extends AppCompatActivity {
             if (ProductID != -1){
                 UpComingProducts = Utils.obtainInstance().GetProductByID(ProductID);
                 if (UpComingProducts != null){
+
                     Toast.makeText(ProductDetails.this, "Product id = " + ProductID, Toast.LENGTH_SHORT).show();
                     //InitProductData(UpComingProducts);
                     new getData().execute();
+
+                    InitProductData(UpComingProducts);
+                    handleFavoriteProducts(UpComingProducts);
+
                 }
             }
         }
@@ -78,6 +89,7 @@ public class ProductDetails extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
+        // add to shopping cart button
         addToCartButton = findViewById(R.id.addToCartButton);
         addToCartButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,7 +99,34 @@ public class ProductDetails extends AppCompatActivity {
         });
     }
 
+    private void handleFavoriteProducts(final ProductModel productModel) {
+        ArrayList<ProductModel> favoriteProducts = Utils.obtainInstance().getFavoriteProducts();
+        boolean existInFavoriteProducts = false;
+        for (ProductModel productModel1: favoriteProducts){
+            if (productModel1.getID() == productModel.getID()){
+                existInFavoriteProducts = true;
+            }
+        }
+        if (existInFavoriteProducts) {
+            toggleFavorite.setEnabled(false);
+        } else  {
+            toggleFavorite.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (Utils.obtainInstance().AddToFavorite(productModel)){
+                        Toast.makeText(ProductDetails.this, "Products Added", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(ProductDetails.this, MainActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(ProductDetails.this, "Something Wrong Happened, try again", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+    }
+
     private void InitViews() {
+        toggleFavorite = findViewById(R.id.toggleFavorite);
         product_detail_title = findViewById(R.id.ProductTitle);
         product_price = findViewById(R.id.PriceText);
     }

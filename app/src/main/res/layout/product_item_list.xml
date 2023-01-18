@@ -32,7 +32,7 @@
             android:text="This is the product name"
             android:textAlignment="center"
             android:textColor="#000"
-            android:textSize="18.5dp"
+            android:textSize="18.5sp"
             android:textStyle="normal" />
 
         <TextView
@@ -45,8 +45,21 @@
             android:text="This is the product price"
             android:textAlignment="center"
             android:textColor="@color/red"
-            android:textSize="17dp"
+            android:textSize="17sp"
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="52dp"
+            android:layout_marginTop="105dp"
+            android:fontFamily="@font/bold"
+            android:text="$"
+            android:textColor="@color/red"
+            android:textSize="17sp" />
 
     </RelativeLayout>
 

@@ -1,10 +1,13 @@
 package rmit.ad.e_commerce_app.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -14,9 +17,17 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Date;
+
+import rmit.ad.e_commerce_app.HttpClasses.HttpHandler;
 import rmit.ad.e_commerce_app.R;
 
 public class Register extends AppCompatActivity {
@@ -33,6 +44,14 @@ public class Register extends AppCompatActivity {
     String[] roles = {"buyer","seller"};
 
     GlobalUserAccess globalUserAccess;
+
+    String email;
+    String user_name;
+    String user_pasword;
+    String gender;
+    String birthdate;
+    String user_role;
+    String jsonString ="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,24 +87,21 @@ public class Register extends AppCompatActivity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println(globalUserAccess.toString());
-//                if (registerEmail.getText().toString().trim().isEmpty() || registerUsername.getText().toString().trim().isEmpty()
-//                        || registerPassword.getText().toString().isEmpty() || registerDOB.getText().toString().trim().isEmpty()
-//                || registerGender.getEditText().getText().toString().trim().isEmpty() || registerRole.getEditText().getText().toString().trim().isEmpty()) {
-//                    Snackbar.make(register_view, "Please enter information for all required fields", Snackbar.LENGTH_SHORT).show();
-//
-//                } else  {
-//                    Intent intent = new Intent(Register.this, Verification.class);
-//                    // Send notification to user about new account creation
-//                    NotificationCompat.Builder builder = new NotificationCompat.Builder(Register.this,"Notifications");
-//                    builder.setContentTitle("New Account Created");
-//                    builder.setContentText("Please check your email to receive confirmation code");
-//                    builder.setSmallIcon(R.drawable.ic_baseline_lock);
-//                    builder.setAutoCancel(true);
-//                    NotificationManagerCompat managerCompat = NotificationManagerCompat.from(Register.this);
-//                    managerCompat.notify(10, builder.build());
-//                    startActivity(intent);
-//                }
+                if (registerEmail.getText().toString().trim().isEmpty() || registerUsername.getText().toString().trim().isEmpty()
+                        || registerPassword.getText().toString().isEmpty() || registerDOB.getText().toString().trim().isEmpty()
+                || registerGender.getEditText().getText().toString().trim().isEmpty() || registerRole.getEditText().getText().toString().trim().isEmpty()) {
+                    Snackbar.make(register_view, "Please enter information for all required fields", Snackbar.LENGTH_SHORT).show();
+
+                } else  {
+                    email = registerEmail.getText().toString();
+                    user_name = registerUsername.getText().toString();
+                    user_pasword = registerPassword.getText().toString();
+                    birthdate = registerDOB.getText().toString();
+                    gender = registerGender.getEditText().getText().toString();
+                    user_role = registerRole.getEditText().getText().toString();
+                    new doRegister().execute();
+
+                }
 
             }
         });
@@ -113,5 +129,40 @@ public class Register extends AppCompatActivity {
                 String role = adapterView.getItemAtPosition(i).toString();
             }
         });
+    }
+
+    private class doRegister extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            jsonString = HttpHandler.postRegister("http://54.151.194.4:3000/register", email, user_name, user_pasword, gender, birthdate, user_role);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void unused) {
+            super.onPostExecute(unused);
+            System.out.println("-----------------------------");
+            System.out.println(jsonString);
+            if (jsonString.equals("Register successfully username: "+user_name)) {
+                Intent intent = new Intent(Register.this, Verification.class);
+                // Send notification to user about new account creation
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(Register.this,"Notifications");
+                builder.setContentTitle("New Account Created");
+                builder.setContentText("Please check your email to receive confirmation code");
+                builder.setSmallIcon(R.drawable.ic_baseline_lock);
+                builder.setAutoCancel(true);
+                NotificationManagerCompat managerCompat = NotificationManagerCompat.from(Register.this);
+                managerCompat.notify(10, builder.build());
+                intent.putExtra("username", user_name);
+                startActivity(intent);
+            }
+            else {
+                Toast.makeText(Register.this, jsonString, Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+        }
+
     }
 }

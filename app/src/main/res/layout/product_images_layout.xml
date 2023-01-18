@@ -133,7 +133,7 @@
         android:layout_marginStart="36dp"
         android:layout_marginTop="40dp"
         android:fontFamily="@font/regular"
-        android:text="Available Size"
+        android:text="Available Size:"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -158,7 +158,7 @@
         android:layout_height="100dp"
         android:layout_marginStart="36dp"
         android:layout_marginTop="10dp"
-        android:text="TextView"
+        android:text="descriptionText"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
@@ -174,6 +174,44 @@
         android:gravity="left"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ProductTitle" />
+
+    <TextView
+        android:id="@+id/colorString"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="8dp"
+        android:text="colorString"
+        android:textSize="15sp"
+        android:fontFamily="@font/regular"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+    <TextView
+        android:id="@+id/sizeString"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="8dp"
+        android:text="sizeString"
+        android:textSize="15sp"
+        android:fontFamily="@font/regular"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="16dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="2dp"
+        android:fontFamily="@font/bold"
+        android:gravity="center"
+        android:text="$"
+        android:textColor="@color/yellow"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toStartOf="@+id/PriceText"
+        app:layout_constraintTop_toBottomOf="@+id/product_images_viewpager" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
