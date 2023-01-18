@@ -69,9 +69,8 @@ public class FavoriteFragment extends Fragment {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_favorite, container, false);
         RecyclerView recyclerView1 = root.findViewById(R.id.favorite_rec);
-        LinearLayoutManager layoutManager
-                = new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false);
-        recyclerView1.setLayoutManager(layoutManager);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this.getContext(), 2);
+        recyclerView1.setLayoutManager(gridLayoutManager);
         adapter = new ProductAdapter(this.getContext());
         adapter.SetUpProducts(Utils.obtainInstance().getAllProducts());
         recyclerView1.setAdapter(adapter);

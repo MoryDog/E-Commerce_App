@@ -102,15 +102,6 @@ public class HomeFragment extends Fragment {
         m_imageUrl.add("https://icons.iconarchive.com/icons/designbolts/free-multimedia/1024/iPhone-icon.png");
         m_name.add("Phones");
 
-        m_imageUrl.add("https://cdn-icons-png.flaticon.com/512/3501/3501241.png");
-        m_name.add("Cosmetic");
-
-        m_imageUrl.add("https://static.vecteezy.com/system/resources/previews/005/092/618/original/flat-style-electric-kettle-icon-on-light-green-background-illustration-vector.jpg");
-        m_name.add("Household");
-
-        m_imageUrl.add("https://media1.thehungryjpeg.com/thumbs2/ori_3701521_c85xly460opv0ewhvckm48jc05583w53tucpqb7g_medicine-icon-app.png");
-        m_name.add("Health");
-
         m_imageUrl.add("https://cdn-icons-png.flaticon.com/512/641/641825.png");
         m_name.add("Laptops");
 
@@ -151,7 +142,6 @@ public class HomeFragment extends Fragment {
             recyclerView1.setAdapter(adapter);
         }
     }
-
 
     private void CreateAlertDialog() {
         SortTypelist = new ArrayList<>();
