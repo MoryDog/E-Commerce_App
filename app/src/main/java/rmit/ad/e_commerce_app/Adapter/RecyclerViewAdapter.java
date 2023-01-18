@@ -28,6 +28,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private ArrayList<String> m_imageUrl = new ArrayList<>();
     private Context m_context;
 
+    
     public RecyclerViewAdapter(ArrayList<String> m_name, ArrayList<String> m_imageUrl, Context m_context) {
         this.m_name = m_name;
         this.m_imageUrl = m_imageUrl;

@@ -46,6 +46,7 @@ public class HomeFragment extends Fragment {
     ProductAdapter adapter;
     Utils utils;
 
+    ArrayList<ProductModel> test;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -79,7 +80,11 @@ public class HomeFragment extends Fragment {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this.getContext(), 2);
         recyclerView1.setLayoutManager(gridLayoutManager);
         adapter = new ProductAdapter(this.getContext());
+        if(!(test == null)){
+            test.clear();
+        }
         new GetData().execute();
+
 
 
 
@@ -139,11 +144,10 @@ public class HomeFragment extends Fragment {
         @Override
         protected void onPostExecute(Void unused) {
             super.onPostExecute(unused);
-            //System.out.println(productData);
+            utils = new Utils();
             utils.setData(productData);
-            ArrayList<ProductModel> test = utils.getAllProducts();
-            System.out.println(test.get(0));
-            adapter.SetUpProducts(utils.getAllProducts());
+            test = utils.getAllProducts();
+            adapter.SetUpProducts(test);
             recyclerView1.setAdapter(adapter);
         }
     }
