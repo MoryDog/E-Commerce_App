@@ -65,13 +65,9 @@ public class ProductDetails extends AppCompatActivity {
             if (ProductID != -1){
                 UpComingProducts = Utils.obtainInstance().GetProductByID(ProductID);
                 if (UpComingProducts != null){
-
-                    Toast.makeText(ProductDetails.this, "Product id = " + ProductID, Toast.LENGTH_SHORT).show();
                     //InitProductData(UpComingProducts);
                     new getData().execute();
-
                     handleFavoriteProducts(UpComingProducts);
-
                 }
             }
         }
@@ -114,8 +110,7 @@ public class ProductDetails extends AppCompatActivity {
                 public void onClick(View view) {
                     if (Utils.obtainInstance().AddToFavorite(productModel)){
                         Toast.makeText(ProductDetails.this, "Products Added", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(ProductDetails.this, MainActivity.class);
-                        startActivity(intent);
+                        toggleFavorite.setEnabled(false);
                     } else {
                         Toast.makeText(ProductDetails.this, "Something Wrong Happened, try again", Toast.LENGTH_SHORT).show();
                     }

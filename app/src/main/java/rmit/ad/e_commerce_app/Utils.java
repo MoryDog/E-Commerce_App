@@ -21,7 +21,7 @@ public class Utils {
     private static ArrayList<ProductModel> PhoneProducts;
     private static ArrayList<ProductModel> WatchProducts;
     private static ArrayList<ProductModel> LaptopProducts;
-    private static ArrayList<ProductModel> FavoriteProducts;
+    private static ArrayList<ProductModel> FavoriteProducts = new ArrayList<>();
 
     public Utils() {
 
