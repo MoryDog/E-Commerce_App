@@ -70,7 +70,6 @@ public class ProductDetails extends AppCompatActivity {
                     //InitProductData(UpComingProducts);
                     new getData().execute();
 
-                    InitProductData(UpComingProducts);
                     handleFavoriteProducts(UpComingProducts);
 
                 }

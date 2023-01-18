@@ -236,12 +236,6 @@ public class AddProduct extends AppCompatActivity {
         for(int i = 0; i< bitmaps.size();i++){
             productImages.add(bitmaps.get(i));
         }
-        /*
-        productImages.add("https://androidecommercebucket.s3.ap-southeast-1.amazonaws.com/image%253A457073.jpg");
-        productImages.add("https://androidecommercebucket.s3.ap-southeast-1.amazonaws.com/image%253A457162.jpeg");
-        productImages.add("https://androidecommercebucket.s3.ap-southeast-1.amazonaws.com/318751445_2569676449842092_1285895474581622008_n.jpg.png");
-        productImages.add("https://androidecommercebucket.s3.ap-southeast-1.amazonaws.com/318751445_2569676449842092_1285895474581622008_n.jpg.png");
-        */
 
 
             OfflineProductImageAdapter productImagesAdapter = new OfflineProductImageAdapter(productImages, this);
