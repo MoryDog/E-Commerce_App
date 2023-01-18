@@ -44,10 +44,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         globalUserAccess = ((GlobalUserAccess) getApplicationContext());
 
-        System.out.println(globalUserAccess.getAccessToken());
-        Toast.makeText(this, globalUserAccess.getAccessToken(),
-                Toast.LENGTH_LONG).show();
-
         setContentView(R.layout.activity_main);
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();

@@ -15,6 +15,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,6 +29,10 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.textfield.TextInputEditText;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -48,6 +53,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import rmit.ad.e_commerce_app.Adapter.OfflineProductImageAdapter;
 import rmit.ad.e_commerce_app.Adapter.ProductImagesAdapter;
+import rmit.ad.e_commerce_app.HttpClasses.HttpHandler;
 import rmit.ad.e_commerce_app.HttpClasses.UploadApis;
 import rmit.ad.e_commerce_app.R;
 import rmit.ad.e_commerce_app.seller.SellerActivity;
@@ -121,21 +127,11 @@ public class AddProduct extends AppCompatActivity {
             public void onClick(View view) {
                 //Intent intent = new Intent(AddProduct.this, HomeFragment.class);
                 //startActivity(intent);
-                System.out.println(category.getText());
-                System.out.println(title.getText());
-                System.out.println(price.getText());
-                System.out.println(size.getText());
-                System.out.println(color.getText());
-                System.out.println(brand.getText());
-                System.out.println(quantity.getText());
                 String des = description.getText().toString();
-                System.out.println(des);
 
-                try {
-                    uploadImages(AddProduct.this,uris,bitmaps, category.getText().toString(), title.getText().toString(), price.getText().toString(), color.getText().toString(), size.getText().toString(), des, brand.getText().toString() ,quantity.getText().toString());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                new uploadImageAsysnc().execute();
+
+
             }
         });
 
@@ -248,7 +244,7 @@ public class AddProduct extends AppCompatActivity {
     }
 
 
-    private void uploadImages(Context context, List<Uri> uris, List<Bitmap> bitmaps, String category, String title, String price, String colors, String sizes, String description, String brand, String quantity) throws IOException {
+    private void uploadImages  (Context context, List<Uri> uris, List<Bitmap> bitmaps, String category, String title, String price, String colors, String sizes, String description, String brand, String quantity) throws IOException {
 
         List<File> files = new ArrayList<>();
         List<String> imageNames = new ArrayList<>();
@@ -324,6 +320,25 @@ public class AddProduct extends AppCompatActivity {
                 System.out.println(t.getMessage());
             }
         });
+
+    }
+
+    private class uploadImageAsysnc extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try {
+                uploadImages(AddProduct.this,uris,bitmaps, category.getText().toString(), title.getText().toString(), price.getText().toString(), color.getText().toString(), size.getText().toString(), description.getText().toString(), brand.getText().toString() ,quantity.getText().toString());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void unused) {
+            super.onPostExecute(unused);
+
+        }
 
     }
 
