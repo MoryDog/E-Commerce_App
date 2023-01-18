@@ -57,13 +57,13 @@ public class ProductDetails extends AppCompatActivity {
         productImagesViewPager = findViewById(R.id.product_images_viewpager);
         viewPagerIndicator = findViewById(R.id.viewPager_indicator);
 
-        List<Integer> productImages = new ArrayList<>();
-        productImages.add(R.drawable.image1);
-        productImages.add(R.drawable.image2);
-        productImages.add(R.drawable.image3);
-        productImages.add(R.drawable.image4);
+        List<String> productImages = new ArrayList<>();
+        productImages.add("https://androidecommercebucket.s3.ap-southeast-1.amazonaws.com/318751445_2569676449842092_1285895474581622008_n.jpg.png");
+        productImages.add("https://androidecommercebucket.s3.ap-southeast-1.amazonaws.com/318751445_2569676449842092_1285895474581622008_n.jpg.png");
+        productImages.add("https://androidecommercebucket.s3.ap-southeast-1.amazonaws.com/318751445_2569676449842092_1285895474581622008_n.jpg.png");
+        productImages.add("https://androidecommercebucket.s3.ap-southeast-1.amazonaws.com/318751445_2569676449842092_1285895474581622008_n.jpg.png");
 
-        ProductImagesAdapter productImagesAdapter = new ProductImagesAdapter(productImages);
+        ProductImagesAdapter productImagesAdapter = new ProductImagesAdapter(productImages, this);
         productImagesViewPager.setAdapter(productImagesAdapter);
 
         viewPagerIndicator.setupWithViewPager(productImagesViewPager, true);

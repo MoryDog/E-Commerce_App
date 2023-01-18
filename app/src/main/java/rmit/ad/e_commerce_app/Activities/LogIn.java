@@ -73,7 +73,6 @@ public class LogIn extends AppCompatActivity {
                 } else {
                     Snackbar.make(login_view, "An error has occurred", Snackbar.LENGTH_SHORT).show();
                 }
-
             }
         });
     }
