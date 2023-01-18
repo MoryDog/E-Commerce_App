@@ -10,22 +10,27 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import rmit.ad.e_commerce_app.Adapter.ProductImagesAdapter;
+import rmit.ad.e_commerce_app.Fragments.HomeFragment;
 import rmit.ad.e_commerce_app.ModelClasses.ProductModel;
 import rmit.ad.e_commerce_app.R;
 import rmit.ad.e_commerce_app.Utils;
 
 public class ProductDetails extends AppCompatActivity {
-    private ViewPager productImagesViewPager;
-    private TabLayout viewPagerIndicator;
-    private TextView product_detail_title;
-    private TextView product_price;
+    ViewPager productImagesViewPager;
+    TabLayout viewPagerIndicator;
+    TextView product_detail_title;
+    TextView product_price;
     public static final String KEY_ID_PRODUCT = "Product ID";
+    FloatingActionButton addProductButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +51,8 @@ public class ProductDetails extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         productImagesViewPager = findViewById(R.id.product_images_viewpager);
         viewPagerIndicator = findViewById(R.id.viewPager_indicator);
@@ -79,6 +86,17 @@ public class ProductDetails extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.back_button) {
+            onBackPressed();
+
+        }
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+
 }

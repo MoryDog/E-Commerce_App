@@ -8,11 +8,13 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     FavoriteFragment favoriteFragment = new FavoriteFragment();
     NotificationFragment thirdFragment = new NotificationFragment();
     ShoppingCartFragment shoppingCartFragment = new ShoppingCartFragment();
+    Button openAddProductButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +45,15 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
 
-        // remove status bar (temporary)
+        openAddProductButton = findViewById(R.id.openAddProductButton);
+        openAddProductButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, AddProduct.class);
+                startActivity(intent);
+            }
+        });
+
 
         drawerLayout = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle Toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open,R.string.navigation_drawer_close);

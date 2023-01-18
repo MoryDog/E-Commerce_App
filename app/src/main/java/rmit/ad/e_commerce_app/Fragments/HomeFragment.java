@@ -2,6 +2,7 @@ package rmit.ad.e_commerce_app.Fragments;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.SearchView;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -23,6 +25,7 @@ import com.denzcoskun.imageslider.models.SlideModel;
 import java.util.ArrayList;
 import java.util.List;
 
+import rmit.ad.e_commerce_app.Activities.AddProduct;
 import rmit.ad.e_commerce_app.ModelClasses.ProductModel;
 import rmit.ad.e_commerce_app.Adapter.ProductAdapter;
 import rmit.ad.e_commerce_app.R;
@@ -50,6 +53,7 @@ public class HomeFragment extends Fragment {
                 CreateAlertDialog();
             }
         });
+
 
         searchView = root.findViewById(R.id.SearchView);
         searchView.clearFocus();

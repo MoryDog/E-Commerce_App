@@ -54,7 +54,6 @@ public class AddProduct extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
         // Adapter for dropdown menu
         autoCompleteTextView = findViewById(R.id.autoCompleteTextView);
         adapterItems = new ArrayAdapter<String>(this, R.layout.category_spinner_dropdown, categories);
