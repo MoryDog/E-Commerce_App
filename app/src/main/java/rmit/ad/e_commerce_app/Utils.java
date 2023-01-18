@@ -21,12 +21,18 @@ public class Utils {
     private static ArrayList<ProductModel> PhoneProducts;
     private static ArrayList<ProductModel> WatchProducts;
     private static ArrayList<ProductModel> LaptopProducts;
+    private static ArrayList<ProductModel> FavoriteProducts;
 
     public Utils() {
 
         if (Products == null){
             Products = new ArrayList<>();
         }
+
+        if (FavoriteProducts == null){
+            FavoriteProducts = new ArrayList<>();
+        }
+
         if (ShoeProducts == null){
             ShoeProducts = new ArrayList<>();
             SetShoesData();
@@ -153,5 +159,13 @@ public class Utils {
 
     public ArrayList<ProductModel> getWatchProducts() {
         return WatchProducts;
+    }
+
+    public ArrayList<ProductModel> getFavoriteProducts() {
+        return FavoriteProducts;
+    }
+
+    public boolean AddToFavorite(ProductModel productModel){
+        return FavoriteProducts.add(productModel);
     }
 }

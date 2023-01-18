@@ -47,7 +47,6 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import rmit.ad.e_commerce_app.Adapter.ProductImagesAdapter;
-import rmit.ad.e_commerce_app.Fragments.HomeFragment;
 import rmit.ad.e_commerce_app.HttpClasses.UploadApis;
 import rmit.ad.e_commerce_app.R;
 import rmit.ad.e_commerce_app.seller.SellerActivity;
@@ -87,8 +86,6 @@ public class AddProduct extends AppCompatActivity {
         brand = findViewById(R.id.brandText);
         quantity = findViewById(R.id.quantityText);
         description = findViewById(R.id.desciptionText);
-
-
 
         Toolbar toolbar = findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);

@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -23,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rmit.ad.e_commerce_app.Adapter.ProductImagesAdapter;
+import rmit.ad.e_commerce_app.Fragments.FavoriteFragment;
 import rmit.ad.e_commerce_app.ModelClasses.ProductModel;
 import rmit.ad.e_commerce_app.R;
 import rmit.ad.e_commerce_app.Utils;
@@ -52,6 +54,7 @@ public class ProductDetails extends AppCompatActivity {
                 ProductModel UpComingProducts = Utils.obtainInstance().GetProductByID(ProductID);
                 if (UpComingProducts != null){
                     InitProductData(UpComingProducts);
+                    handleFavoriteProducts(UpComingProducts);
                 }
             }
         }
@@ -87,7 +90,34 @@ public class ProductDetails extends AppCompatActivity {
         });
     }
 
+    private void handleFavoriteProducts(final ProductModel productModel) {
+        ArrayList<ProductModel> favoriteProducts = Utils.obtainInstance().getFavoriteProducts();
+        boolean existInFavoriteProducts = false;
+        for (ProductModel productModel1: favoriteProducts){
+            if (productModel1.getID() == productModel.getID()){
+                existInFavoriteProducts = true;
+            }
+        }
+        if (existInFavoriteProducts) {
+            toggleFavorite.setEnabled(false);
+        } else  {
+            toggleFavorite.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (Utils.obtainInstance().AddToFavorite(productModel)){
+                        Toast.makeText(ProductDetails.this, "Products Added", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(ProductDetails.this, MainActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(ProductDetails.this, "Something Wrong Happened, try again", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+    }
+
     private void InitViews() {
+        toggleFavorite = findViewById(R.id.toggleFavorite);
         product_detail_title = findViewById(R.id.ProductTitle);
         product_price = findViewById(R.id.PriceText);
     }
