@@ -2,7 +2,7 @@ package rmit.ad.e_commerce_app.Fragments;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.SearchView;
@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -22,10 +21,14 @@ import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import rmit.ad.e_commerce_app.Activities.AddProduct;
+import rmit.ad.e_commerce_app.HttpClasses.HttpHandler;
 import rmit.ad.e_commerce_app.ModelClasses.ProductModel;
 import rmit.ad.e_commerce_app.Adapter.ProductAdapter;
 import rmit.ad.e_commerce_app.R;
@@ -39,12 +42,15 @@ public class HomeFragment extends Fragment {
     List<String> SortTypelist;
     private SearchView searchView;
     ImageButton filterBtn;
-
+    RecyclerView recyclerView1;
     ProductAdapter adapter;
+    Utils utils;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        utils = new Utils();
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         filterBtn = root.findViewById(R.id.filter_button);
         filterBtn.setOnClickListener(new View.OnClickListener() {
@@ -53,7 +59,6 @@ public class HomeFragment extends Fragment {
                 CreateAlertDialog();
             }
         });
-
 
         searchView = root.findViewById(R.id.SearchView);
         searchView.clearFocus();
@@ -70,12 +75,12 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        RecyclerView recyclerView1 = root.findViewById(R.id.new_product_rec);
+        recyclerView1 = root.findViewById(R.id.new_product_rec);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this.getContext(), 2);
         recyclerView1.setLayoutManager(gridLayoutManager);
         adapter = new ProductAdapter(this.getContext());
-        adapter.SetUpProducts(Utils.obtainInstance().getAllProducts());
-        recyclerView1.setAdapter(adapter);
+        new GetData().execute();
+
 
 
         m_imageUrl = new ArrayList<>();
@@ -122,6 +127,27 @@ public class HomeFragment extends Fragment {
         imageSlider.setImageList(slideModels);
         return root;
     }
+
+    private class GetData extends AsyncTask<Void, Void, Void> {
+        String productData = "";
+        @Override
+        protected Void doInBackground(Void... voids) {
+            productData = HttpHandler.getRequest("http://54.151.194.4:3000/getall/10/1");
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void unused) {
+            super.onPostExecute(unused);
+            //System.out.println(productData);
+            utils.setData(productData);
+            ArrayList<ProductModel> test = utils.getAllProducts();
+            System.out.println(test.get(0));
+            adapter.SetUpProducts(utils.getAllProducts());
+            recyclerView1.setAdapter(adapter);
+        }
+    }
+
 
     private void CreateAlertDialog() {
         SortTypelist = new ArrayList<>();
@@ -171,7 +197,7 @@ public class HomeFragment extends Fragment {
     private void filterList(String newText) {
         ArrayList<ProductModel> filteredList = new ArrayList<>();
         for (ProductModel product: Utils.obtainInstance().getAllProducts()){
-            if (product.getName().toLowerCase().contains(newText.toLowerCase())){
+            if (product.getTitle().toLowerCase().contains(newText.toLowerCase())){
                 filteredList.add(product);
             }
         }

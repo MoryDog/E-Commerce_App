@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/MASTER Menu/1.RMIT/Android/FinalAssignment/Main/E-Commerce_App/app/src/main/res/layout/activity_main.xml" value="0.1265625" />
+        <entry key="..\:/MASTER Menu/1.RMIT/Android/FinalAssignment/Main/E-Commerce_App/app/src/main/res/layout/activity_product_details.xml" value="0.1265625" />
+        <entry key="..\:/MASTER Menu/1.RMIT/Android/FinalAssignment/Main/E-Commerce_App/app/src/main/res/layout/activity_register.xml" value="0.1265625" />
+        <entry key="..\:/MASTER Menu/1.RMIT/Android/FinalAssignment/Main/E-Commerce_App/app/src/main/res/layout/category_item_list.xml" value="0.1265625" />
+        <entry key="..\:/MASTER Menu/1.RMIT/Android/FinalAssignment/Main/E-Commerce_App/app/src/main/res/layout/fragment_favorite.xml" value="0.1265625" />
+        <entry key="..\:/MASTER Menu/1.RMIT/Android/FinalAssignment/Main/E-Commerce_App/app/src/main/res/layout/fragment_home.xml" value="0.1265625" />
+        <entry key="..\:/MASTER Menu/1.RMIT/Android/FinalAssignment/Main/E-Commerce_App/app/src/main/res/layout/fragment_notification.xml" value="0.1265625" />
+        <entry key="..\:/MASTER Menu/1.RMIT/Android/FinalAssignment/Main/E-Commerce_App/app/src/main/res/layout/fragment_shopping_cart.xml" value="0.1265625" />
+        <entry key="..\:/MASTER Menu/1.RMIT/Android/FinalAssignment/Main/E-Commerce_App/app/src/main/res/layout/nav_header.xml" value="0.1265625" />
+        <entry key="..\:/MASTER Menu/1.RMIT/Android/FinalAssignment/Main/E-Commerce_App/app/src/main/res/layout/product_images_layout.xml" value="0.1265625" />
+        <entry key="..\:/MASTER Menu/1.RMIT/Android/FinalAssignment/Main/E-Commerce_App/app/src/main/res/layout/product_item_list.xml" value="0.1265625" />
+      </map>
+    </option>
+  </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />

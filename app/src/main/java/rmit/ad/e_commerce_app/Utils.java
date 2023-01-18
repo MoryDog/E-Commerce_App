@@ -1,29 +1,71 @@
 package rmit.ad.e_commerce_app;
 
-import java.util.ArrayList;
+import android.os.AsyncTask;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.concurrent.SynchronousQueue;
+
+import rmit.ad.e_commerce_app.HttpClasses.HttpHandler;
 import rmit.ad.e_commerce_app.ModelClasses.ProductModel;
 
 public class Utils {
     private static Utils instance;
 
-    private static ArrayList<ProductModel> Products;
+    private static ArrayList<ProductModel> Products = new ArrayList<>();
     private static ArrayList<ProductModel> ShoeProducts;
 
-    private Utils() {
+
+
+    public Utils() {
+
         if (Products == null){
             Products = new ArrayList<>();
-            SetInitialData();
         }
         if (ShoeProducts == null){
             ShoeProducts = new ArrayList<>();
             SetShoesData();
         }
+
     }
 
-    private void SetInitialData() {
-        //Manually create initial data for the book and then add it to the all book list
-        Products.add(new ProductModel(1, "iPhone 13", "99999 $", "https://www.svstore.vn/uploads/source/iphone-13prm/iphone-13-pro-max-blue-select.png", "Phone", "Apple", 1));
+
+
+
+
+    public void setData(String data){
+        try {
+            JSONArray jsonArray = new JSONArray(data);
+            for(int i = 0; i< jsonArray.length(); i++){
+                JSONObject product = jsonArray.getJSONObject(i);
+                int id = (int) product.get("Id");
+                int seller_id = (int) product.get("seller_id");
+                String category = product.get("category").toString();
+                String title = product.get("title").toString();
+                String price = product.get("price").toString();
+                String color = product.get("colors").toString();
+                String sizes = product.get("sizes").toString();
+
+                int stars  = (int) product.get("stars");
+                String brand = product.get("brand").toString();
+                String thumbnail = product.get("thumbnail").toString();
+                String description = product.get("descriptions").toString();
+
+                Products.add(new ProductModel(title, price, thumbnail, id, category, brand, 1, seller_id, color, sizes, description, stars));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void SetInitialData() {
+
+
+        /*
+        Products.add(new ProductModel(1, "iPhone 13", "99999 $", "https://androidecommercebucket.s3.ap-southeast-1.amazonaws.com/image%253A457075.png", "Phone", "Apple", 1));
         Products.add(new ProductModel(2, "T-Shirt", "199999 $", "https://chapel.vn/wp-content/uploads/2021/07/hn.jpg", "Phone", "Apple", 1));
         Products.add(new ProductModel(3, "Rolex", "299999 $", "https://transform.octanecdn.com/fitLogo/400x500/https://dynamix-cdn.s3.amazonaws.com/jacobandcocom/jacobandcocom_423193262.png", "Phone", "Apple", 1));
         Products.add(new ProductModel(4, "Shoes", "399999 $", "https://cdn.shopify.com/s/files/1/1626/5391/products/Balenciaga-Triple-S-Nude-Transparent-Sole-Crepslocker-Side_f26facf3-2c43-448b-b5f5-a75381a6b209.jpg?v=1652088899", "Phone", "Apple", 1));
@@ -31,11 +73,12 @@ public class Utils {
         Products.add(new ProductModel(6, "Household", "599999 $", "https://cdn.nguyenkimmall.com/images/detailed/727/10049167-binh-dun-sieu-toc-sharp-ekj-10dvps-bk-1.jpg", "Phone", "Apple", 1));
         Products.add(new ProductModel(7, "Health", "699999 $", "https://bucket.nhanh.vn/store/4726/ps/20210819/19082021040855_DSCF0825.png", "Phone", "Apple", 1));
         Products.add(new ProductModel(8, "Laptops", "799999 $", "https://m.media-amazon.com/images/I/71NIJloNGoL._SL1500_.jpg", "Phone", "Apple", 1));
+        */
     }
 
 
     private void SetShoesData() {
-        //Manually create initial data for the book and then add it to the all book list
+
         ShoeProducts.add(new ProductModel(4, "Shoes", "399999 $", "https://cdn.shopify.com/s/files/1/1626/5391/products/Balenciaga-Triple-S-Nude-Transparent-Sole-Crepslocker-Side_f26facf3-2c43-448b-b5f5-a75381a6b209.jpg?v=1652088899", "Phone", "Apple", 1));
     }
 

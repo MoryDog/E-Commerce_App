@@ -1,30 +1,51 @@
 package rmit.ad.e_commerce_app.ModelClasses;
 
 public class ProductModel {
-    private String name;
+    private String title;
     private String price;
-    private String img_url;
+    private String thumbnail;
     private long ID;
     private String category;
-    private String supplier;
+    private String brand;
     private int quantity;
 
-    public ProductModel(long ID, String title, String price, String img_name, String category, String supplier, int quantity) {
-        this.name = title;
+    private int seller_id;
+    private String colors;
+    private String sizes;
+    private String description;
+    private int stars;
+
+    public ProductModel(long ID ,String title, String price, String thumbnail, String category, String brand, int quantity) {
+        this.title = title;
         this.price = price;
-        this.img_url = img_name;
+        this.thumbnail = thumbnail;
         this.ID = ID;
         this.category = category;
-        this.supplier = supplier;
+        this.brand = brand;
         this.quantity = quantity;
     }
 
-    public String getName() {
-        return name;
+    public ProductModel(String title, String price, String thumbnail, long ID, String category, String brand, int quantity, int seller_id, String colors, String sizes, String description, int stars) {
+        this.title = title;
+        this.price = price;
+        this.thumbnail = thumbnail;
+        this.ID = ID;
+        this.category = category;
+        this.brand = brand;
+        this.quantity = quantity;
+        this.seller_id = seller_id;
+        this.colors = colors;
+        this.sizes = sizes;
+        this.description = description;
+        this.stars = stars;
     }
 
-    public void setName(String title) {
-        this.name = title;
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getPrice() {
@@ -36,11 +57,11 @@ public class ProductModel {
     }
 
     public String getImg_name() {
-        return img_url;
+        return thumbnail;
     }
 
     public void setImg_name(String img_name) {
-        this.img_url = img_name;
+        this.thumbnail = img_name;
     }
 
     public long getID() {
@@ -59,12 +80,12 @@ public class ProductModel {
         this.category = category;
     }
 
-    public String getSupplier() {
-        return supplier;
+    public String getBrand() {
+        return brand;
     }
 
-    public void setSupplier(String supplier) {
-        this.supplier = supplier;
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 
     public int getQuantity() {
@@ -73,5 +94,53 @@ public class ProductModel {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public String getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
+    }
+
+    public int getSeller_id() {
+        return seller_id;
+    }
+
+    public void setSeller_id(int seller_id) {
+        this.seller_id = seller_id;
+    }
+
+    public String getColors() {
+        return colors;
+    }
+
+    public void setColors(String colors) {
+        this.colors = colors;
+    }
+
+    public String getSizes() {
+        return sizes;
+    }
+
+    public void setSizes(String sizes) {
+        this.sizes = sizes;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getStars() {
+        return stars;
+    }
+
+    public void setStars(int stars) {
+        this.stars = stars;
     }
 }
