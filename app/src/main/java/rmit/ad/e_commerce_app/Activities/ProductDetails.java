@@ -55,7 +55,6 @@ public class ProductDetails extends AppCompatActivity {
     ProductModel UpComingProducts;
     private String s3 = "https://androidecommercebucket.s3.ap-southeast-1.amazonaws.com/";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,7 +78,6 @@ public class ProductDetails extends AppCompatActivity {
         productImagesViewPager = findViewById(R.id.product_images_viewpager);
         viewPagerIndicator = findViewById(R.id.viewPager_indicator);
         product_detail_view = findViewById(android.R.id.content);
-
 
         Toolbar toolbar = findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
@@ -123,31 +121,6 @@ public class ProductDetails extends AppCompatActivity {
         }
     }
 
-    private void handleCartProducts(final ProductModel productModel) {
-        ArrayList<ProductModel> cartProducts = Utils.obtainInstance().getCartProducts();
-        boolean existInCartProducts = false;
-        for (ProductModel productModel2: cartProducts){
-            if (productModel2.getID() == productModel.getID()){
-                existInCartProducts = true;
-            }
-        }
-        if (existInCartProducts) {
-            addToCartButton.setEnabled(false);
-        } else  {
-            addToCartButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (Utils.obtainInstance().AddToFavorite(productModel)){
-                        Toast.makeText(ProductDetails.this, "Products Added", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(ProductDetails.this, MainActivity.class);
-                        startActivity(intent);
-                    } else {
-                        Toast.makeText(ProductDetails.this, "Something Wrong Happened, try again", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-        }
-    }
 
     private void InitViews() {
         toggleFavorite = findViewById(R.id.toggleFavorite);
@@ -183,7 +156,6 @@ public class ProductDetails extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-
     }
 
     @Override

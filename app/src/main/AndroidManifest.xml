@@ -86,13 +86,22 @@
         </activity>
         <activity
             android:name=".Activities.Verification"
-            android:exported="false">
+            android:exported="true">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
+            android:name=".seller.SellerActivity"
+            android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".Activities.ProductDetails"
+            android:parentActivityName=".Activities.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar">
             <meta-data
@@ -109,6 +118,7 @@
         </activity>
         <activity
             android:name=".Activities.AddProduct"
+            android:parentActivityName=".seller.SellerActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
