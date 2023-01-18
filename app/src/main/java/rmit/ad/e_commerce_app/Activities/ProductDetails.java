@@ -47,7 +47,6 @@ public class ProductDetails extends AppCompatActivity {
     TextView product_price;
     View product_detail_view;
     Button addToCartButton;
-    ImageView back_button;
     ToggleButton toggleFavorite;
     String jsonString = "";
     long ProductID;
@@ -61,6 +60,8 @@ public class ProductDetails extends AppCompatActivity {
         setContentView(R.layout.activity_product_details);
         InitViews();
 
+        addToCartButton = findViewById(R.id.addToCartButton);
+
         Intent intent = getIntent();
         if (intent != null){
             ProductID = intent.getLongExtra(KEY_ID_PRODUCT, -1);
@@ -70,7 +71,8 @@ public class ProductDetails extends AppCompatActivity {
                     //InitProductData(UpComingProducts);
                     new getData().execute();
                     handleFavoriteProducts(UpComingProducts);
-//                    handleCartProducts(UpComingProducts);
+                    handleCartProducts(UpComingProducts);
+
                 }
             }
         }
@@ -85,15 +87,6 @@ public class ProductDetails extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
-        // add to shopping cart button
-        addToCartButton = findViewById(R.id.addToCartButton);
-        addToCartButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(product_detail_view, "Product added to cart", Snackbar.LENGTH_SHORT).show();
-            }
-        });
     }
 
     private void handleFavoriteProducts(final ProductModel productModel) {
@@ -111,10 +104,34 @@ public class ProductDetails extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if (Utils.obtainInstance().AddToFavorite(productModel)){
-                        Toast.makeText(ProductDetails.this, "Products Added", Toast.LENGTH_SHORT).show();
+                        Snackbar.make(product_detail_view, "Product Added to Favorites", Snackbar.LENGTH_SHORT).show();
                         toggleFavorite.setEnabled(false);
                     } else {
-                        Toast.makeText(ProductDetails.this, "Something Wrong Happened, try again", Toast.LENGTH_SHORT).show();
+                        Snackbar.make(product_detail_view, "Something Wrong Happened, try again", Snackbar.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+    }
+
+    private void handleCartProducts(final ProductModel cartProductModel) {
+        ArrayList<ProductModel> cartProducts = Utils.obtainInstance().getCartProducts();
+        boolean existInCartProducts = false;
+        for (ProductModel cartProductModel_temp : cartProducts) {
+            if (cartProductModel_temp.getID() == cartProductModel.getID()) {
+                existInCartProducts = true;
+            }
+        }
+        if (existInCartProducts) {
+            addToCartButton.setEnabled(false);
+        } else {
+            addToCartButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (Utils.obtainInstance().AddToCart(cartProductModel)) {
+                        Snackbar.make(product_detail_view, "Product added to Cart", Snackbar.LENGTH_SHORT).show();
+                    } else {
+                        Snackbar.make(product_detail_view, "Something Wrong Happened, try again", Snackbar.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -152,7 +169,7 @@ public class ProductDetails extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         // Respond to the action bar's Up/Home button
         if (item.getItemId() == android.R.id.home) {
-            NavUtils.navigateUpFromSameTask(this);
+            finish();
             return true;
         }
         return super.onOptionsItemSelected(item);

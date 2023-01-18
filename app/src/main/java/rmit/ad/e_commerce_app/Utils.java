@@ -175,4 +175,8 @@ public class Utils {
     public boolean AddToFavorite(ProductModel productModel){
         return FavoriteProducts.add(productModel);
     }
+
+    public boolean AddToCart(ProductModel productModelCart) {
+        return CartProducts.add(productModelCart);
+    }
 }
