@@ -21,7 +21,7 @@ public class Utils {
 
 
     public Utils() {
-        /*
+
         if (Products == null){
             Products = new ArrayList<>();
         }
@@ -29,7 +29,7 @@ public class Utils {
             ShoeProducts = new ArrayList<>();
             SetShoesData();
         }
-         */
+
     }
 
 
