@@ -3,6 +3,7 @@ package rmit.ad.e_commerce_app.Activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NavUtils;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
@@ -53,6 +54,8 @@ public class ProductDetails extends AppCompatActivity {
     List<String> imageLinks = new ArrayList<>();
     ProductModel UpComingProducts;
     private String s3 = "https://androidecommercebucket.s3.ap-southeast-1.amazonaws.com/";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +71,7 @@ public class ProductDetails extends AppCompatActivity {
                     //InitProductData(UpComingProducts);
                     new getData().execute();
                     handleFavoriteProducts(UpComingProducts);
+//                    handleCartProducts(UpComingProducts);
                 }
             }
         }
@@ -119,6 +123,32 @@ public class ProductDetails extends AppCompatActivity {
         }
     }
 
+    private void handleCartProducts(final ProductModel productModel) {
+        ArrayList<ProductModel> cartProducts = Utils.obtainInstance().getCartProducts();
+        boolean existInCartProducts = false;
+        for (ProductModel productModel2: cartProducts){
+            if (productModel2.getID() == productModel.getID()){
+                existInCartProducts = true;
+            }
+        }
+        if (existInCartProducts) {
+            addToCartButton.setEnabled(false);
+        } else  {
+            addToCartButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (Utils.obtainInstance().AddToFavorite(productModel)){
+                        Toast.makeText(ProductDetails.this, "Products Added", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(ProductDetails.this, MainActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(ProductDetails.this, "Something Wrong Happened, try again", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+    }
+
     private void InitViews() {
         toggleFavorite = findViewById(R.id.toggleFavorite);
         product_detail_title = findViewById(R.id.ProductTitle);
@@ -147,11 +177,13 @@ public class ProductDetails extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.back_button) {
-            onBackPressed();
-
+        // Respond to the action bar's Up/Home button
+        if (item.getItemId() == android.R.id.home) {
+            NavUtils.navigateUpFromSameTask(this);
+            return true;
         }
         return super.onOptionsItemSelected(item);
+
     }
 
     @Override
@@ -168,7 +200,6 @@ public class ProductDetails extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
             jsonString = HttpHandler.getRequest("http://54.151.194.4:3000/getimages?product_id="+ProductID);
-
             return null;
         }
 
