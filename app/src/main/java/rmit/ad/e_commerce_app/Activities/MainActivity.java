@@ -29,6 +29,9 @@ import rmit.ad.e_commerce_app.R;
 
 public class MainActivity extends AppCompatActivity {
 
+
+
+
     private DrawerLayout drawerLayout;
     BottomNavigationView bottomNavigationView;
     HomeFragment homeFragment = new HomeFragment();
@@ -36,10 +39,12 @@ public class MainActivity extends AppCompatActivity {
     NotificationFragment thirdFragment = new NotificationFragment();
     ShoppingCartFragment shoppingCartFragment = new ShoppingCartFragment();
     Button openAddProductButton;
+    GlobalUserAccess globalUserAccess;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        globalUserAccess = ((GlobalUserAccess) getApplicationContext());
 
         setContentView(R.layout.activity_main);
 
@@ -56,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, AddProduct.class);
                 startActivity(intent);
+                System.out.println(globalUserAccess.toString());
             }
         });
 
