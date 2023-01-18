@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -45,6 +46,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         globalUserAccess = ((GlobalUserAccess) getApplicationContext());
+
+        System.out.println(globalUserAccess.getAccessToken());
+        Toast.makeText(this, globalUserAccess.getAccessToken(),
+                Toast.LENGTH_LONG).show();
 
         setContentView(R.layout.activity_main);
 

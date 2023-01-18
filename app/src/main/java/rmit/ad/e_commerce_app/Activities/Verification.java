@@ -29,7 +29,7 @@ public class Verification extends AppCompatActivity {
         ConfirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Verification.this, LogIn.class );
+                Intent intent = new Intent(Verification.this, Login.class );
                 Snackbar.make(snackbar_view, "Account Verified! Enter your credentials to login)", Snackbar.LENGTH_SHORT).show();
                 startActivity(intent);
             }

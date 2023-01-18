@@ -12,20 +12,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.google.android.material.snackbar.Snackbar;
-import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Map;
-
 import rmit.ad.e_commerce_app.HttpClasses.HttpHandler;
 import rmit.ad.e_commerce_app.R;
 
-public class LogIn extends AppCompatActivity {
+public class Login extends AppCompatActivity {
     ImageView back_button;
     TextView signup_button, forgotPassword;
     Button login_button2;
@@ -62,7 +60,7 @@ public class LogIn extends AppCompatActivity {
         signup_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LogIn.this, Register.class);
+                Intent intent = new Intent(Login.this, Register.class);
                 startActivity(intent);
             }
         });
@@ -85,12 +83,10 @@ public class LogIn extends AppCompatActivity {
             public void onClick(View view) {
                 user_name = username_field.getText().toString();
                 user_password = password_field.getText().toString();
-                new doLogIn().execute();
                 if (username_field.getText().toString().trim().isEmpty() || password_field.getText().toString().isEmpty()) {
                     Snackbar.make(login_view, "Username and Password cannot be empty!", Snackbar.LENGTH_SHORT).show();
                 } else if (username_field.getText().toString().trim().length() > 0 || password_field.getText().toString().length() > 0) {
-                    Intent intent = new Intent(LogIn.this, MainActivity.class);
-                    startActivity(intent);
+                    new doLogIn().execute();
                 } else {
                     Snackbar.make(login_view, "An error has occurred", Snackbar.LENGTH_SHORT).show();
                 }
@@ -110,7 +106,6 @@ public class LogIn extends AppCompatActivity {
         protected void onPostExecute(Void unused) {
             super.onPostExecute(unused);
 
-
             try {
                 JSONObject jsonObject = new JSONObject(jsonString);
                 String accessToken = jsonObject.get("accessToken").toString();
@@ -119,8 +114,12 @@ public class LogIn extends AppCompatActivity {
                 globalUserAccess.setAccessToken(accessToken);
                 globalUserAccess.setIdToken(idToken);
                 globalUserAccess.setRefreshToken(refreshToken);
+                Intent intent = new Intent(Login.this, MainActivity.class);
+                startActivity(intent);
+
             } catch (JSONException e) {
-                throw new RuntimeException(e);
+                Toast.makeText(Login.this, "Wrong User Name or Password",
+                        Toast.LENGTH_LONG).show();
             }
         }
 

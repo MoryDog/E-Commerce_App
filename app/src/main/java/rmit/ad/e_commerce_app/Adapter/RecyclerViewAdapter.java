@@ -18,7 +18,6 @@ import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import rmit.ad.e_commerce_app.Activities.LaptopCategory;
-import rmit.ad.e_commerce_app.Activities.LogIn;
 import rmit.ad.e_commerce_app.Activities.PhoneCategory;
 import rmit.ad.e_commerce_app.Activities.ShirtCategory;
 import rmit.ad.e_commerce_app.Activities.ShoesCategory;
