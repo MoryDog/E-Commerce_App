@@ -34,13 +34,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
-            <ImageView
-                android:id="@+id/ProductImage"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                app:srcCompat="@drawable/ic_baseline_add_photo_alternate_24"
-                android:background="@color/grey"/>
+            <include layout="@layout/addproduct_images_layout" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -174,15 +168,18 @@
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
+
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addImageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginTop="210dp"
+        android:layout_marginRight="10dp"
+        android:layout_gravity="right"
         android:src="@drawable/ic_baseline_add_photo_alternate_24"
-        app:layout_anchor= "@id/ProductImage"
-        app:layout_anchorGravity = "bottom|right|end"
-        />
+        app:backgroundTint="#02bbf1"
+        app:fabSize="mini"/>
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Shoppefy");
 
         openAddProductButton = findViewById(R.id.openAddProductButton);
         openAddProductButton.setOnClickListener(new View.OnClickListener() {

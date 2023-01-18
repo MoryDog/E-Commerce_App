@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rmit.ad.e_commerce_app.Adapter.ProductImagesAdapter;
-import rmit.ad.e_commerce_app.Fragments.HomeFragment;
 import rmit.ad.e_commerce_app.ModelClasses.ProductModel;
 import rmit.ad.e_commerce_app.R;
 import rmit.ad.e_commerce_app.Utils;
@@ -51,6 +50,7 @@ public class ProductDetails extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("");
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

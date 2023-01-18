@@ -3,13 +3,10 @@ package rmit.ad.e_commerce_app.Activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.viewpager.widget.ViewPager;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.Image;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,15 +17,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.tabs.TabLayout;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
+import rmit.ad.e_commerce_app.Adapter.ProductImagesAdapter;
 import rmit.ad.e_commerce_app.Fragments.HomeFragment;
 import rmit.ad.e_commerce_app.R;
 
@@ -37,6 +32,8 @@ public class AddProduct extends AppCompatActivity {
    AutoCompleteTextView autoCompleteTextView;
    ArrayAdapter<String> adapterItems;
    Button addProductButton;
+   ViewPager addProductImagesViewPager;
+   TabLayout viewPagerIndicator2;
    FloatingActionButton addImageButton;
    ImageView ProductImage;
    Bitmap bitmap;
@@ -51,6 +48,7 @@ public class AddProduct extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Add New Product");
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -65,6 +63,21 @@ public class AddProduct extends AppCompatActivity {
                 String category = adapterView.getItemAtPosition(i).toString();
             }
         });
+
+        // Add images for new product
+        addProductImagesViewPager = findViewById(R.id.addProduct_images_viewpager);
+        viewPagerIndicator2 = findViewById(R.id.viewPager_indicator2);
+
+        List<Integer> productImages = new ArrayList<>();
+        productImages.add(R.drawable.image1);
+        productImages.add(R.drawable.image2);
+        productImages.add(R.drawable.image3);
+        productImages.add(R.drawable.image4);
+
+        ProductImagesAdapter productImagesAdapter = new ProductImagesAdapter(productImages);
+        addProductImagesViewPager.setAdapter(productImagesAdapter);
+
+        viewPagerIndicator2.setupWithViewPager(addProductImagesViewPager, true);
 
         addProductButton = findViewById(R.id.addProductButton);
         addProductButton.setOnClickListener(new View.OnClickListener() {
