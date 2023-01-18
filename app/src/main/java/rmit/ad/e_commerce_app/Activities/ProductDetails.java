@@ -9,9 +9,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -23,12 +27,14 @@ import rmit.ad.e_commerce_app.R;
 import rmit.ad.e_commerce_app.Utils;
 
 public class ProductDetails extends AppCompatActivity {
+    public static final String KEY_ID_PRODUCT = "Product ID";
     ViewPager productImagesViewPager;
     TabLayout viewPagerIndicator;
     TextView product_detail_title;
     TextView product_price;
-    public static final String KEY_ID_PRODUCT = "Product ID";
-    FloatingActionButton addProductButton;
+    View product_detail_view;
+    Button addToCartButton;
+    ToggleButton toggleFavorite;
 
 
     @Override
@@ -65,8 +71,17 @@ public class ProductDetails extends AppCompatActivity {
 
         ProductImagesAdapter productImagesAdapter = new ProductImagesAdapter(productImages, this);
         productImagesViewPager.setAdapter(productImagesAdapter);
+        product_detail_view = findViewById(android.R.id.content);
 
         viewPagerIndicator.setupWithViewPager(productImagesViewPager, true);
+
+        addToCartButton = findViewById(R.id.addToCartButton);
+        addToCartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(product_detail_view, "Product added to cart", Snackbar.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void InitViews() {
@@ -98,5 +113,8 @@ public class ProductDetails extends AppCompatActivity {
         super.onBackPressed();
     }
 
-
+    // favorite button toggle
+    public void onCustomToggleClick(View view) {
+        Snackbar.make(product_detail_view, "Product added to favorite", Snackbar.LENGTH_SHORT).show();
+    }
 }

@@ -1,4 +1,4 @@
-package rmit.ad.e_commerce_app.Activities;
+package rmit.ad.e_commerce_app.CategoryActivities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -10,17 +10,18 @@ import rmit.ad.e_commerce_app.Adapter.ProductAdapter;
 import rmit.ad.e_commerce_app.R;
 import rmit.ad.e_commerce_app.Utils;
 
-public class ShirtCategory extends AppCompatActivity {
+public class PhoneCategory extends AppCompatActivity {
     ProductAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_shirt_category);
+        setContentView(R.layout.activity_phone_category);
         RecyclerView recyclerView1 = findViewById(R.id.new_product_rec);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
         recyclerView1.setLayoutManager(gridLayoutManager);
         adapter = new ProductAdapter(this);
-        adapter.SetUpProducts(Utils.obtainInstance().getShirtProducts());
+        adapter.SetUpProducts(Utils.obtainInstance().getPhoneProducts());
         recyclerView1.setAdapter(adapter);
     }
 }

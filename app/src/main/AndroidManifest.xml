@@ -18,7 +18,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".Activities.LaptopCategory"
+            android:name=".CategoryActivities.LaptopCategory"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,7 +31,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Activities.WatchCategory"
+            android:name=".CategoryActivities.WatchCategory"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,7 +44,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Activities.PhoneCategory"
+            android:name=".CategoryActivities.PhoneCategory"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -57,7 +57,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Activities.ShirtCategory"
+            android:name=".CategoryActivities.ShirtCategory"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -70,7 +70,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Activities.ShoesCategory"
+            android:name=".CategoryActivities.ShoesCategory"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
