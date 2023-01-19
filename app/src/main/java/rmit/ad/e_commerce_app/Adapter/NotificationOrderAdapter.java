@@ -23,7 +23,7 @@ import rmit.ad.e_commerce_app.R;
 
 public class NotificationOrderAdapter extends RecyclerView.Adapter<NotificationViewHolder> {
     private String s3 = "https://androidecommercebucket.s3.ap-southeast-1.amazonaws.com/";
-    private static final String TAG = "CartProductAdapter";
+    private static final String TAG = "NotiProductAdapter";
     private ArrayList<Product> data = new ArrayList<>();
     Context context;
 

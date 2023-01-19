@@ -92,7 +92,7 @@ public class ShoppingCartFragment extends Fragment {
         checkOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), Checkout.class);
+                Intent intent = new Intent(getActivity(), ShoppingCartFragment.class);
                 Toast.makeText(getActivity(), "Proceed to check out", Toast.LENGTH_SHORT).show();
                 startActivity(intent);
             }
