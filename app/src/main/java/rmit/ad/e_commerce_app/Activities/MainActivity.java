@@ -32,10 +32,10 @@ public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
     BottomNavigationView bottomNavigationView;
-    HomeFragment homeFragment = new HomeFragment();
-    FavoriteFragment favoriteFragment = new FavoriteFragment();
-    NotificationFragment thirdFragment = new NotificationFragment();
-    ShoppingCartFragment shoppingCartFragment = new ShoppingCartFragment();
+    HomeFragment homeFragment;
+    FavoriteFragment favoriteFragment;
+    NotificationFragment thirdFragment;
+    ShoppingCartFragment shoppingCartFragment;
     Button openAddProductButton;
     GlobalUserAccess globalUserAccess;
 
@@ -53,6 +53,10 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Shoppefy");
 
+        homeFragment = new HomeFragment(globalUserAccess.getAccessToken());
+        favoriteFragment = new FavoriteFragment(globalUserAccess.getAccessToken());
+        thirdFragment = new NotificationFragment(globalUserAccess.getAccessToken());
+        shoppingCartFragment = new ShoppingCartFragment(globalUserAccess.getAccessToken());
 
         drawerLayout = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle Toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open,R.string.navigation_drawer_close);

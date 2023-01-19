@@ -25,9 +25,11 @@ public class NotificationFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    static String accessToken;
 
-    public NotificationFragment() {
+    public NotificationFragment(String accessToken) {
         // Required empty public constructor
+        this.accessToken = accessToken;
     }
 
     /**
@@ -40,7 +42,7 @@ public class NotificationFragment extends Fragment {
      */
     // TODO: Rename and change types and number of parameters
     public static NotificationFragment newInstance(String param1, String param2) {
-        NotificationFragment fragment = new NotificationFragment();
+        NotificationFragment fragment = new NotificationFragment(accessToken);
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

@@ -17,6 +17,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 
 import rmit.ad.e_commerce_app.Activities.AddProduct;
+import rmit.ad.e_commerce_app.Activities.GlobalUserAccess;
 import rmit.ad.e_commerce_app.Fragments.FavoriteFragment;
 import rmit.ad.e_commerce_app.Fragments.HomeFragment;
 import rmit.ad.e_commerce_app.Fragments.NotificationFragment;
@@ -27,17 +28,24 @@ public class SellerActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
     BottomNavigationView bottomNavigationView;
-    HomeFragment homeFragment = new HomeFragment();
-    FavoriteFragment favoriteFragment = new FavoriteFragment();
-    NotificationFragment thirdFragment = new NotificationFragment();
-    ShoppingCartFragment shoppingCartFragment = new ShoppingCartFragment();
+    HomeFragment homeFragment;
+    FavoriteFragment favoriteFragment;
+    NotificationFragment thirdFragment;
+    ShoppingCartFragment shoppingCartFragment;
     OrderFragment orderFragment = new OrderFragment();
     FloatingActionButton openAddProductButton;
 
+    GlobalUserAccess globalUserAccess;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seller);
+        globalUserAccess = ((GlobalUserAccess) getApplicationContext());
+
+        homeFragment = new HomeFragment(globalUserAccess.getAccessToken());
+        favoriteFragment = new FavoriteFragment(globalUserAccess.getAccessToken());
+        thirdFragment = new NotificationFragment(globalUserAccess.getAccessToken());
+        shoppingCartFragment = new ShoppingCartFragment(globalUserAccess.getAccessToken());
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
