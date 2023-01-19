@@ -1,5 +1,6 @@
 package rmit.ad.e_commerce_app.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,7 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
+import rmit.ad.e_commerce_app.Activities.Checkout;
+import rmit.ad.e_commerce_app.Activities.MainActivity;
 import rmit.ad.e_commerce_app.Adapter.CartProductAdapter;
 import rmit.ad.e_commerce_app.Adapter.ProductAdapter;
 import rmit.ad.e_commerce_app.R;
@@ -23,6 +28,8 @@ import rmit.ad.e_commerce_app.Utils;
  */
 public class ShoppingCartFragment extends Fragment {
     CartProductAdapter adapter;
+    Button checkOutButton;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -69,15 +76,26 @@ public class ShoppingCartFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_shopping_cart, container, false);
         RecyclerView recyclerView1 = root.findViewById(R.id.shoppingCart_rec);
-//        GridLayoutManager gridLayoutManager = new GridLayoutManager(this.getContext(), 2);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView1.setLayoutManager(linearLayoutManager);
         adapter = new CartProductAdapter(this.getContext());
         adapter.SetUpProducts(Utils.obtainInstance().getCartProducts());
         recyclerView1.setAdapter(adapter);
+
+        checkOutButton = root.findViewById(R.id.checkOutButton);
+
+        checkOutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), Checkout.class);
+                Toast.makeText(getActivity(), "Proceed to check out", Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+            }
+        });
 
         return root;
     }

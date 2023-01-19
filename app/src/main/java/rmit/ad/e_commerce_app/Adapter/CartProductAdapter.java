@@ -37,6 +37,7 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartViewHolder> {
     public CartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cart_product_item_list , parent, false);
         return new CartViewHolder(view);
+
     }
 
 
@@ -77,12 +78,6 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartViewHolder> {
             }
         });
 
-        holder.checkOutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // switch to check out activity
-            }
-        });
 
 
     }

@@ -23,6 +23,13 @@
         <item name="contentInsetStart">0dp</item>
         <item name="android:background">@drawable/fading_background</item>
     </style>
+    <style name="Theme.ECommerce_App.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.ECommerce_App.AppBarOverlay"
+        parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.ECommerce_App.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
 
