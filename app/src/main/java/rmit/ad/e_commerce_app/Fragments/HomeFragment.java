@@ -104,16 +104,13 @@ public class HomeFragment extends Fragment {
         m_name.add("Shoes");
 
         m_imageUrl.add("https://cdn-icons-png.flaticon.com/512/164/164579.png");
-        m_name.add("T-Shirts");
+        m_name.add("Shirts");
 
         m_imageUrl.add("https://img.favpng.com/5/4/19/watch-icon-png-favpng-7DbuprFWeg0QNjWuthWARZvZz.jpg");
         m_name.add("Watches");
 
         m_imageUrl.add("https://icons.iconarchive.com/icons/designbolts/free-multimedia/1024/iPhone-icon.png");
         m_name.add("Phones");
-
-        m_imageUrl.add("https://cdn-icons-png.flaticon.com/512/641/641825.png");
-        m_name.add("Laptops");
 
         RecyclerView recyclerView = root.findViewById(R.id.rec_category);
         LinearLayoutManager layoutManager
