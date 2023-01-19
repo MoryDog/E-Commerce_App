@@ -96,7 +96,7 @@ public class Utils {
     }
 
 
-    // Find and get the book by respective ID
+    // Find and get the product by respective ID
     public Product GetProductByID(long id){
         for (Product p:Products){
             if (p.getID() == id){
