@@ -63,22 +63,26 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             public void onClick(View view) {
                 Log.d(TAG, "onClick: Clicked on an image: " + m_name.get(position));
                 String category_name = m_name.get(position);
-                if (category_name.equals("Shoes")){
-                    Intent intent = new Intent(m_context, ShoesCategory.class);
-                    m_context.startActivity(intent);
-                } else if (category_name.equals("T-Shirts")) {
-                    Intent intent1 = new Intent(m_context, ShirtCategory.class);
+
+                Intent intent = new Intent(m_context, ShoesCategory.class);
+                intent.putExtra("category", category_name);
+                m_context.startActivity(intent);
+
+                /*
+                else if (category_name.equals("T-Shirts")) {
+                    Intent intent1 = new Intent(m_context, ShoesCategory.class);
                     m_context.startActivity(intent1);
                 } else if (category_name.equals("Phones")) {
-                    Intent intent1 = new Intent(m_context, PhoneCategory.class);
+                    Intent intent1 = new Intent(m_context, ShoesCategory.class);
                     m_context.startActivity(intent1);
                 } else if (category_name.equals("Watches")) {
-                    Intent intent1 = new Intent(m_context, WatchCategory.class);
+                    Intent intent1 = new Intent(m_context, ShoesCategory.class);
                     m_context.startActivity(intent1);
                 } else if (category_name.equals("Laptops")) {
-                    Intent intent1 = new Intent(m_context, LaptopCategory.class);
+                    Intent intent1 = new Intent(m_context, ShoesCategory.class);
                     m_context.startActivity(intent1);
                 }
+                 */
                 Toast.makeText(m_context, m_name.get(position), Toast.LENGTH_SHORT).show();
             }
         });

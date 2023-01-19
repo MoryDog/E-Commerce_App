@@ -21,54 +21,7 @@ public class Utils {
     private static ArrayList<Product> CartProducts = new ArrayList<>();
 
     public Utils() {
-
-        if (Products == null){
-            Products = new ArrayList<>();
-        }
-
-        if (FavoriteProducts == null){
-            FavoriteProducts = new ArrayList<>();
-        }
-
-        if (CartProducts == null){
-            CartProducts = new ArrayList<>();
-        }
-
-        if (ShoeProducts == null){
-            ShoeProducts = new ArrayList<>();
-            SetShoesData();
-        }
-        if (ShirtProducts == null){
-            ShirtProducts = new ArrayList<>();
-            SetShirtData();
-        }
-
-        if (PhoneProducts == null){
-            PhoneProducts = new ArrayList<>();
-            SetPhoneData();
-        }
-
-        if (WatchProducts == null){
-            WatchProducts = new ArrayList<>();
-            SetWatchData();
-        }
-
-        if (LaptopProducts == null){
-            LaptopProducts = new ArrayList<>();
-            SetLaptopData();
-        }
-    }
-
-    private void SetLaptopData() {
-        LaptopProducts.add(new Product(8, "Laptops", "799999 $", "https://m.media-amazon.com/images/I/71NIJloNGoL._SL1500_.jpg", "Phone", "Apple", 1));
-    }
-
-    private void SetWatchData() {
-        WatchProducts.add(new Product(3, "Rolex", "299999 $", "https://transform.octanecdn.com/fitLogo/400x500/https://dynamix-cdn.s3.amazonaws.com/jacobandcocom/jacobandcocom_423193262.png", "Phone", "Apple", 1));
-    }
-
-    private void SetPhoneData() {
-        PhoneProducts.add(new Product(1, "iPhone 13", "99999 $", "https://androidecommercebucket.s3.ap-southeast-1.amazonaws.com/image%253A457075.png", "Phone", "Apple", 1));
+        Products = new ArrayList<>();
     }
 
     public void setData(String data){
