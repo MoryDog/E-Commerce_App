@@ -14,6 +14,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import rmit.ad.e_commerce_app.Activities.Checkout;
 import rmit.ad.e_commerce_app.Activities.MainActivity;
 import rmit.ad.e_commerce_app.Adapter.CartProductAdapter;
@@ -77,6 +80,13 @@ public class ShoppingCartFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        JSONObject orderPayload = new JSONObject();
+        try {
+            orderPayload.put("accessToken", accessToken);
+            //orderPayload.put()
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_shopping_cart, container, false);

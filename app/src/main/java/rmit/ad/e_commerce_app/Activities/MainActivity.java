@@ -9,6 +9,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.Menu;
@@ -22,10 +23,15 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import rmit.ad.e_commerce_app.Fragments.HomeFragment;
 import rmit.ad.e_commerce_app.Fragments.ShoppingCartFragment;
 import rmit.ad.e_commerce_app.Fragments.FavoriteFragment;
 import rmit.ad.e_commerce_app.Fragments.NotificationFragment;
+import rmit.ad.e_commerce_app.HttpClasses.HttpHandler;
 import rmit.ad.e_commerce_app.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -38,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     ShoppingCartFragment shoppingCartFragment;
     Button openAddProductButton;
     GlobalUserAccess globalUserAccess;
-
+    String jsonString = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,4 +102,5 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
+
 }
