@@ -56,7 +56,6 @@ public class NotificationOrderAdapter extends RecyclerView.Adapter<NotificationV
                 intent.putExtra(KEY_ID_PRODUCT, data.get(position).getID());
                 context.startActivity(intent);
             }
-
         });
     }
 

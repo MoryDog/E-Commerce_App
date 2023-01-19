@@ -101,6 +101,7 @@ public class ProductDetails extends AppCompatActivity {
             }
         }
         if (existInFavoriteProducts) {
+            System.out.println(productModel.getID());
             toggleFavorite.setEnabled(false);
         } else  {
             toggleFavorite.setOnClickListener(new View.OnClickListener() {
