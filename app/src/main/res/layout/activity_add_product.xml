@@ -155,7 +155,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/desciptionText"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="70dp"
                     android:hint="Description"
                     android:inputType="textMultiLine" />
             </com.google.android.material.textfield.TextInputLayout>
