@@ -59,6 +59,25 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartViewHolder> {
                 context.startActivity(intent);
             }
         });
+        holder.addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int quantity = Integer.parseInt((String) holder.quantity.getText());
+                holder.quantity.setText(String.valueOf(quantity + 1));
+            }
+        });
+
+        holder.minusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int quantity = Integer.parseInt((String) holder.quantity.getText());
+                if(quantity > 1){
+                    holder.quantity.setText(String.valueOf(quantity - 1));
+                }
+            }
+        });
+
+
     }
 
     @Override

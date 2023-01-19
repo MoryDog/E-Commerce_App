@@ -1,6 +1,7 @@
 package rmit.ad.e_commerce_app.Adapter;
 
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,7 +15,11 @@ public class CartViewHolder extends RecyclerView.ViewHolder {
     ImageView product_image;
     TextView product_name;
     TextView product_price;
+    ImageButton addButton;
+    ImageButton minusButton;
+    TextView quantity;
     CardView parent;
+
 
     public CartViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -22,5 +27,8 @@ public class CartViewHolder extends RecyclerView.ViewHolder {
         product_name = itemView.findViewById(R.id.order_Title);
         product_price = itemView.findViewById(R.id.order_Status);
         parent = itemView.findViewById(R.id.parent);
+        addButton = itemView.findViewById(R.id.addButton);
+        minusButton = itemView.findViewById(R.id.minusButton);
+        quantity = itemView.findViewById(R.id.quantity);
     }
 }
