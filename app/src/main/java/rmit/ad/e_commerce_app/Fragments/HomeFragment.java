@@ -201,4 +201,5 @@ public class HomeFragment extends Fragment {
             adapter.setFilteredList(filteredList);
         }
     }
+
 }
