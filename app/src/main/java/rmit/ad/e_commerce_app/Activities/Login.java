@@ -22,6 +22,7 @@ import org.json.JSONObject;
 
 import rmit.ad.e_commerce_app.HttpClasses.HttpHandler;
 import rmit.ad.e_commerce_app.R;
+import rmit.ad.e_commerce_app.seller.SellerActivity;
 
 public class Login extends AppCompatActivity {
     ImageView back_button;
@@ -34,7 +35,8 @@ public class Login extends AppCompatActivity {
     String user_password;
 
     String jsonString = "";
-
+    String local = "http://192.168.10.3:3000/login";
+    String server = "http://54.151.194.4:3000/login";
     GlobalUserAccess globalUserAccess;
 
 
@@ -98,7 +100,7 @@ public class Login extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            jsonString = HttpHandler.postLogin("http://54.151.194.4:3000/login", user_name, user_password);
+            jsonString = HttpHandler.postLogin(local, user_name, user_password);
             return null;
         }
 
@@ -111,11 +113,21 @@ public class Login extends AppCompatActivity {
                 String accessToken = jsonObject.get("accessToken").toString();
                 String idToken = jsonObject.get("idToken").toString();
                 String refreshToken = jsonObject.getJSONObject("refreshToken").getString("token");
+                String userRole = jsonObject.get("userRole").toString();
                 globalUserAccess.setAccessToken(accessToken);
                 globalUserAccess.setIdToken(idToken);
                 globalUserAccess.setRefreshToken(refreshToken);
-                Intent intent = new Intent(Login.this, MainActivity.class);
-                startActivity(intent);
+                globalUserAccess.setUserRole(userRole);
+
+                Toast.makeText(Login.this, userRole,
+                        Toast.LENGTH_LONG).show();
+                if(userRole.equals("seller")){
+                    Intent intent = new Intent(Login.this, SellerActivity.class);
+                    startActivity(intent);
+                }else{
+                    Intent intent = new Intent(Login.this, MainActivity.class);
+                    startActivity(intent);
+                }
 
             } catch (JSONException e) {
                 Toast.makeText(Login.this, "Wrong User Name or Password",

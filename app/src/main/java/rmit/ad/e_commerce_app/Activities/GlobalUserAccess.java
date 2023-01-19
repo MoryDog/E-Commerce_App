@@ -7,16 +7,20 @@ public class GlobalUserAccess extends Application {
     private String accessToken;
     private String idToken;
     private String refreshToken;
+    private String userRole;
+
     public GlobalUserAccess() {
         accessToken = "";
         idToken = "";
         refreshToken = "";
+        userRole = "";
     }
 
-    public GlobalUserAccess(String accessToken, String idToken, String refreshToken) {
+    public GlobalUserAccess(String accessToken, String idToken, String refreshToken, String userRole) {
         this.accessToken = accessToken;
         this.idToken = idToken;
         this.refreshToken = refreshToken;
+        this.userRole = userRole;
     }
 
     public String getAccessToken() {
@@ -41,6 +45,14 @@ public class GlobalUserAccess extends Application {
 
     public void setRefreshToken(String refreshToken) {
         this.refreshToken = refreshToken;
+    }
+
+    public String getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
     }
 
     @Override
