@@ -69,10 +69,10 @@ public class ShoppingCartFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_shopping_cart, container, false);
         RecyclerView recyclerView1 = root.findViewById(R.id.shoppingCart_rec);
 //        GridLayoutManager gridLayoutManager = new GridLayoutManager(this.getContext(), 2);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext(), LinearLayoutManager.HORIZONTAL, false);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView1.setLayoutManager(linearLayoutManager);
         adapter = new ProductAdapter(this.getContext());
-        adapter.SetUpProducts(Utils.obtainInstance().getAllProducts());
+        adapter.SetUpProducts(Utils.obtainInstance().getCartProducts());
         recyclerView1.setAdapter(adapter);
 
         return root;

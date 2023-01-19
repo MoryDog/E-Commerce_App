@@ -4,6 +4,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NavUtils;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
 
@@ -131,7 +132,6 @@ public class AddProduct extends AppCompatActivity {
 
                 new uploadImageAsysnc().execute();
 
-
             }
         });
 
@@ -150,12 +150,12 @@ public class AddProduct extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.back_button) {
-            Intent intent = new Intent(AddProduct.this, SellerActivity.class);
-            startActivity(intent);
+        // Respond to the action bar's Up/Home button
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
         }
-        Toast.makeText(AddProduct.this,"Error occured", Toast.LENGTH_SHORT).show();
-        return false;
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -320,7 +320,6 @@ public class AddProduct extends AppCompatActivity {
                 System.out.println(t.getMessage());
             }
         });
-
     }
 
     private class uploadImageAsysnc extends AsyncTask<Void, Void, Void> {

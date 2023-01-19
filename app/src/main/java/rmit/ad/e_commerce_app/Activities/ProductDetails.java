@@ -3,6 +3,7 @@ package rmit.ad.e_commerce_app.Activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NavUtils;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
@@ -46,18 +47,20 @@ public class ProductDetails extends AppCompatActivity {
     TextView product_price;
     View product_detail_view;
     Button addToCartButton;
-    ImageView back_button;
     ToggleButton toggleFavorite;
     String jsonString = "";
     long ProductID;
     List<String> imageLinks = new ArrayList<>();
     ProductModel UpComingProducts;
     private String s3 = "https://androidecommercebucket.s3.ap-southeast-1.amazonaws.com/";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_details);
         InitViews();
+
+        addToCartButton = findViewById(R.id.addToCartButton);
 
         Intent intent = getIntent();
         if (intent != null){
@@ -68,6 +71,8 @@ public class ProductDetails extends AppCompatActivity {
                     //InitProductData(UpComingProducts);
                     new getData().execute();
                     handleFavoriteProducts(UpComingProducts);
+                    handleCartProducts(UpComingProducts);
+
                 }
             }
         }
@@ -76,22 +81,12 @@ public class ProductDetails extends AppCompatActivity {
         viewPagerIndicator = findViewById(R.id.viewPager_indicator);
         product_detail_view = findViewById(android.R.id.content);
 
-
         Toolbar toolbar = findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
-        // add to shopping cart button
-        addToCartButton = findViewById(R.id.addToCartButton);
-        addToCartButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(product_detail_view, "Product added to cart", Snackbar.LENGTH_SHORT).show();
-            }
-        });
     }
 
     private void handleFavoriteProducts(final ProductModel productModel) {
@@ -109,15 +104,40 @@ public class ProductDetails extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if (Utils.obtainInstance().AddToFavorite(productModel)){
-                        Toast.makeText(ProductDetails.this, "Products Added", Toast.LENGTH_SHORT).show();
+                        Snackbar.make(product_detail_view, "Product Added to Favorites", Snackbar.LENGTH_SHORT).show();
                         toggleFavorite.setEnabled(false);
                     } else {
-                        Toast.makeText(ProductDetails.this, "Something Wrong Happened, try again", Toast.LENGTH_SHORT).show();
+                        Snackbar.make(product_detail_view, "Something Wrong Happened, try again", Snackbar.LENGTH_SHORT).show();
                     }
                 }
             });
         }
     }
+
+    private void handleCartProducts(final ProductModel cartProductModel) {
+        ArrayList<ProductModel> cartProducts = Utils.obtainInstance().getCartProducts();
+        boolean existInCartProducts = false;
+        for (ProductModel cartProductModel_temp : cartProducts) {
+            if (cartProductModel_temp.getID() == cartProductModel.getID()) {
+                existInCartProducts = true;
+            }
+        }
+        if (existInCartProducts) {
+            addToCartButton.setEnabled(false);
+        } else {
+            addToCartButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (Utils.obtainInstance().AddToCart(cartProductModel)) {
+                        Snackbar.make(product_detail_view, "Product added to Cart", Snackbar.LENGTH_SHORT).show();
+                    } else {
+                        Snackbar.make(product_detail_view, "Something Wrong Happened, try again", Snackbar.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+    }
+
 
     private void InitViews() {
         toggleFavorite = findViewById(R.id.toggleFavorite);
@@ -147,9 +167,10 @@ public class ProductDetails extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.back_button) {
-            onBackPressed();
-
+        // Respond to the action bar's Up/Home button
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -168,7 +189,6 @@ public class ProductDetails extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
             jsonString = HttpHandler.getRequest("http://54.151.194.4:3000/getimages?product_id="+ProductID);
-
             return null;
         }
 

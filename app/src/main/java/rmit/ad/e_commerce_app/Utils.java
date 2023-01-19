@@ -22,6 +22,7 @@ public class Utils {
     private static ArrayList<ProductModel> WatchProducts;
     private static ArrayList<ProductModel> LaptopProducts;
     private static ArrayList<ProductModel> FavoriteProducts = new ArrayList<>();
+    private static ArrayList<ProductModel> CartProducts = new ArrayList<>();
 
     public Utils() {
 
@@ -31,6 +32,10 @@ public class Utils {
 
         if (FavoriteProducts == null){
             FavoriteProducts = new ArrayList<>();
+        }
+
+        if (CartProducts == null){
+            CartProducts = new ArrayList<>();
         }
 
         if (ShoeProducts == null){
@@ -96,8 +101,6 @@ public class Utils {
     }
 
     public void SetInitialData() {
-
-
         /*
         Products.add(new ProductModel(1, "iPhone 13", "99999 $", "https://androidecommercebucket.s3.ap-southeast-1.amazonaws.com/image%253A457075.png", "Phone", "Apple", 1));
         Products.add(new ProductModel(2, "T-Shirt", "199999 $", "https://chapel.vn/wp-content/uploads/2021/07/hn.jpg", "Phone", "Apple", 1));
@@ -165,7 +168,15 @@ public class Utils {
         return FavoriteProducts;
     }
 
+    public ArrayList<ProductModel> getCartProducts() {
+        return CartProducts;
+    }
+
     public boolean AddToFavorite(ProductModel productModel){
         return FavoriteProducts.add(productModel);
+    }
+
+    public boolean AddToCart(ProductModel productModelCart) {
+        return CartProducts.add(productModelCart);
     }
 }

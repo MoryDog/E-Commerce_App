@@ -176,19 +176,6 @@
     </androidx.core.widget.NestedScrollView>
 
 
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/addImageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="210dp"
-        android:layout_marginRight="10dp"
-        android:layout_gravity="right"
-        android:src="@drawable/ic_baseline_add_photo_alternate_24"
-        app:backgroundTint="#02bbf1"
-        app:fabSize="mini"/>
-
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 <!--    <com.google.android.material.navigation.NavigationView-->
