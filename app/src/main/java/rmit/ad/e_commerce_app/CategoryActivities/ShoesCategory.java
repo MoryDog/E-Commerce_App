@@ -56,7 +56,7 @@ public class ShoesCategory extends AppCompatActivity {
     private class GetData extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... voids) {
-            jsonString = HttpHandler.getRequest(local+category);
+            jsonString = HttpHandler.getRequest(server+category);
             return null;
         }
 
@@ -68,9 +68,7 @@ public class ShoesCategory extends AppCompatActivity {
             products = utils.getAllProducts();
             adapter.SetUpProducts(products);
             recyclerView1.setAdapter(adapter);
-            System.out.println(local+category);
-            Toast.makeText(ShoesCategory.this, local+category,
-                    Toast.LENGTH_LONG).show();
+
         }
 
     }

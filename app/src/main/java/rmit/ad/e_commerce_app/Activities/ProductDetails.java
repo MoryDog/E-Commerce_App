@@ -131,7 +131,7 @@ public class ProductDetails extends AppCompatActivity {
             addToCartButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    jsonProductId = cartProductModel.getID();
+
                     if (Utils.obtainInstance().AddToCart(cartProductModel)) {
                         Snackbar.make(product_detail_view, "Product added to Cart", Snackbar.LENGTH_SHORT).show();
                     } else {
