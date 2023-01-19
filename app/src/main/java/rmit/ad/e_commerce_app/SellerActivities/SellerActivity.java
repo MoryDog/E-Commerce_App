@@ -20,7 +20,7 @@ import rmit.ad.e_commerce_app.Activities.AddProduct;
 import rmit.ad.e_commerce_app.Activities.GlobalUserAccess;
 import rmit.ad.e_commerce_app.Fragments.FavoriteFragment;
 import rmit.ad.e_commerce_app.Fragments.HomeFragment;
-import rmit.ad.e_commerce_app.Fragments.NotificationFragment;
+import rmit.ad.e_commerce_app.Fragments.OrderFragment;
 import rmit.ad.e_commerce_app.Fragments.ShoppingCartFragment;
 import rmit.ad.e_commerce_app.R;
 
@@ -30,9 +30,9 @@ public class SellerActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     HomeFragment homeFragment;
     FavoriteFragment favoriteFragment;
-    NotificationFragment thirdFragment;
+    OrderFragment thirdFragment;
     ShoppingCartFragment shoppingCartFragment;
-    OrderFragment orderFragment = new OrderFragment();
+    SellerOrderFragment sellerOrderFragment = new SellerOrderFragment();
     FloatingActionButton openAddProductButton;
 
     GlobalUserAccess globalUserAccess;
@@ -44,7 +44,7 @@ public class SellerActivity extends AppCompatActivity {
 
         homeFragment = new HomeFragment(globalUserAccess.getAccessToken());
         favoriteFragment = new FavoriteFragment(globalUserAccess.getAccessToken());
-        thirdFragment = new NotificationFragment(globalUserAccess.getAccessToken());
+        thirdFragment = new OrderFragment(globalUserAccess.getAccessToken());
         shoppingCartFragment = new ShoppingCartFragment(globalUserAccess.getAccessToken());
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -79,7 +79,7 @@ public class SellerActivity extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFragment).commit();
                         return true;
                     case R.id.order:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, orderFragment).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, sellerOrderFragment).commit();
                         return true;
                 }
                 return false;

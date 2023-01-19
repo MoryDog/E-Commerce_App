@@ -16,6 +16,7 @@ import rmit.ad.e_commerce_app.Activities.GlobalUserAccess;
 import rmit.ad.e_commerce_app.Activities.Login;
 import rmit.ad.e_commerce_app.Activities.MainActivity;
 import rmit.ad.e_commerce_app.HttpClasses.HttpHandler;
+import rmit.ad.e_commerce_app.ModelClasses.Order;
 import rmit.ad.e_commerce_app.ModelClasses.Product;
 import rmit.ad.e_commerce_app.SellerActivities.SellerActivity;
 
@@ -30,6 +31,7 @@ public class Utils {
     private static ArrayList<Product> LaptopProducts;
     private static ArrayList<Product> FavoriteProducts = new ArrayList<>();
     private static ArrayList<Product> CartProducts = new ArrayList<>();
+    private static ArrayList<Order> Orders = new ArrayList<>();
 
     String jsonString = "";
     String accessToken;
@@ -139,6 +141,10 @@ public class Utils {
     public ArrayList<Product> getCartProducts() {
         return CartProducts;
     }
+
+    public ArrayList<Order> getOrders() {return  Orders;}
+
+
 
     public boolean AddToFavorite(Product productModel){
         return FavoriteProducts.add(productModel);

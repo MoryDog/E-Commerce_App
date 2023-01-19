@@ -91,7 +91,7 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartViewHolder> {
 
     public void setFilteredList(ArrayList<Product> filteredList) {
         this.data = filteredList;
-        notifyDataSetChanged();
+
     }
 
     public void SetUpProducts(ArrayList<Product> productModels) {

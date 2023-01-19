@@ -11,8 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.w3c.dom.Text;
-
 import rmit.ad.e_commerce_app.R;
 
 public class CartViewHolder extends RecyclerView.ViewHolder {
@@ -30,7 +28,7 @@ public class CartViewHolder extends RecyclerView.ViewHolder {
 
     public CartViewHolder(@NonNull View itemView) {
         super(itemView);
-        product_image = itemView.findViewById(R.id.product_img);
+        product_image = itemView.findViewById(R.id.product_image);
         product_name = itemView.findViewById(R.id.orderTitle);
         product_price = itemView.findViewById(R.id.orderStatus);
         parent = itemView.findViewById(R.id.parent);

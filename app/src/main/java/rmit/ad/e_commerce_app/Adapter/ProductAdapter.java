@@ -80,7 +80,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ViewHolder> {
                 @Override
                 public void onClick(View view) {
                     AlertDialog.Builder b = new AlertDialog.Builder(context);
-                    b.setMessage("Do you want to delete " + data.get(position).getTitle() + " from the favorite products list?");
+                    b.setMessage("Do you want to delete " + data.get(position).getTitle() + " from favorites?");
                     b.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {

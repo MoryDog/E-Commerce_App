@@ -3,35 +3,23 @@ package rmit.ad.e_commerce_app.Activities;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 
-import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import rmit.ad.e_commerce_app.Fragments.HomeFragment;
 import rmit.ad.e_commerce_app.Fragments.ShoppingCartFragment;
 import rmit.ad.e_commerce_app.Fragments.FavoriteFragment;
-import rmit.ad.e_commerce_app.Fragments.NotificationFragment;
-import rmit.ad.e_commerce_app.HttpClasses.HttpHandler;
+import rmit.ad.e_commerce_app.Fragments.OrderFragment;
 import rmit.ad.e_commerce_app.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -40,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     HomeFragment homeFragment;
     FavoriteFragment favoriteFragment;
-    NotificationFragment thirdFragment;
+    OrderFragment thirdFragment;
     ShoppingCartFragment shoppingCartFragment;
     Button openAddProductButton;
     GlobalUserAccess globalUserAccess;
@@ -61,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         homeFragment = new HomeFragment(globalUserAccess.getAccessToken());
         favoriteFragment = new FavoriteFragment(globalUserAccess.getAccessToken());
-        thirdFragment = new NotificationFragment(globalUserAccess.getAccessToken());
+        thirdFragment = new OrderFragment(globalUserAccess.getAccessToken());
         shoppingCartFragment = new ShoppingCartFragment(globalUserAccess.getAccessToken());
 
         drawerLayout = findViewById(R.id.drawer_layout);

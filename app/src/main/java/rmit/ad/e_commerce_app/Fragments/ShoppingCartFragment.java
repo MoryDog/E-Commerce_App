@@ -99,7 +99,6 @@ public class ShoppingCartFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
         // Inflate the layout for this fragment
         root = inflater.inflate(R.layout.fragment_shopping_cart, container, false);
         RecyclerView recyclerView1 = root.findViewById(R.id.shoppingCart_rec);
@@ -125,7 +124,7 @@ public class ShoppingCartFragment extends Fragment {
                 b.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(getContext(), "Thank you for your purchase", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Thank you for your purchase!", Toast.LENGTH_SHORT).show();
 
                         JSONObject orderPayload = new JSONObject();
                         try {

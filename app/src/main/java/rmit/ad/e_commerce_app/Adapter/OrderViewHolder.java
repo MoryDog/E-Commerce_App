@@ -10,14 +10,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import rmit.ad.e_commerce_app.R;
 
-public class NotificationViewHolder extends RecyclerView.ViewHolder {
+public class OrderViewHolder extends RecyclerView.ViewHolder {
     ImageView product_img;
     TextView orderTitle, orderStatus;
     CardView parent;
 
-    public NotificationViewHolder(@NonNull View orderView) {
+    public OrderViewHolder(@NonNull View orderView) {
         super(orderView);
-        product_img = orderView.findViewById(R.id.product_img);
+        product_img = orderView.findViewById(R.id.product_image);
         orderTitle = orderView.findViewById(R.id.orderTitle);
         orderStatus = orderView.findViewById(R.id.orderStatus);
         parent = orderView.findViewById(R.id.parent);

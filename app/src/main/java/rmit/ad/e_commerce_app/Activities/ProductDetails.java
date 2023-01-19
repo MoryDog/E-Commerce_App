@@ -45,9 +45,6 @@ public class ProductDetails extends AppCompatActivity {
     TextView product_size;
     TextView product_description;
     TextView product_brand;
-
-
-
     View product_detail_view;
     Button addToCartButton;
     ToggleButton toggleFavorite;

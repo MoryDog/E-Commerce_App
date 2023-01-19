@@ -21,25 +21,25 @@ import rmit.ad.e_commerce_app.Activities.ProductDetails;
 import rmit.ad.e_commerce_app.ModelClasses.Product;
 import rmit.ad.e_commerce_app.R;
 
-public class NotificationOrderAdapter extends RecyclerView.Adapter<NotificationViewHolder> {
+public class OrderAdapter extends RecyclerView.Adapter<OrderViewHolder> {
     private String s3 = "https://androidecommercebucket.s3.ap-southeast-1.amazonaws.com/";
     private static final String TAG = "NotiProductAdapter";
     private ArrayList<Product> data = new ArrayList<>();
     Context context;
 
-    public NotificationOrderAdapter(Context context) {
+    public OrderAdapter(Context context) {
         this.context = context;
     }
 
     @NonNull
     @Override
-    public NotificationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.notifications_item_list , parent, false);
-        return new NotificationViewHolder(view);
+    public OrderViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.order_item_list, parent, false);
+        return new OrderViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull NotificationViewHolder holder,@SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(@NonNull OrderViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.orderTitle.setText(data.get(position).getTitle());
         holder.orderStatus.setText(data.get(position).getTitle());
         Glide.with(context)

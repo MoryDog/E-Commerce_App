@@ -1,4 +1,4 @@
-package rmit.ad.e_commerce_app.Fragments;
+package rmit.ad.e_commerce_app.SellerActivities;
 
 import android.os.Bundle;
 
@@ -9,19 +9,27 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import rmit.ad.e_commerce_app.Adapter.CartProductAdapter;
-import rmit.ad.e_commerce_app.Adapter.NotificationOrderAdapter;
+import rmit.ad.e_commerce_app.Adapter.SellerOrderAdapter;
 import rmit.ad.e_commerce_app.R;
 import rmit.ad.e_commerce_app.Utils;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link NotificationFragment#newInstance} factory method to
+ * Use the {@link SellerOrderFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class NotificationFragment extends Fragment {
-    NotificationOrderAdapter adapter;
+public class SellerOrderFragment extends Fragment {
+    SellerOrderAdapter adapter;
+    EditText orderStatus;
+    TextView orderTittle;
+    View root, temp;
+    ToggleButton orderUpdateButton;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -30,12 +38,9 @@ public class NotificationFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    static String accessToken;
 
-    public NotificationFragment(String accessToken) {
-
+    public SellerOrderFragment() {
         // Required empty public constructor
-        this.accessToken = accessToken;
     }
 
     /**
@@ -44,11 +49,11 @@ public class NotificationFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment NotificationFragment.
+     * @return A new instance of fragment OrderFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static NotificationFragment newInstance(String param1, String param2) {
-        NotificationFragment fragment = new NotificationFragment(accessToken);
+    public static SellerOrderFragment newInstance(String param1, String param2) {
+        SellerOrderFragment fragment = new SellerOrderFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -69,14 +74,18 @@ public class NotificationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View root = inflater.inflate(R.layout.fragment_notification, container, false);
-        RecyclerView recyclerView1 = root.findViewById(R.id.notifications_rec);
+        root = inflater.inflate(R.layout.fragment_seller_order, container, false);
+        RecyclerView recyclerView1 = root.findViewById(R.id.selllerOrder_Rec);
+
+        orderTittle = root.findViewById(R.id.orderTitle);
+        orderStatus = root.findViewById(R.id.orderStatus);
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView1.setLayoutManager(linearLayoutManager);
-        adapter = new NotificationOrderAdapter(this.getContext());
-        adapter.SetUpProducts(Utils.obtainInstance().getCartProducts());
-        recyclerView1.setAdapter(adapter);
+        adapter = new SellerOrderAdapter(this.getContext());
 
+        adapter.SetUpProducts(Utils.obtainInstance().getOrders());
+        recyclerView1.setAdapter(adapter);
         return root;
     }
 }
