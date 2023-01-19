@@ -100,16 +100,16 @@ public class HomeFragment extends Fragment {
 
         m_imageUrl = new ArrayList<>();
         m_name = new ArrayList<>();
-        m_imageUrl.add("https://cdn-icons-png.flaticon.com/512/314/314434.png");
+        m_imageUrl.add("https://pkshoes.store/wp-content/uploads/2021/12/ff3d2f6029d4fde56fd49f8dd441780-600x600.jpg");
         m_name.add("Shoes");
 
-        m_imageUrl.add("https://cdn-icons-png.flaticon.com/512/164/164579.png");
+        m_imageUrl.add("https://chapel.vn/wp-content/uploads/2021/07/hn.jpg");
         m_name.add("Shirts");
 
-        m_imageUrl.add("https://img.favpng.com/5/4/19/watch-icon-png-favpng-7DbuprFWeg0QNjWuthWARZvZz.jpg");
+        m_imageUrl.add("https://cdn.watchstore.vn/uploads/images/601.OM.0183.LR-1653461927957.jpg");
         m_name.add("Watches");
 
-        m_imageUrl.add("https://icons.iconarchive.com/icons/designbolts/free-multimedia/1024/iPhone-icon.png");
+        m_imageUrl.add("https://cuongplus.vn/uploads/product/full_thlhhu6s-1179-iphone-13-pro-max-128gb-chinh-hang-vn-a.png");
         m_name.add("Phones");
 
         RecyclerView recyclerView = root.findViewById(R.id.rec_category);
@@ -123,10 +123,10 @@ public class HomeFragment extends Fragment {
         ImageSlider imageSlider = root.findViewById(R.id.image_slider);
         List<SlideModel> slideModels = new ArrayList<>();
 
-        slideModels.add(new SlideModel(R.drawable.image1, ScaleTypes.CENTER_CROP));
-        slideModels.add(new SlideModel(R.drawable.image2, ScaleTypes.CENTER_CROP));
-        slideModels.add(new SlideModel(R.drawable.image3, ScaleTypes.CENTER_CROP));
-        slideModels.add(new SlideModel(R.drawable.image4, ScaleTypes.CENTER_CROP));
+        slideModels.add(new SlideModel(R.drawable.image6, ScaleTypes.CENTER_CROP));
+        slideModels.add(new SlideModel(R.drawable.image5, ScaleTypes.CENTER_CROP));
+        slideModels.add(new SlideModel(R.drawable.image7, ScaleTypes.CENTER_CROP));
+        slideModels.add(new SlideModel(R.drawable.image8, ScaleTypes.CENTER_CROP));
 
         imageSlider.setImageList(slideModels);
         return root;
@@ -152,7 +152,6 @@ public class HomeFragment extends Fragment {
     }
 
     private void CreateAlertDialog() {
-        SortTypelist = new ArrayList<>();
         AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext());
         builder.setTitle("Sort Product");
         builder.setSingleChoiceItems(R.array.SortType, -1, new DialogInterface.OnClickListener() {
@@ -166,8 +165,6 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
-
-
         builder.create();
         builder.show();
     }
@@ -208,7 +205,7 @@ public class HomeFragment extends Fragment {
         protected Void doInBackground(Void... voids) {
             if(query.equals("cheap")){
                 productData = HttpHandler.getRequest("http://54.151.194.4:3000/sortprice?price=cheap");
-            }else{
+            } else if (query.equals("expensive")) {
                 productData = HttpHandler.getRequest("http://54.151.194.4:3000/sortprice?price=expensive");
             }
             return null;
@@ -224,7 +221,4 @@ public class HomeFragment extends Fragment {
             recyclerView1.setAdapter(adapter);
         }
     }
-
-
-
 }

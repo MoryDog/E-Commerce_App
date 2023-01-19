@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -56,9 +57,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         Glide.with(m_context)
                 .asBitmap()
                 .load(m_imageUrl.get(position))
-                .into(holder.circleImageView);
+                .into(holder.ImageView);
         holder.category_name.setText(m_name.get(position));
-        holder.circleImageView.setOnClickListener(new View.OnClickListener() {
+        holder.ImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d(TAG, "onClick: Clicked on an image: " + m_name.get(position));
@@ -94,12 +95,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        CircleImageView circleImageView;
+        android.widget.ImageView ImageView;
         TextView category_name;
 
         public ViewHolder (View itemView){
             super(itemView);
-            circleImageView = itemView.findViewById(R.id.category_img);
+            ImageView = itemView.findViewById(R.id.category_img);
             category_name = itemView.findViewById(R.id.category_name);
         }
 

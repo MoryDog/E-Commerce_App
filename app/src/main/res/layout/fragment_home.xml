@@ -93,25 +93,12 @@
                         android:textStyle="bold"
                         android:textColor="#F000"/>
 
-                    <TextView
-                        android:id="@+id/newProducts_see_all"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginRight="15dp"
-                        android:fontFamily="@font/amethysta"
-                        android:paddingTop="11dp"
-                        android:text="See All"
-                        android:textColor="@color/red"
-                        android:textSize="18sp"
-                        android:textStyle="normal" />
-
                     <ImageButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/filter_button"
                         android:layout_alignParentEnd="true"
-                        android:layout_marginRight="70dp"
+                        android:layout_marginRight="5dp"
                         android:src="@drawable/ic_sort"
                         android:backgroundTint="@color/white"/>
 

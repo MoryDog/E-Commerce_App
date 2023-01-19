@@ -5,8 +5,8 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string-array name="SortType">
-        <item> Price: Low to high </item>
-        <item> Price: High to low </item>
+        <item> Price: Low to High </item>
+        <item> Price: High to Low </item>
     </string-array>
 
     <string-array name="Genders">
