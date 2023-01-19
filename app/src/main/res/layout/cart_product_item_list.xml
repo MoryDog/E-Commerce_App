@@ -30,7 +30,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/order_Title"
+            android:id="@+id/orderTitle"
             android:layout_width="160dp"
             android:layout_height="19dp"
             android:layout_marginStart="20dp"
@@ -48,7 +48,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/order_Status"
+            android:id="@+id/orderStatus"
             android:layout_width="53dp"
             android:layout_height="21dp"
             android:layout_marginStart="5dp"
@@ -60,7 +60,7 @@
             android:textSize="17sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/textView14"
-            app:layout_constraintTop_toBottomOf="@+id/order_Title" />
+            app:layout_constraintTop_toBottomOf="@+id/orderTitle" />
 
         <TextView
             android:id="@+id/textView14"
@@ -74,9 +74,9 @@
             android:text="$"
             android:textColor="@color/red"
             android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/order_Status"
+            app:layout_constraintEnd_toStartOf="@+id/orderStatus"
             app:layout_constraintStart_toEndOf="@+id/product_img"
-            app:layout_constraintTop_toBottomOf="@+id/order_Title" />
+            app:layout_constraintTop_toBottomOf="@+id/orderTitle" />
 
         <ImageButton
             android:id="@+id/deleteButton"
@@ -100,7 +100,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/quantity"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/order_Status"
+            app:layout_constraintStart_toEndOf="@+id/orderStatus"
             app:srcCompat="@mipmap/add_button_foreground" />
 
         <TextView

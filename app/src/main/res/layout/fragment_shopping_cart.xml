@@ -5,10 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Fragments.ShoppingCartFragment">
+    tools:context=".Fragments.ShoppingCartFragment"
+    android:layout_marginBottom="50dp">
+
+    <Button
+        android:id="@+id/checkOutButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Checkout"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp"
+        app:backgroundTint = "@null"
+        android:background="@drawable/custom_button"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/shoppingCart_rec"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp"/>
+
 </LinearLayout>
