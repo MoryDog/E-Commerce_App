@@ -2,6 +2,7 @@ package rmit.ad.e_commerce_app.Adapter;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -9,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import org.w3c.dom.Text;
 
 import rmit.ad.e_commerce_app.R;
 
@@ -21,6 +24,8 @@ public class CartViewHolder extends RecyclerView.ViewHolder {
     TextView quantity;
     CardView parent;
     Button checkOutButton;
+    TextView totalPrice;
+    EditText shippingAddress;
 
 
     public CartViewHolder(@NonNull View itemView) {
@@ -33,5 +38,8 @@ public class CartViewHolder extends RecyclerView.ViewHolder {
         minusButton = itemView.findViewById(R.id.minusButton);
         quantity = itemView.findViewById(R.id.quantity);
         checkOutButton = itemView.findViewById(R.id.checkOutButton);
+        totalPrice = itemView.findViewById(R.id.totalPrice);
+        shippingAddress = itemView.findViewById(R.id.shippingAddress);
+
     }
 }
