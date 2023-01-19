@@ -75,8 +75,8 @@ public class HomeFragment extends Fragment {
         recyclerView1 = root.findViewById(R.id.new_product_rec);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this.getContext(), 2);
         recyclerView1.setLayoutManager(gridLayoutManager);
-        adapter = new ProductAdapter(this.getContext());
-        if(!(test == null)){
+        adapter = new ProductAdapter(getContext(), "AllProducts");
+        if (!(test == null)){
             test.clear();
         }
         new GetData().execute();

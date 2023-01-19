@@ -19,7 +19,7 @@ public class ShoesCategory extends AppCompatActivity {
         RecyclerView recyclerView1 = findViewById(R.id.new_product_rec);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
         recyclerView1.setLayoutManager(gridLayoutManager);
-        adapter = new ProductAdapter(this);
+        adapter = new ProductAdapter(this, "AllProducts");
         adapter.SetUpProducts(Utils.obtainInstance().getShoeProducts());
         recyclerView1.setAdapter(adapter);
     }
