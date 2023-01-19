@@ -1,5 +1,6 @@
 package rmit.ad.e_commerce_app.HttpClasses;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -34,6 +35,44 @@ public class HttpHandler {
         }
         return builder.toString();
 
+    }
+
+    public static String postRequest(String urlStr, JSONObject orderPayLoad){
+        String status="";
+        try {
+            //Step 1 - prepare the connection
+            URL url = new URL(urlStr);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type","application/json");
+            conn.setRequestProperty("Accept", "application/json");
+
+            DataOutputStream os = new DataOutputStream(conn.getOutputStream());
+            os.writeBytes(orderPayLoad.toString());
+            os.flush();
+            os.close();
+
+            BufferedReader br = null;
+            if (100 <= conn.getResponseCode() && conn.getResponseCode() <= 399) {
+                br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            } else {
+                br = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+            }
+            StringBuilder response = new StringBuilder();
+            String currentLine;
+
+            while ((currentLine = br.readLine()) != null)
+                response.append(currentLine);
+
+
+            status = response.toString();
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return status;
     }
 
     public static String postLogin(String urlStr, String name, String password){

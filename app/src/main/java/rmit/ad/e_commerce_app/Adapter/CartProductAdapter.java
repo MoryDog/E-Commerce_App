@@ -64,6 +64,7 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartViewHolder> {
             @Override
             public void onClick(View view) {
                 int quantity = Integer.parseInt((String) holder.quantity.getText());
+                data.get(position).setQuantity(quantity);
                 holder.quantity.setText(String.valueOf(quantity + 1));
             }
         });
@@ -74,6 +75,7 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartViewHolder> {
                 int quantity = Integer.parseInt((String) holder.quantity.getText());
                 if(quantity > 1){
                     holder.quantity.setText(String.valueOf(quantity - 1));
+                    data.get(position).setQuantity(quantity);
                 }
             }
         });

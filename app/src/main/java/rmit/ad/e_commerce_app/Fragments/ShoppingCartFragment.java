@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -19,13 +20,19 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 import rmit.ad.e_commerce_app.Activities.Checkout;
 import rmit.ad.e_commerce_app.Activities.MainActivity;
 import rmit.ad.e_commerce_app.Adapter.CartProductAdapter;
 import rmit.ad.e_commerce_app.Adapter.ProductAdapter;
+import rmit.ad.e_commerce_app.HttpClasses.HttpHandler;
+import rmit.ad.e_commerce_app.ModelClasses.OrderItems;
+import rmit.ad.e_commerce_app.ModelClasses.Product;
 import rmit.ad.e_commerce_app.R;
 import rmit.ad.e_commerce_app.Utils;
 
@@ -41,6 +48,7 @@ public class ShoppingCartFragment extends Fragment {
     TextView totalPrice;
     Context context;
     AlertDialog.Builder builder;
+    View root;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -84,22 +92,21 @@ public class ShoppingCartFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        JSONObject orderPayload = new JSONObject();
-        try {
-            orderPayload.put("accessToken", accessToken);
-            //orderPayload.put()
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+
 
         // Inflate the layout for this fragment
-        View root = inflater.inflate(R.layout.fragment_shopping_cart, container, false);
+        root = inflater.inflate(R.layout.fragment_shopping_cart, container, false);
         RecyclerView recyclerView1 = root.findViewById(R.id.shoppingCart_rec);
+
+        shippingAddress = root.findViewById(R.id.shippingAddress);
+        totalPrice = root.findViewById(R.id.totalPrice);
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView1.setLayoutManager(linearLayoutManager);
         adapter = new CartProductAdapter(this.getContext());
@@ -119,6 +126,31 @@ public class ShoppingCartFragment extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Toast.makeText(getContext(), "Thank you for your purchase", Toast.LENGTH_SHORT).show();
+
+                        JSONObject orderPayload = new JSONObject();
+                        try {
+                            ArrayList<Product> products = Utils.obtainInstance().getCartProducts();
+                            ArrayList<OrderItems> orderItems = new ArrayList<>();
+                            for(Product p : products){
+                                orderItems.add(new OrderItems ((int)p.getID(), p.getQuantity()));
+                            }
+                            orderPayload.put("accessToken", accessToken);
+                            orderPayload.put("total", totalPrice.getText().toString());
+                            orderPayload.put("shipping_address", shippingAddress.getText().toString());
+                            JSONArray orderItemsArray = new JSONArray();
+                            for(int j = 0; j< orderItems.size(); j++){
+                                JSONObject item = new JSONObject();
+                                item.put("product_id", orderItems.get(j).getID());
+                                item.put("quantity", orderItems.get(j).getQuantity());
+                                orderItemsArray.put(item);
+                            }
+                            orderPayload.put("items",orderItemsArray);
+                            System.out.println(orderPayload);
+                            new sendOrderPayload(orderPayload).execute();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
                     }
                 });
                 b.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -146,5 +178,27 @@ public class ShoppingCartFragment extends Fragment {
             }
         });
         return root;
+    }
+
+    private class sendOrderPayload extends AsyncTask<Void, Void, Void> {
+        String jsonString = "";
+        JSONObject payload;
+        public sendOrderPayload(JSONObject orderPayload) {
+            this.payload = orderPayload;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            jsonString = HttpHandler.postRequest("http://54.151.194.4:3000/neworder", payload);
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void unused) {
+            super.onPostExecute(unused);
+            Toast.makeText(root.getContext(), "Placed Order", Toast.LENGTH_SHORT).show();
+        }
+
     }
 }
