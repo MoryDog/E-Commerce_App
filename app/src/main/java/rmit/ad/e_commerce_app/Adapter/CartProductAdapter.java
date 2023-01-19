@@ -22,25 +22,26 @@ import rmit.ad.e_commerce_app.Activities.ProductDetails;
 import rmit.ad.e_commerce_app.ModelClasses.Product;
 import rmit.ad.e_commerce_app.R;
 
-public class ProductAdapter extends RecyclerView.Adapter<ViewHolder> {
+public class CartProductAdapter extends RecyclerView.Adapter<CartViewHolder> {
     private String s3 = "https://androidecommercebucket.s3.ap-southeast-1.amazonaws.com/";
-    private static final String TAG = "ProductAdapter";
+    private static final String TAG = "CartProductAdapter";
     private ArrayList<Product> data = new ArrayList<>();
     Context context;
 
-    public ProductAdapter(Context context) {
+    public CartProductAdapter(Context context) {
         this.context = context;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_item_list, parent, false);
-        return new ViewHolder(view);
+    public CartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cart_product_item_list , parent, false);
+        return new CartViewHolder(view);
     }
 
+
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(@NonNull CartViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.product_name.setText(data.get(position).getTitle());
         holder.product_price.setText(data.get(position).getPrice());
         Glide.with(context)
