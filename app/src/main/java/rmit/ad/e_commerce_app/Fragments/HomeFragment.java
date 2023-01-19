@@ -21,6 +21,10 @@ import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,6 +53,8 @@ public class HomeFragment extends Fragment {
     public HomeFragment(String accessToken) {
         this.accessToken = accessToken;
     }
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -70,15 +76,17 @@ public class HomeFragment extends Fragment {
             @Override
             public boolean onQueryTextSubmit(String query) {
 
+                new GetSearchGeneral(query).execute();
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                filterList(newText);
+
                 return true;
             }
         });
+
 
         recyclerView1 = root.findViewById(R.id.new_product_rec);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this.getContext(), 2);
@@ -191,19 +199,31 @@ public class HomeFragment extends Fragment {
         builder.show();
     }
 
-    private void filterList(String newText) {
-        ArrayList<Product> filteredList = new ArrayList<>();
-        for (Product product: Utils.obtainInstance().getAllProducts()){
-            if (product.getTitle().toLowerCase().contains(newText.toLowerCase())){
-                filteredList.add(product);
-            }
+
+    private class GetSearchGeneral extends AsyncTask<Void, Void, Void> {
+        String productData = "";
+        String query = "";
+        public GetSearchGeneral(String query) {
+            this.query = query;
         }
 
-        if (filteredList.isEmpty()){
-            Toast.makeText(this.getContext(), "No data found", Toast.LENGTH_SHORT).show();
-        } else {
-            adapter.setFilteredList(filteredList);
+        @Override
+        protected Void doInBackground(Void... voids) {
+            productData = HttpHandler.getRequest("http://54.151.194.4:3000/search/10/1?input=" + query);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void unused) {
+            super.onPostExecute(unused);
+            utils = new Utils();
+            utils.setData(productData);
+            test = utils.getAllProducts();
+            adapter.SetUpProducts(test);
+            recyclerView1.setAdapter(adapter);
         }
     }
+
+
 
 }

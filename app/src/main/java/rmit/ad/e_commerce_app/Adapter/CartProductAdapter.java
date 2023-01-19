@@ -77,12 +77,6 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartViewHolder> {
             }
         });
 
-        holder.checkOutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // switch to check out activity
-            }
-        });
 
 
     }
