@@ -251,13 +251,17 @@ public class ProductDetails extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void unused) {
             super.onPostExecute(unused);
-            Utils utils = new Utils();
-            utils.setData(jsonString);
-            Toast.makeText(ProductDetails.this, "This is my product id!" + ProductID,
-                    Toast.LENGTH_LONG).show();
-            UpComingProducts = utils.getAllProducts().get(0);
+            try {
+                Utils utils = new Utils();
+                utils.setData(jsonString);
+                Toast.makeText(ProductDetails.this, "This is my product id!" + ProductID,
+                        Toast.LENGTH_LONG).show();
+                UpComingProducts = utils.getAllProducts().get(0);
 
-            InitProductData(UpComingProducts);
+                InitProductData(UpComingProducts);
+            }catch(IndexOutOfBoundsException e){
+                e.printStackTrace();
+            }
 
         }
     }
