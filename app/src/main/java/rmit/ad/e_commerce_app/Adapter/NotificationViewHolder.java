@@ -20,5 +20,6 @@ public class NotificationViewHolder extends RecyclerView.ViewHolder {
         product_img = orderView.findViewById(R.id.product_img);
         orderTitle = orderView.findViewById(R.id.orderTitle);
         orderStatus = orderView.findViewById(R.id.orderStatus);
+        parent = orderView.findViewById(R.id.parent);
     }
 }

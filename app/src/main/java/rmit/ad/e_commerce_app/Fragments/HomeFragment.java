@@ -159,36 +159,14 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(DialogInterface dialogInterface, int position) {
                 String arr[] = getResources().getStringArray(R.array.SortType);
-                if(position == 0){
-                    SortTypelist.add(arr[0]);
-                    SortTypelist.remove(arr[1]);
-                    SortTypelist.remove(arr[2]);
-                } else if (position == 1) {
+                if (position == 0) {
                     new sortProduct("cheap").execute();
-                } else if (position == 2){
-                    SortTypelist.add(arr[2]);
-                    SortTypelist.remove(arr[1]);
-                    SortTypelist.remove(arr[0]);
+                } else if (position == 1){
+                    new sortProduct("expensive").execute();
                 }
             }
         });
 
-        builder.setPositiveButton("Sort", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                String data = "";
-                for (String item:SortTypelist){
-                    data = data + "" + item;
-                }
-                Toast.makeText(getActivity(), data, Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-            }
-        });
 
         builder.create();
         builder.show();

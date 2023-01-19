@@ -101,7 +101,8 @@
             app:layout_constraintEnd_toStartOf="@+id/quantity"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/orderStatus"
-            app:srcCompat="@mipmap/add_button_foreground" />
+            app:srcCompat="@mipmap/add_button_foreground"
+            app:backgroundTint ="@null"/>
 
         <TextView
             android:id="@+id/quantity"

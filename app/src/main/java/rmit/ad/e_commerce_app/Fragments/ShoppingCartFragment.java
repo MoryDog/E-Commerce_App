@@ -1,5 +1,8 @@
 package rmit.ad.e_commerce_app.Fragments;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -12,6 +15,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -32,6 +37,10 @@ import rmit.ad.e_commerce_app.Utils;
 public class ShoppingCartFragment extends Fragment {
     CartProductAdapter adapter;
     Button checkOutButton;
+    EditText shippingAddress;
+    TextView totalPrice;
+    Context context;
+    AlertDialog.Builder builder;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -99,16 +108,43 @@ public class ShoppingCartFragment extends Fragment {
         recyclerView1.setAdapter(adapter);
 
         checkOutButton = root.findViewById(R.id.checkOutButton);
-
+//
         checkOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), Checkout.class);
-                Toast.makeText(getActivity(), "Proceed to check out", Toast.LENGTH_SHORT).show();
-                startActivity(intent);
+                Toast.makeText(getContext(), "Proceed to checkout", Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder b = new AlertDialog.Builder(getContext());
+                b.setMessage("Do you want to place order?");
+                b.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(getContext(), "Thank you for your purchase", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                b.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                });
+                b.create().show();
+//                builder.setCancelable(true);
+//                builder.setMessage("Do you want to place order?");
+//                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//                        Toast.makeText(getContext(), "You have placed an order", Toast.LENGTH_SHORT).show();
+//
+//                    }
+//
+//        });builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//                        dialogInterface.cancel();
+//                    }
+//                });
+//                builder.create().show();
             }
         });
-
         return root;
     }
 }
