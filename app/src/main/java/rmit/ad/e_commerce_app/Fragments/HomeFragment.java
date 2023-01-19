@@ -164,9 +164,7 @@ public class HomeFragment extends Fragment {
                     SortTypelist.remove(arr[1]);
                     SortTypelist.remove(arr[2]);
                 } else if (position == 1) {
-                    SortTypelist.add(arr[1]);
-                    SortTypelist.remove(arr[0]);
-                    SortTypelist.remove(arr[2]);
+                    new sortProduct("cheap").execute();
                 } else if (position == 2){
                     SortTypelist.add(arr[2]);
                     SortTypelist.remove(arr[1]);
@@ -207,6 +205,34 @@ public class HomeFragment extends Fragment {
         @Override
         protected Void doInBackground(Void... voids) {
             productData = HttpHandler.getRequest("http://54.151.194.4:3000/search/10/1?input=" + query);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void unused) {
+            super.onPostExecute(unused);
+            utils = new Utils();
+            utils.setData(productData);
+            test = utils.getAllProducts();
+            adapter.SetUpProducts(test);
+            recyclerView1.setAdapter(adapter);
+        }
+    }
+
+    private class sortProduct extends AsyncTask<Void, Void, Void> {
+        String productData = "";
+        String query = "";
+        public sortProduct(String query) {
+            this.query = query;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            if(query.equals("cheap")){
+                productData = HttpHandler.getRequest("http://54.151.194.4:3000/sortprice?price=cheap");
+            }else{
+                productData = HttpHandler.getRequest("http://54.151.194.4:3000/sortprice?price=expensive");
+            }
             return null;
         }
 
