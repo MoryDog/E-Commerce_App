@@ -4,7 +4,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
-import androidx.core.app.NavUtils;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
 
@@ -31,10 +30,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.textfield.TextInputEditText;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -53,11 +48,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import rmit.ad.e_commerce_app.Adapter.OfflineProductImageAdapter;
-import rmit.ad.e_commerce_app.Adapter.ProductImagesAdapter;
-import rmit.ad.e_commerce_app.HttpClasses.HttpHandler;
 import rmit.ad.e_commerce_app.HttpClasses.UploadApis;
 import rmit.ad.e_commerce_app.R;
-import rmit.ad.e_commerce_app.seller.SellerActivity;
 
 public class AddProduct extends AppCompatActivity {
     private DrawerLayout drawerLayout;

@@ -3,7 +3,6 @@ package rmit.ad.e_commerce_app.Activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.NavUtils;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
@@ -13,12 +12,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 
@@ -33,9 +29,7 @@ import rmit.ad.e_commerce_app.Adapter.ProductImagesAdapter;
 
 import rmit.ad.e_commerce_app.HttpClasses.HttpHandler;
 
-import rmit.ad.e_commerce_app.Fragments.FavoriteFragment;
-
-import rmit.ad.e_commerce_app.ModelClasses.ProductModel;
+import rmit.ad.e_commerce_app.ModelClasses.Product;
 import rmit.ad.e_commerce_app.R;
 import rmit.ad.e_commerce_app.Utils;
 
@@ -51,7 +45,7 @@ public class ProductDetails extends AppCompatActivity {
     String jsonString = "";
     long ProductID;
     List<String> imageLinks = new ArrayList<>();
-    ProductModel UpComingProducts;
+    Product UpComingProducts;
     private String s3 = "https://androidecommercebucket.s3.ap-southeast-1.amazonaws.com/";
 
     @Override
@@ -89,10 +83,10 @@ public class ProductDetails extends AppCompatActivity {
 
     }
 
-    private void handleFavoriteProducts(final ProductModel productModel) {
-        ArrayList<ProductModel> favoriteProducts = Utils.obtainInstance().getFavoriteProducts();
+    private void handleFavoriteProducts(final Product productModel) {
+        ArrayList<Product> favoriteProducts = Utils.obtainInstance().getFavoriteProducts();
         boolean existInFavoriteProducts = false;
-        for (ProductModel productModel1: favoriteProducts){
+        for (Product productModel1: favoriteProducts){
             if (productModel1.getID() == productModel.getID()){
                 existInFavoriteProducts = true;
             }
@@ -104,7 +98,7 @@ public class ProductDetails extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if (Utils.obtainInstance().AddToFavorite(productModel)){
-                        Snackbar.make(product_detail_view, "Product Added to Favorites", Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(product_detail_view, "Product Saved to Favorites", Snackbar.LENGTH_SHORT).show();
                         toggleFavorite.setEnabled(false);
                     } else {
                         Snackbar.make(product_detail_view, "Something Wrong Happened, try again", Snackbar.LENGTH_SHORT).show();
@@ -114,10 +108,10 @@ public class ProductDetails extends AppCompatActivity {
         }
     }
 
-    private void handleCartProducts(final ProductModel cartProductModel) {
-        ArrayList<ProductModel> cartProducts = Utils.obtainInstance().getCartProducts();
+    private void handleCartProducts(final Product cartProductModel) {
+        ArrayList<Product> cartProducts = Utils.obtainInstance().getCartProducts();
         boolean existInCartProducts = false;
-        for (ProductModel cartProductModel_temp : cartProducts) {
+        for (Product cartProductModel_temp : cartProducts) {
             if (cartProductModel_temp.getID() == cartProductModel.getID()) {
                 existInCartProducts = true;
             }
@@ -145,7 +139,7 @@ public class ProductDetails extends AppCompatActivity {
         product_price = findViewById(R.id.PriceText);
     }
 
-    private void InitProductData(ProductModel productModel) {
+    private void InitProductData(Product productModel) {
         for(int i =0; i < imageLinks.size(); i++){
             System.out.println(imageLinks);
         }
@@ -182,7 +176,7 @@ public class ProductDetails extends AppCompatActivity {
 
     // favorite button toggle
     public void onCustomToggleClick(View view) {
-        Snackbar.make(product_detail_view, "Product added to favorite", Snackbar.LENGTH_SHORT).show();
+
     }
 
     private class getData extends AsyncTask<Void, Void, Void> {

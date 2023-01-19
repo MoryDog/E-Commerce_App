@@ -21,15 +21,11 @@ import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import rmit.ad.e_commerce_app.HttpClasses.HttpHandler;
-import rmit.ad.e_commerce_app.ModelClasses.ProductModel;
+import rmit.ad.e_commerce_app.ModelClasses.Product;
 import rmit.ad.e_commerce_app.Adapter.ProductAdapter;
 import rmit.ad.e_commerce_app.R;
 import rmit.ad.e_commerce_app.Adapter.RecyclerViewAdapter;
@@ -46,7 +42,7 @@ public class HomeFragment extends Fragment {
     ProductAdapter adapter;
     Utils utils;
 
-    ArrayList<ProductModel> test;
+    ArrayList<Product> test;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -188,8 +184,8 @@ public class HomeFragment extends Fragment {
     }
 
     private void filterList(String newText) {
-        ArrayList<ProductModel> filteredList = new ArrayList<>();
-        for (ProductModel product: Utils.obtainInstance().getAllProducts()){
+        ArrayList<Product> filteredList = new ArrayList<>();
+        for (Product product: Utils.obtainInstance().getAllProducts()){
             if (product.getTitle().toLowerCase().contains(newText.toLowerCase())){
                 filteredList.add(product);
             }
