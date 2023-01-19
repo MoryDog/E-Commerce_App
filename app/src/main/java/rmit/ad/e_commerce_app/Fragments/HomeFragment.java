@@ -43,6 +43,12 @@ public class HomeFragment extends Fragment {
     Utils utils;
 
     ArrayList<Product> test;
+
+    static String accessToken;
+
+    public HomeFragment(String accessToken) {
+        this.accessToken = accessToken;
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -76,7 +82,7 @@ public class HomeFragment extends Fragment {
         recyclerView1 = root.findViewById(R.id.new_product_rec);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this.getContext(), 2);
         recyclerView1.setLayoutManager(gridLayoutManager);
-        adapter = new ProductAdapter(getContext(), "AllProducts");
+        adapter = new ProductAdapter(getContext(), "AllProducts", accessToken);
         if (!(test == null)){
             test.clear();
         }

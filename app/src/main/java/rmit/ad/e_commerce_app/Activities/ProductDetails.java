@@ -51,16 +51,21 @@ public class ProductDetails extends AppCompatActivity {
     Button addToCartButton;
     ToggleButton toggleFavorite;
     String jsonString = "";
+    String jsonFavoriteString = "";
+    long jsonProductId;
     long ProductID;
     List<String> imageLinks = new ArrayList<>();
     Product UpComingProducts;
     private String s3 = "https://androidecommercebucket.s3.ap-southeast-1.amazonaws.com/";
+
+    GlobalUserAccess globalUserAccess;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_details);
         InitViews();
+        globalUserAccess = ((GlobalUserAccess) getApplicationContext());
 
         addToCartButton = findViewById(R.id.addToCartButton);
 
@@ -105,12 +110,8 @@ public class ProductDetails extends AppCompatActivity {
             toggleFavorite.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (Utils.obtainInstance().AddToFavorite(productModel)){
-                        Snackbar.make(product_detail_view, "Product Saved to Favorites", Snackbar.LENGTH_SHORT).show();
-                        toggleFavorite.setEnabled(false);
-                    } else {
-                        Snackbar.make(product_detail_view, "Something Wrong Happened, try again", Snackbar.LENGTH_SHORT).show();
-                    }
+                    jsonProductId = productModel.getID();
+                    new doAddFavorite().execute();
                 }
             });
         }
@@ -130,6 +131,7 @@ public class ProductDetails extends AppCompatActivity {
             addToCartButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    jsonProductId = cartProductModel.getID();
                     if (Utils.obtainInstance().AddToCart(cartProductModel)) {
                         Snackbar.make(product_detail_view, "Product added to Cart", Snackbar.LENGTH_SHORT).show();
                     } else {
@@ -222,6 +224,18 @@ public class ProductDetails extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+    }
 
+    private class doAddFavorite extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            jsonFavoriteString = HttpHandler.postFavorite("http://54.151.194.4:3000/addfavorite", globalUserAccess.getAccessToken(), jsonProductId);
+            return null;
+        }
+        @Override
+        protected void onPostExecute(Void unused) {
+            super.onPostExecute(unused);
+        }
     }
 }

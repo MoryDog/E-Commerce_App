@@ -1,12 +1,23 @@
 package rmit.ad.e_commerce_app;
 
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import rmit.ad.e_commerce_app.Activities.GlobalUserAccess;
+import rmit.ad.e_commerce_app.Activities.Login;
+import rmit.ad.e_commerce_app.Activities.MainActivity;
+import rmit.ad.e_commerce_app.HttpClasses.HttpHandler;
 import rmit.ad.e_commerce_app.ModelClasses.Product;
+import rmit.ad.e_commerce_app.SellerActivities.SellerActivity;
 
 public class Utils {
     private static Utils instance;
@@ -20,8 +31,12 @@ public class Utils {
     private static ArrayList<Product> FavoriteProducts = new ArrayList<>();
     private static ArrayList<Product> CartProducts = new ArrayList<>();
 
+    String jsonString = "";
+    String accessToken;
+
     public Utils() {
         Products = new ArrayList<>();
+
     }
 
     public void setData(String data){
@@ -76,6 +91,7 @@ public class Utils {
         if (null == instance) {
             instance = new Utils();
         }
+
         return instance;
     }
 
@@ -114,6 +130,8 @@ public class Utils {
     }
 
     public ArrayList<Product> getFavoriteProducts() {
+        System.out.println("Went to getFavoriteProducts");
+        System.out.println(FavoriteProducts);
         return FavoriteProducts;
     }
 
@@ -131,4 +149,9 @@ public class Utils {
     public boolean RemoveFavoriteProductList(Product productModel) {
         return FavoriteProducts.remove(productModel);
     }
+
+    public void RemoveAllFavoriteProducts() {
+        FavoriteProducts.clear();
+    }
+
 }

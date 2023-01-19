@@ -32,8 +32,11 @@ public class ShoppingCartFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public ShoppingCartFragment() {
+    static String  accessToken;
+
+    public ShoppingCartFragment(String accessToken) {
         // Required empty public constructor
+        this.accessToken = accessToken;
     }
 
     /**
@@ -46,7 +49,7 @@ public class ShoppingCartFragment extends Fragment {
      */
     // TODO: Rename and change types and number of parameters
     public static ShoppingCartFragment newInstance(String param1, String param2) {
-        ShoppingCartFragment fragment = new ShoppingCartFragment();
+        ShoppingCartFragment fragment = new ShoppingCartFragment(accessToken);
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

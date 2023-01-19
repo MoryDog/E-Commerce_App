@@ -66,8 +66,8 @@
 
         <Button
             android:id="@+id/DeleteBtn"
-            android:layout_width="140dp"
-            android:layout_height="40dp"
+            android:layout_width="80dp"
+            android:layout_height="32dp"
             android:layout_below="@id/textView14"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
@@ -76,7 +76,11 @@
             android:layout_marginEnd="15dp"
             android:background="@drawable/custom_button"
             android:text="Delete"
-            app:backgroundTint="@null"></Button>
+            android:textSize="11sp"
+            android:padding="1dp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            app:backgroundTint="@null" />
 
     </RelativeLayout>
 

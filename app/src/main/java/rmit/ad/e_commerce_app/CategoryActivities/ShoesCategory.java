@@ -14,6 +14,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import rmit.ad.e_commerce_app.Activities.GlobalUserAccess;
 import rmit.ad.e_commerce_app.Adapter.ProductAdapter;
 import rmit.ad.e_commerce_app.HttpClasses.HttpHandler;
 import rmit.ad.e_commerce_app.ModelClasses.Product;
@@ -28,16 +29,19 @@ public class ShoesCategory extends AppCompatActivity {
     ProductAdapter adapter;
     ArrayList<Product> products;
     RecyclerView recyclerView1;
+
+    GlobalUserAccess globalUserAccess;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_shoes_category);
+        globalUserAccess = ((GlobalUserAccess) getApplicationContext());
 
         recyclerView1 = findViewById(R.id.new_product_rec);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
         recyclerView1.setLayoutManager(gridLayoutManager);
-        adapter = new ProductAdapter(this, "AllProducts");
+
+        adapter = new ProductAdapter(ShoesCategory.this, "AllProducts", globalUserAccess.getAccessToken());
 
 
         category  = getIntent().getStringExtra("category");
@@ -46,6 +50,7 @@ public class ShoesCategory extends AppCompatActivity {
         }
 
         new GetData().execute();
+
     }
 
     private class GetData extends AsyncTask<Void, Void, Void> {
