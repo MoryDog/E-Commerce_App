@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -70,19 +71,14 @@ public class ProductDetails extends AppCompatActivity {
         addToCartButton = findViewById(R.id.addToCartButton);
 
         Intent intent = getIntent();
-        if (intent != null){
+
             ProductID = intent.getLongExtra(KEY_ID_PRODUCT, -1);
             if (ProductID != -1){
-                UpComingProducts = Utils.obtainInstance().GetProductByID(ProductID);
-                if (UpComingProducts != null){
-                    //InitProductData(UpComingProducts);
-                    new getData().execute();
-                    handleFavoriteProducts(UpComingProducts);
-                    handleCartProducts(UpComingProducts);
-
-                }
+                //UpComingProducts = Utils.obtainInstance().GetProductByID(ProductID);
+                new getAProduct().execute();
+                new getData().execute();
             }
-        }
+
 
         productImagesViewPager = findViewById(R.id.product_images_viewpager);
         viewPagerIndicator = findViewById(R.id.viewPager_indicator);
@@ -175,6 +171,12 @@ public class ProductDetails extends AppCompatActivity {
         }catch (NullPointerException e){
             e.printStackTrace();
         }
+
+        if (UpComingProducts != null){
+            //InitProductData(UpComingProducts);
+            handleFavoriteProducts(UpComingProducts);
+            handleCartProducts(UpComingProducts);
+        }
     }
 
     @Override
@@ -236,6 +238,31 @@ public class ProductDetails extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void unused) {
             super.onPostExecute(unused);
+        }
+    }
+
+    private class getAProduct extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... voids) {
+            jsonString = HttpHandler.getRequest("http://54.151.194.4:3000/getaproduct?id="+ProductID);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void unused) {
+            super.onPostExecute(unused);
+            try {
+                Utils utils = new Utils();
+                utils.setData(jsonString);
+                Toast.makeText(ProductDetails.this, "This is my product id!" + ProductID,
+                        Toast.LENGTH_LONG).show();
+                UpComingProducts = utils.getAllProducts().get(0);
+
+                InitProductData(UpComingProducts);
+            }catch(IndexOutOfBoundsException e){
+                e.printStackTrace();
+            }
+
         }
     }
 }
