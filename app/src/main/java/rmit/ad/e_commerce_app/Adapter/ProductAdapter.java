@@ -19,13 +19,13 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 import rmit.ad.e_commerce_app.Activities.ProductDetails;
-import rmit.ad.e_commerce_app.ModelClasses.ProductModel;
+import rmit.ad.e_commerce_app.ModelClasses.Product;
 import rmit.ad.e_commerce_app.R;
 
 public class ProductAdapter extends RecyclerView.Adapter<ViewHolder> {
     private String s3 = "https://androidecommercebucket.s3.ap-southeast-1.amazonaws.com/";
     private static final String TAG = "ProductAdapter";
-    private ArrayList<ProductModel> data = new ArrayList<>();
+    private ArrayList<Product> data = new ArrayList<>();
     Context context;
 
     public ProductAdapter(Context context) {
@@ -66,12 +66,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ViewHolder> {
         return data.size();
     }
 
-    public void setFilteredList(ArrayList<ProductModel> filteredList) {
+    public void setFilteredList(ArrayList<Product> filteredList) {
         this.data = filteredList;
         notifyDataSetChanged();
     }
 
-    public void SetUpProducts(ArrayList<ProductModel> productModels) {
+    public void SetUpProducts(ArrayList<Product> productModels) {
         this.data = productModels;
         notifyDataSetChanged();
     }

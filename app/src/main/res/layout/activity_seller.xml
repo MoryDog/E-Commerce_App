@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".seller.SellerActivity"
+    tools:context=".SellerActivities.SellerActivity"
     android:fitsSystemWindows="true"
     android:id="@+id/drawer_layout"
     tools:openDrawer ="start">

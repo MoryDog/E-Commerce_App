@@ -1,6 +1,6 @@
 package rmit.ad.e_commerce_app.ModelClasses;
 
-public class ProductModel {
+public class Product {
     private String title;
     private String price;
     private String thumbnail;
@@ -15,7 +15,7 @@ public class ProductModel {
     private String description;
     private int stars;
 
-    public ProductModel(long ID ,String title, String price, String thumbnail, String category, String brand, int quantity) {
+    public Product(long ID , String title, String price, String thumbnail, String category, String brand, int quantity) {
         this.title = title;
         this.price = price;
         this.thumbnail = thumbnail;
@@ -25,7 +25,7 @@ public class ProductModel {
         this.quantity = quantity;
     }
 
-    public ProductModel(String title, String price, String thumbnail, long ID, String category, String brand, int quantity, int seller_id, String colors, String sizes, String description, int stars) {
+    public Product(String title, String price, String thumbnail, long ID, String category, String brand, int quantity, int seller_id, String colors, String sizes, String description, int stars) {
         this.title = title;
         this.price = price;
         this.thumbnail = thumbnail;
