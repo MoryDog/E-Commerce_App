@@ -100,7 +100,7 @@ public class Login extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            jsonString = HttpHandler.postLogin(local, user_name, user_password);
+            jsonString = HttpHandler.postLogin(server, user_name, user_password);
             return null;
         }
 
