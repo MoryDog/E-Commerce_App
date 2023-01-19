@@ -1,6 +1,7 @@
 package rmit.ad.e_commerce_app.Activities;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
@@ -39,6 +40,13 @@ public class ProductDetails extends AppCompatActivity {
     TabLayout viewPagerIndicator;
     TextView product_detail_title;
     TextView product_price;
+    TextView product_colors;
+    TextView product_size;
+    TextView product_description;
+    TextView product_brand;
+
+
+
     View product_detail_view;
     Button addToCartButton;
     ToggleButton toggleFavorite;
@@ -137,6 +145,10 @@ public class ProductDetails extends AppCompatActivity {
         toggleFavorite = findViewById(R.id.toggleFavorite);
         product_detail_title = findViewById(R.id.ProductTitle);
         product_price = findViewById(R.id.PriceText);
+        product_colors = findViewById(R.id.colorString);
+        product_size = findViewById(R.id.sizeString);
+        product_description = findViewById(R.id.desciptionText);
+        product_brand = findViewById(R.id.sellerName);
     }
 
     private void InitProductData(Product productModel) {
@@ -150,8 +162,17 @@ public class ProductDetails extends AppCompatActivity {
 
         viewPagerIndicator.setupWithViewPager(productImagesViewPager, true);
 
-        product_detail_title.setText(productModel.getTitle());
-        product_price.setText(productModel.getPrice());
+        try {
+            product_detail_title.setText(productModel.getTitle());
+            product_price.setText(productModel.getPrice());
+            product_colors.setText(productModel.getColors());
+            product_size.setText(productModel.getSizes());
+            product_brand.setText(productModel.getBrand());
+            product_description.setText(productModel.getDescription());
+            System.out.println(productModel.getBrand());
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
     }
 
     @Override

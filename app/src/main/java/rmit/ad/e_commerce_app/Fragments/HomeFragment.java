@@ -48,6 +48,7 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         utils = new Utils();
+
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         filterBtn = root.findViewById(R.id.filter_button);
         filterBtn.setOnClickListener(new View.OnClickListener() {
