@@ -53,16 +53,6 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Shoppefy");
 
-        openAddProductButton = findViewById(R.id.openAddProductButton);
-        openAddProductButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, AddProduct.class);
-                startActivity(intent);
-                System.out.println(globalUserAccess.toString());
-            }
-        });
-
 
         drawerLayout = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle Toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open,R.string.navigation_drawer_close);

@@ -1,4 +1,4 @@
-package rmit.ad.e_commerce_app.seller;
+package rmit.ad.e_commerce_app.SellerActivities;
 
 import android.os.Bundle;
 

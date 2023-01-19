@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import rmit.ad.e_commerce_app.Adapter.CartProductAdapter;
 import rmit.ad.e_commerce_app.Adapter.ProductAdapter;
 import rmit.ad.e_commerce_app.R;
 import rmit.ad.e_commerce_app.Utils;
@@ -21,7 +22,7 @@ import rmit.ad.e_commerce_app.Utils;
  * create an instance of this fragment.
  */
 public class ShoppingCartFragment extends Fragment {
-    ProductAdapter adapter;
+    CartProductAdapter adapter;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -71,7 +72,7 @@ public class ShoppingCartFragment extends Fragment {
 //        GridLayoutManager gridLayoutManager = new GridLayoutManager(this.getContext(), 2);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView1.setLayoutManager(linearLayoutManager);
-        adapter = new ProductAdapter(this.getContext());
+        adapter = new CartProductAdapter(this.getContext());
         adapter.SetUpProducts(Utils.obtainInstance().getCartProducts());
         recyclerView1.setAdapter(adapter);
 

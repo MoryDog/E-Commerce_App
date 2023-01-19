@@ -71,7 +71,7 @@ public class FavoriteFragment extends Fragment {
         RecyclerView recyclerView1 = root.findViewById(R.id.favorite_rec);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this.getContext(), 2);
         recyclerView1.setLayoutManager(gridLayoutManager);
-        adapter = new ProductAdapter(this.getContext());
+        adapter = new ProductAdapter(this.getContext(), "Favorite");
         adapter.SetUpProducts(Utils.obtainInstance().getFavoriteProducts());
         recyclerView1.setAdapter(adapter);
 

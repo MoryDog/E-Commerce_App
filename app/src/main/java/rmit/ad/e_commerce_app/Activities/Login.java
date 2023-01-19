@@ -22,7 +22,7 @@ import org.json.JSONObject;
 
 import rmit.ad.e_commerce_app.HttpClasses.HttpHandler;
 import rmit.ad.e_commerce_app.R;
-import rmit.ad.e_commerce_app.seller.SellerActivity;
+import rmit.ad.e_commerce_app.SellerActivities.SellerActivity;
 
 public class Login extends AppCompatActivity {
     ImageView back_button;
