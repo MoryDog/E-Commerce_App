@@ -106,7 +106,7 @@ public class FavoriteFragment extends Fragment {
         protected void onPostExecute(Void unused) {
             super.onPostExecute(unused);
             try {
-                if (!Utils.obtainInstance().getAllProducts().isEmpty()) {
+                if (!Utils.obtainInstance().getFavoriteProducts().isEmpty()) {
                     Utils.obtainInstance().RemoveAllFavoriteProducts();
                 }
                 JSONArray jsonArray = new JSONArray(jsonString);
@@ -126,8 +126,8 @@ public class FavoriteFragment extends Fragment {
                     String description = product.get("descriptions").toString();
 
                     Utils.obtainInstance().AddToFavorite(new Product(title, price, thumbnail, id, category, brand, 1, seller_id, color, sizes, description, stars));                }
-                adapter.SetUpProducts(Utils.obtainInstance().getFavoriteProducts());
-                recyclerView1.setAdapter(adapter);
+                    adapter.SetUpProducts(Utils.obtainInstance().getFavoriteProducts());
+                    recyclerView1.setAdapter(adapter);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
