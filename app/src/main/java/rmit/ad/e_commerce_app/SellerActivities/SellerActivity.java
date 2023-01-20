@@ -154,7 +154,7 @@ public class SellerActivity extends AppCompatActivity {
                     username.setText(product.get("username").toString());
                     userEmail.setText(product.get("email").toString());
                 }
-                Toast.makeText(globalUserAccess, "Logged in as" + username.getText(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(globalUserAccess, "Logged in as: " + username.getText(), Toast.LENGTH_SHORT).show();
             } catch (JSONException e) {
                 e.printStackTrace();
             }

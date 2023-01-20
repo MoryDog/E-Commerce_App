@@ -27,6 +27,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -70,6 +71,7 @@ public class AddProduct extends AppCompatActivity {
    TextInputEditText brand;
    TextInputEditText quantity;
    TextInputEditText description;
+   View view;
     int numberOfImage;
     GlobalUserAccess globalUserAccess;
 
@@ -117,14 +119,20 @@ public class AddProduct extends AppCompatActivity {
         addProductButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent intent = new Intent(AddProduct.this, HomeFragment.class);
-                //startActivity(intent);
-                String des = description.getText().toString();
-                // Check here
-                new uploadImageAsysnc().execute();
-                Toast.makeText(AddProduct.this, "Uploaded please wait for a moment",
-                        Toast.LENGTH_LONG).show();
-                finish();
+                if (category.getText().toString().trim().isEmpty() || title.getText().toString().trim().isEmpty()
+                        || price.getText().toString().isEmpty() || size.getText().toString().trim().isEmpty()
+                        || color.getText().toString().trim().isEmpty() || brand.getText().toString().trim().isEmpty()
+                        || quantity.getText().toString().trim().isEmpty() || description.getText().toString().trim().isEmpty()) {
+                    Snackbar.make(view, "Please enter information for all required fields", Snackbar.LENGTH_SHORT).show();
+                    ;
+                } else {
+                    String des = description.getText().toString();
+                    // Check here
+                    new uploadImageAsysnc().execute();
+                    Toast.makeText(AddProduct.this, "Uploaded please wait for a moment",
+                            Toast.LENGTH_LONG).show();
+                    finish();
+                }
             }
         });
 
