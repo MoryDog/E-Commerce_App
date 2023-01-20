@@ -23,6 +23,7 @@ import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.gson.JsonParser;
 
 
 import org.json.JSONArray;
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     GlobalUserAccess globalUserAccess;
     String jsonString = "";
     TextView username;
+    TextView userEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,11 +78,9 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView leftNavigationView = findViewById(R.id.nav_view);
         View v = getLayoutInflater().inflate(R.layout.nav_header,null);
-        TextView username = v.findViewById(R.id.UserRegisterName);
-        TextView userEmail = v.findViewById(R.id.UserEmail);
+        username = v.findViewById(R.id.UserRegisterName);
+        userEmail = v.findViewById(R.id.UserEmail);
         new dogetUser().execute();
-        Toast.makeText(globalUserAccess, username.getText(), Toast.LENGTH_SHORT).show();
-        Toast.makeText(globalUserAccess, userEmail.getText(), Toast.LENGTH_SHORT).show();
         ActionBarDrawerToggle Toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(Toggle);
         Toggle.syncState();
@@ -145,10 +145,14 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(Void unused) {
             super.onPostExecute(unused);
             try {
-                System.out.println(jsonString);
-                JSONObject jsonObject = new JSONObject(jsonString);
-                System.out.println(jsonObject.get("email"));
-                System.out.println(jsonObject.get("username"));
+                JSONArray jsonArray = new JSONArray(jsonString);
+                for(int i = 0; i< jsonArray.length(); i++){
+                    JSONObject product = jsonArray.getJSONObject(i);
+                    username.setText(product.get("username").toString());
+                    userEmail.setText(product.get("email").toString());
+                }
+                Toast.makeText(globalUserAccess, username.getText(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(globalUserAccess, userEmail.getText(), Toast.LENGTH_SHORT).show();
             } catch (JSONException e) {
                 e.printStackTrace();
             }
