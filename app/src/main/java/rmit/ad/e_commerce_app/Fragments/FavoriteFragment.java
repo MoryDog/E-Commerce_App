@@ -106,7 +106,7 @@ public class FavoriteFragment extends Fragment {
         protected void onPostExecute(Void unused) {
             super.onPostExecute(unused);
             try {
-                if (!Utils.obtainInstance().getAllProducts().isEmpty()) {
+                if (!Utils.obtainInstance().getFavoriteProducts().isEmpty()) {
                     Utils.obtainInstance().RemoveAllFavoriteProducts();
                 }
                 JSONArray jsonArray = new JSONArray(jsonString);

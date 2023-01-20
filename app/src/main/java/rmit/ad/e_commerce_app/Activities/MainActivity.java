@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
         View v = getLayoutInflater().inflate(R.layout.nav_header,null);
         username = v.findViewById(R.id.UserRegisterName);
         userEmail = v.findViewById(R.id.UserEmail);
+        username.setText("Test");
         new dogetUser().execute();
         ActionBarDrawerToggle Toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(Toggle);
