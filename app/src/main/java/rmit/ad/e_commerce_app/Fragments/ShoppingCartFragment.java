@@ -111,6 +111,7 @@ public class ShoppingCartFragment extends Fragment {
         recyclerView1.setLayoutManager(linearLayoutManager);
         adapter = new CartProductAdapter(this.getContext(), root);
 
+
         adapter.SetUpProducts(Utils.obtainInstance().getCartProducts());
         recyclerView1.setAdapter(adapter);
 
@@ -151,7 +152,7 @@ public class ShoppingCartFragment extends Fragment {
                                     orderItemsArray.put(item);
                                 }
                                 orderPayload.put("items",orderItemsArray);
-                                System.out.println(orderPayload);
+                                Utils.obtainInstance().RemoveAllCart();
 
                                 adapter.SetUpProducts(new ArrayList<Product>());
                                 recyclerView1.setAdapter(adapter);

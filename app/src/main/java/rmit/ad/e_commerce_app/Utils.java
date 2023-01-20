@@ -193,6 +193,9 @@ public class Utils {
     public void RemoveAllFavoriteProducts() {
         FavoriteProducts.clear();
     }
+    public void RemoveAllCart(){
+        CartProducts.clear();
+    }
 
     private class GetProductByIdAysnc extends AsyncTask<Void, Void, Void> {
         @Override

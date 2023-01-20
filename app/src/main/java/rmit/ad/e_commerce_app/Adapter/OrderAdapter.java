@@ -43,7 +43,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull OrderViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        holder.orderTitle.setText(String.valueOf(data.get(position).getShippingAddress()));
+        holder.orderTitle.setText(String.valueOf(data.get(position).getOrderId()));
         holder.orderStatus.setText(data.get(position).getOrderStatus());
         /*
         Glide.with(context)
