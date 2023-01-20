@@ -39,7 +39,8 @@ public class OrderFragment extends Fragment {
     private String mParam2;
     static String accessToken;
     RecyclerView recyclerView1;
-    ArrayList<Order> orders = new ArrayList<>();
+    ArrayList<Order> orders;
+    Utils utils;
     public OrderFragment(String accessToken) {
 
         // Required empty public constructor
@@ -76,6 +77,7 @@ public class OrderFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        utils = new Utils();
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_notification, container, false);
         recyclerView1 = root.findViewById(R.id.notifications_rec);
@@ -103,7 +105,6 @@ public class OrderFragment extends Fragment {
         @Override
         protected void onPostExecute(Void unused) {
             super.onPostExecute(unused);
-            Utils utils = new Utils();
             utils.setOrdersData(jsonString);
             orders = utils.getOrders();
             adapter.SetUpProducts(orders);

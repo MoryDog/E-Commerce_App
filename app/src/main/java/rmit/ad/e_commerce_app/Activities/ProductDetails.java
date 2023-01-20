@@ -196,8 +196,13 @@ public class ProductDetails extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        String userRole =  globalUserAccess.getUserRole();
+        if (userRole.equals("seller")){
+            finish();
+        }else{
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
     }
 
     // favorite button toggle
