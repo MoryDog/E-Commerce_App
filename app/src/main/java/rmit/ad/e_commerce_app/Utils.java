@@ -38,7 +38,7 @@ public class Utils {
 
     public Utils() {
         Products = new ArrayList<>();
-
+        Orders = new ArrayList<>();
     }
 
     public void setOrdersData(String data){

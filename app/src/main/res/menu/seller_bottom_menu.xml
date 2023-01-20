@@ -7,10 +7,6 @@
         android:icon="@drawable/ic_home"
         />
     <item
-        android:id="@+id/placeholder"
-        android:title=""
-        />
-    <item
         android:id="@+id/order"
         android:title="Order"
         android:icon="@drawable/ic_shopping_cart"/>

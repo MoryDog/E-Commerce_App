@@ -1,4 +1,5 @@
 package rmit.ad.e_commerce_app.Activities;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -64,8 +65,24 @@ public class MainActivity extends AppCompatActivity {
         shoppingCartFragment = new ShoppingCartFragment(globalUserAccess.getAccessToken());
 
         drawerLayout = findViewById(R.id.drawer_layout);
-        NavigationView leftNavigationView = findViewById(R.id.nav_view);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.bringToFront();
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.nav_sign_out:
+                        new doLogOut().execute();
+                        break;
+                    case R.id.nav_chat:
+                        break;
+                    case R.id.nav_profile:
+                    case R.id.nav_question:
+                    case R.id.nav_about:
+                }
+                return true;
+            }
+        });
         View headerView = navigationView.getHeaderView(0);
         username = (TextView) headerView.findViewById(R.id.UserRegisterName);
         userEmail = (TextView) headerView.findViewById(R.id.UserEmail);
@@ -118,7 +135,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     private class dogetUser extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... voids) {
@@ -137,12 +153,31 @@ public class MainActivity extends AppCompatActivity {
                     username.setText(product.get("username").toString());
                     userEmail.setText(product.get("email").toString());
                 }
-                Toast.makeText(globalUserAccess, username.getText(), Toast.LENGTH_SHORT).show();
-                Toast.makeText(globalUserAccess, userEmail.getText(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(globalUserAccess, "Logged in as" + username.getText(), Toast.LENGTH_SHORT).show();
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
+    }
 
+
+    private class doLogOut extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... voids) {
+            String url = "http://54.151.194.4:3000/signout";
+            jsonString = HttpHandler.postSignOut(url, globalUserAccess.getAccessToken());
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void unused) {
+            super.onPostExecute(unused);
+            globalUserAccess.setAccessToken("");
+            globalUserAccess.setRefreshToken("");
+            globalUserAccess.setIdToken("");
+            globalUserAccess.setUserRole("");
+            Toast.makeText(globalUserAccess, jsonString,  Toast.LENGTH_SHORT).show();
+            finish();
+        }
     }
 }

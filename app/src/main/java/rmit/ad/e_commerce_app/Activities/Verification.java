@@ -39,13 +39,15 @@ public class Verification extends AppCompatActivity {
         Intent intent = getIntent();
         username = intent.getExtras().get("username").toString();
 
-
-
         ConfirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                confirm_code = CodeField.getText().toString();
-                new doVerification().execute();
+                if(confirm_code.isEmpty()) {
+                    Snackbar.make(snackbar_view, "Enter your confirmation code to verify your account!)", Snackbar.LENGTH_SHORT).show();
+                } else {
+                    confirm_code = CodeField.getText().toString();
+                    new doVerification().execute();
+                }
             }
         });
     }

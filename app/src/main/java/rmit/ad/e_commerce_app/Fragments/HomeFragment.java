@@ -125,8 +125,8 @@ public class HomeFragment extends Fragment {
 
         slideModels.add(new SlideModel(R.drawable.image6, ScaleTypes.CENTER_CROP));
         slideModels.add(new SlideModel(R.drawable.image5, ScaleTypes.CENTER_CROP));
-        slideModels.add(new SlideModel(R.drawable.image7, ScaleTypes.CENTER_CROP));
         slideModels.add(new SlideModel(R.drawable.image8, ScaleTypes.CENTER_CROP));
+        slideModels.add(new SlideModel(R.drawable.image9, ScaleTypes.CENTER_CROP));
 
         imageSlider.setImageList(slideModels);
         return root;
