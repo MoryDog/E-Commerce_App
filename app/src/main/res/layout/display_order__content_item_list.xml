@@ -18,75 +18,91 @@
 
         <ImageView
             android:id="@+id/product_image"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
             android:layout_marginStart="5dp"
+            android:layout_marginBottom="5dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/order"
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/orderTitle"
-            android:layout_width="100dp"
+            android:layout_width="160dp"
             android:layout_height="19dp"
-            android:layout_marginStart="2dp"
-            android:layout_marginTop="11dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginRight="40dp"
             android:autoSizeTextType="uniform"
             android:fontFamily="@font/bold"
-            android:text="Order Title"
-            android:gravity="left"
+            android:text="Product Name"
+            android:textAlignment="textStart"
             android:textColor="#000"
             android:textSize="19sp"
             android:textStyle="normal"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView4"
+            app:layout_constraintStart_toEndOf="@+id/product_image"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/orderStatus"
-            android:layout_width="150dp"
+            android:layout_width="53dp"
             android:layout_height="21dp"
-            android:layout_marginTop="9dp"
-            android:layout_marginRight="50dp"
-            android:text="Order Status"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:autoSizeTextType="uniform"
+            android:text="Price"
             android:textAlignment="textStart"
             android:textColor="@color/red"
-            android:textSize="16sp"
+            android:textSize="17sp"
             android:textStyle="bold"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView14"
             app:layout_constraintTop_toBottomOf="@+id/orderTitle" />
 
         <TextView
             android:id="@+id/textView14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="9dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="5dp"
             android:fontFamily="@font/bold"
             android:gravity="center"
-            android:text="Status:"
-            android:textColor="@color/black"
+            android:text="$"
+            android:textColor="@color/red"
             android:textSize="16sp"
             app:layout_constraintEnd_toStartOf="@+id/orderStatus"
+            app:layout_constraintStart_toEndOf="@+id/product_image"
             app:layout_constraintTop_toBottomOf="@+id/orderTitle" />
 
         <TextView
-            android:id="@+id/textView4"
-            android:layout_width="85dp"
-            android:layout_height="23dp"
-            android:layout_marginStart="25dp"
-            android:layout_marginBottom="8dp"
-            android:fontFamily="@font/bold"
-            android:text="Order No:"
-            android:autoSizeTextType="uniform"
-            android:textAlignment="textStart"
-            android:textColor="#000"
+            android:id="@+id/productQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="3dp"
+            android:fontFamily="@font/medium"
+            android:text="quantity"
+            android:gravity="left"
+            android:textColor="@color/black"
             android:textSize="18sp"
-            android:textStyle="normal"
-            app:layout_constraintBottom_toTopOf="@+id/textView14"
-            app:layout_constraintStart_toEndOf="@+id/product_image" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="31dp"
+            android:layout_marginEnd="2dp"
+            android:text="x"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toStartOf="@+id/productQuantity"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

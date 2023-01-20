@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import org.json.JSONObject;
 
@@ -81,8 +80,8 @@ public class OrderFragment extends Fragment {
                              Bundle savedInstanceState) {
         utils = new Utils();
         // Inflate the layout for this fragment
-        View root = inflater.inflate(R.layout.fragment_notification, container, false);
-        recyclerView1 = root.findViewById(R.id.notifications_rec);
+        View root = inflater.inflate(R.layout.fragment_order, container, false);
+        recyclerView1 = root.findViewById(R.id.orderContent_rec);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView1.setLayoutManager(linearLayoutManager);
         adapter = new OrderAdapter(this.getContext());

@@ -1,6 +1,7 @@
 package rmit.ad.e_commerce_app.Adapter;
 
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -16,6 +17,7 @@ public class SellerOrderViewHolder extends RecyclerView.ViewHolder {
     TextView orderTitle;
     TextView orderStatus;
     ToggleButton orderUpdateButton;
+    ImageButton orderDeleteButton;
     CardView parent;
 
 
@@ -25,6 +27,7 @@ public class SellerOrderViewHolder extends RecyclerView.ViewHolder {
         orderTitle = itemView.findViewById(R.id.orderTitle);
         orderStatus = itemView.findViewById(R.id.orderStatus);
         orderUpdateButton = itemView.findViewById(R.id.orderUpdateButton);
+        orderDeleteButton = itemView.findViewById(R.id.orderDeleteButton);
         parent = itemView.findViewById(R.id.parent);
     }
 }

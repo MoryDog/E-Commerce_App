@@ -96,10 +96,6 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartViewHolder> {
             }
         });
 
-
-
-
-
     }
 
     @Override

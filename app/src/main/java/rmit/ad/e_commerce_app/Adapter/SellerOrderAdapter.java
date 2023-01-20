@@ -100,6 +100,13 @@ public class SellerOrderAdapter extends RecyclerView.Adapter<SellerOrderViewHold
             }
         });
 
+        holder.orderDeleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
 
 
     }
