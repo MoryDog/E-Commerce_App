@@ -165,6 +165,8 @@ public class ShoppingCartFragment extends Fragment {
                 b.create().show();
             }
         });
+
+
         return root;
     }
 
