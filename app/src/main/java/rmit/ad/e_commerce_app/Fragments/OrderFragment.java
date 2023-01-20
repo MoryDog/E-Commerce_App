@@ -1,5 +1,6 @@
 package rmit.ad.e_commerce_app.Fragments;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,8 +10,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import org.json.JSONObject;
 
 import rmit.ad.e_commerce_app.Adapter.OrderAdapter;
+import rmit.ad.e_commerce_app.HttpClasses.HttpHandler;
 import rmit.ad.e_commerce_app.R;
 import rmit.ad.e_commerce_app.Utils;
 
@@ -77,5 +82,28 @@ public class OrderFragment extends Fragment {
         recyclerView1.setAdapter(adapter);
 
         return root;
+    }
+
+    private class sendOrderPayload extends AsyncTask<Void, Void, Void> {
+        String jsonString = "";
+        JSONObject payload;
+        public sendOrderPayload(JSONObject orderPayload) {
+            this.payload = orderPayload;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            jsonString = HttpHandler.postRequest("http://54.151.194.4:3000/neworder", payload);
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void unused) {
+            super.onPostExecute(unused);
+
+            //Toast.makeText(root.getContext(), "Placed Order", Toast.LENGTH_SHORT).show();
+        }
+
     }
 }

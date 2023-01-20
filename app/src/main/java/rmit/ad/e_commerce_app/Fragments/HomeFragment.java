@@ -136,7 +136,7 @@ public class HomeFragment extends Fragment {
         String productData = "";
         @Override
         protected Void doInBackground(Void... voids) {
-            productData = HttpHandler.getRequest("http://54.151.194.4:3000/getall/10/1");
+            productData = HttpHandler.getRequest("http://54.151.194.4:3000/getall/100/1");
             return null;
         }
 
@@ -179,7 +179,7 @@ public class HomeFragment extends Fragment {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            productData = HttpHandler.getRequest("http://54.151.194.4:3000/search/10/1?input=" + query);
+            productData = HttpHandler.getRequest("http://54.151.194.4:3000/search/100/1?input=" + query);
             return null;
         }
 

@@ -145,6 +145,9 @@ public class ShoppingCartFragment extends Fragment {
                             }
                             orderPayload.put("items",orderItemsArray);
                             System.out.println(orderPayload);
+
+                            adapter.SetUpProducts(new ArrayList<Product>());
+                            recyclerView1.setAdapter(adapter);
                             new sendOrderPayload(orderPayload).execute();
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -158,22 +161,6 @@ public class ShoppingCartFragment extends Fragment {
                     }
                 });
                 b.create().show();
-//                builder.setCancelable(true);
-//                builder.setMessage("Do you want to place order?");
-//                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialogInterface, int i) {
-//                        Toast.makeText(getContext(), "You have placed an order", Toast.LENGTH_SHORT).show();
-//
-//                    }
-//
-//        });builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialogInterface, int i) {
-//                        dialogInterface.cancel();
-//                    }
-//                });
-//                builder.create().show();
             }
         });
         return root;
