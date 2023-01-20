@@ -22,6 +22,7 @@ import rmit.ad.e_commerce_app.Activities.ProductDetails;
 import rmit.ad.e_commerce_app.ModelClasses.OrderItems;
 import rmit.ad.e_commerce_app.ModelClasses.Product;
 import rmit.ad.e_commerce_app.R;
+import rmit.ad.e_commerce_app.Utils;
 
 public class CartProductAdapter extends RecyclerView.Adapter<CartViewHolder> {
     private String s3 = "https://androidecommercebucket.s3.ap-southeast-1.amazonaws.com/";
@@ -85,11 +86,15 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartViewHolder> {
         holder.deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                for (OrderItems item : orderItems) {
-                    orderItems.remove(item);
-                }
+//                for (OrderItems item : orderItems) {
+//                    orderItems.remove(item);
+//                }
+                System.out.println("Clicked Delete");
+                System.out.println(data.get(position).getID());
+                Utils.obtainInstance().RemoveProductInCart(data.get(position));
             }
         });
+
 
 
 
