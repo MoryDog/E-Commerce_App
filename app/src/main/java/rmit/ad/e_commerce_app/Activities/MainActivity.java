@@ -13,12 +13,15 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.android.material.navigation.NavigationView;
 
 
 import java.util.ArrayList;
@@ -42,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
     Button openAddProductButton;
     GlobalUserAccess globalUserAccess;
     String jsonString = "";
+    TextView username;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,14 +67,20 @@ public class MainActivity extends AppCompatActivity {
         shoppingCartFragment = new ShoppingCartFragment(globalUserAccess.getAccessToken());
 
         drawerLayout = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle Toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        NavigationView leftNavigationView = findViewById(R.id.nav_view);
+        View v = getLayoutInflater().inflate(R.layout.nav_header,null);
+        TextView username = v.findViewById(R.id.UserRegisterName);
+        TextView userEmail = v.findViewById(R.id.UserEmail);
+        Toast.makeText(globalUserAccess, username.getText(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(globalUserAccess, userEmail.getText(), Toast.LENGTH_SHORT).show();
+        ActionBarDrawerToggle Toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(Toggle);
         Toggle.syncState();
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFragment).commit();
         BadgeDrawable badgeDrawable = bottomNavigationView.getOrCreateBadge(R.id.shopping_cart);
-        if (Utils.obtainInstance().getCartProducts().isEmpty()){
+        if (Utils.obtainInstance().getCartProducts().isEmpty()) {
             badgeDrawable.setVisible(false);
         } else {
             badgeDrawable.setVisible(true);
@@ -79,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.home:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFragment).commit();
                         return true;
@@ -100,12 +111,13 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)){
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
-        } else{
+        } else {
             super.onBackPressed();
         }
         Intent intent = new Intent(this, Login.class);
         startActivity(intent);
+        Utils.obtainInstance().getCartProducts().clear();
     }
 }

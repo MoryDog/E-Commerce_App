@@ -20,12 +20,14 @@
         android:layout_height="wrap_content"
         android:paddingTop="8dp"
         android:text="Nguyễn Giang Huy"
+        android:id="@+id/UserRegisterName"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="8dp"
+        android:id="@+id/UserEmail"
         android:text="GiangHuy2804@gmail.com" />
 
 </LinearLayout>
