@@ -62,6 +62,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ViewHolder> {
                 .load(s3 + data.get(position).getThumbnail())
                 .into(holder.product_image);
 
+
         //Trigger when click on the product image and toast their name
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override

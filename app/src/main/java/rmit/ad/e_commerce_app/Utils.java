@@ -158,6 +158,10 @@ public class Utils {
     public boolean AddToCart(Product productModelCart) {
         return CartProducts.add(productModelCart);
     }
+    public boolean RemoveProductInCart(Product product) {
+        return CartProducts.remove(product);
+    }
+
     public boolean RemoveFavoriteProductList(Product productModel) {
         return FavoriteProducts.remove(productModel);
     }
