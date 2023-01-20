@@ -98,6 +98,7 @@ public class OrderFragment extends Fragment {
 
         @Override
         protected Void doInBackground(Void... voids) {
+
             jsonString = HttpHandler.getRequest("http://54.151.194.4:3000/getmyorder?accessToken="+accessToken);
             return null;
         }
