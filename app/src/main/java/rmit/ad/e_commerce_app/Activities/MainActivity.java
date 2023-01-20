@@ -64,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
         shoppingCartFragment = new ShoppingCartFragment(globalUserAccess.getAccessToken());
 
         drawerLayout = findViewById(R.id.drawer_layout);
-        NavigationView leftNavigationView = findViewById(R.id.nav_view);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
         username = (TextView) headerView.findViewById(R.id.UserRegisterName);
@@ -118,7 +117,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     private class dogetUser extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... voids) {
@@ -137,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
                     username.setText(product.get("username").toString());
                     userEmail.setText(product.get("email").toString());
                 }
-                Toast.makeText(globalUserAccess, username.getText(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(globalUserAccess, "Logged in as" + username.getText(), Toast.LENGTH_SHORT).show();
                 Toast.makeText(globalUserAccess, userEmail.getText(), Toast.LENGTH_SHORT).show();
             } catch (JSONException e) {
                 e.printStackTrace();

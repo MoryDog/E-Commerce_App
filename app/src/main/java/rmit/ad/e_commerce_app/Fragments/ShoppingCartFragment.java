@@ -114,11 +114,13 @@ public class ShoppingCartFragment extends Fragment {
         adapter.SetUpProducts(Utils.obtainInstance().getCartProducts());
         recyclerView1.setAdapter(adapter);
 
-        // Function for checkout button
+        // Function to check if buyer can checkout or not
         checkOutButton = root.findViewById(R.id.checkOutButton);
         checkOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                // Check if shipping address is empty or too short
                 if (shippingAddress.getText().toString().trim().isEmpty()) {
                     Snackbar.make(root, "Shipping address must not be empty!", Snackbar.LENGTH_SHORT).show();
                 } else if (shippingAddress.getText().toString().trim().length() < 10) {
