@@ -108,8 +108,6 @@ public class SellerOrderAdapter extends RecyclerView.Adapter<SellerOrderViewHold
             }
         });
 
-
-
     }
 
     @Override

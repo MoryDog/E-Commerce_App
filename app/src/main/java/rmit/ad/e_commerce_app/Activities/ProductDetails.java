@@ -1,5 +1,7 @@
 package rmit.ad.e_commerce_app.Activities;
 
+import static rmit.ad.e_commerce_app.Activities.MainActivity.SetBadge;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -125,8 +127,8 @@ public class ProductDetails extends AppCompatActivity {
             addToCartButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
                     if (Utils.obtainInstance().AddToCart(cartProductModel)) {
+                        SetBadge();
                         Snackbar.make(product_detail_view, "Product added to Cart", Snackbar.LENGTH_SHORT).show();
                     } else {
                         Snackbar.make(product_detail_view, "Something Wrong Happened, try again", Snackbar.LENGTH_SHORT).show();

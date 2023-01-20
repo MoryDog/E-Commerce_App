@@ -1,5 +1,6 @@
 package rmit.ad.e_commerce_app.Adapter;
 
+import static rmit.ad.e_commerce_app.Activities.MainActivity.SetBadge;
 import static rmit.ad.e_commerce_app.Activities.ProductDetails.KEY_ID_PRODUCT;
 
 import android.annotation.SuppressLint;
@@ -18,6 +19,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
+import rmit.ad.e_commerce_app.Activities.MainActivity;
 import rmit.ad.e_commerce_app.Activities.ProductDetails;
 import rmit.ad.e_commerce_app.ModelClasses.OrderItems;
 import rmit.ad.e_commerce_app.ModelClasses.Product;
@@ -42,7 +44,6 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartViewHolder> {
         return new CartViewHolder(view);
 
     }
-
 
     @Override
     public void onBindViewHolder(@NonNull CartViewHolder holder, @SuppressLint("RecyclerView") int position) {
@@ -93,6 +94,7 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartViewHolder> {
                 System.out.println(data.get(position).getID());
                 Utils.obtainInstance().RemoveProductInCart(data.get(position));
                 notifyDataSetChanged();
+                SetBadge();
             }
         });
 

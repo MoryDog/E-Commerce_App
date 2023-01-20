@@ -36,7 +36,7 @@ import rmit.ad.e_commerce_app.Utils;
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
-    BottomNavigationView bottomNavigationView;
+    static BottomNavigationView bottomNavigationView;
     HomeFragment homeFragment;
     FavoriteFragment favoriteFragment;
     OrderFragment thirdFragment;
@@ -49,10 +49,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        globalUserAccess = ((GlobalUserAccess) getApplicationContext());
-
         setContentView(R.layout.activity_main);
-
+        globalUserAccess = ((GlobalUserAccess) getApplicationContext());
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
@@ -71,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
         View headerView = navigationView.getHeaderView(0);
         username = (TextView) headerView.findViewById(R.id.UserRegisterName);
         userEmail = (TextView) headerView.findViewById(R.id.UserEmail);
-        Toast.makeText(globalUserAccess, username.getText(), Toast.LENGTH_SHORT).show();
         new dogetUser().execute();
         ActionBarDrawerToggle Toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(Toggle);
@@ -79,14 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFragment).commit();
-        BadgeDrawable badgeDrawable = bottomNavigationView.getOrCreateBadge(R.id.shopping_cart);
-        if (Utils.obtainInstance().getCartProducts().isEmpty()) {
-            badgeDrawable.setVisible(false);
-        } else {
-            badgeDrawable.setVisible(true);
-            badgeDrawable.setNumber(Utils.obtainInstance().getCartProduct());
-        }
-
+        SetBadge();
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
@@ -109,6 +99,15 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public static void SetBadge(){
+        BadgeDrawable badgeDrawable = bottomNavigationView.getOrCreateBadge(R.id.shopping_cart);
+        badgeDrawable.setNumber(Utils.obtainInstance().getCartProducts().size());
+        if (badgeDrawable.getNumber() == 0){
+            badgeDrawable.setVisible(false);
+        } else {
+            badgeDrawable.setVisible(true);
+        }
+    }
     @Override
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -116,9 +115,6 @@ public class MainActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
-        Intent intent = new Intent(this, Login.class);
-        startActivity(intent);
-        Utils.obtainInstance().getCartProducts().clear();
     }
 
 

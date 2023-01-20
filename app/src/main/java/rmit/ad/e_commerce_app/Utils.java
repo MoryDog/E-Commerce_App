@@ -83,8 +83,6 @@ public class Utils {
         }
     }
 
-
-
     public void SetInitialData() {
         /*
         Products.add(new ProductModel(1, "iPhone 13", "99999 $", "https://androidecommercebucket.s3.ap-southeast-1.amazonaws.com/image%253A457075.png", "Phone", "Apple", 1));
@@ -115,7 +113,6 @@ public class Utils {
 
         return instance;
     }
-
 
     // Find and get the product by respective ID
     public Product GetProductByID(long id){
