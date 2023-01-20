@@ -61,6 +61,7 @@ public class SellerOrderAdapter extends RecyclerView.Adapter<SellerOrderViewHold
 //                context.startActivity(intent);
             }
         });
+
         holder.orderUpdateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -1,5 +1,6 @@
 package rmit.ad.e_commerce_app.SellerActivities;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,8 +14,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
 import rmit.ad.e_commerce_app.Adapter.CartProductAdapter;
 import rmit.ad.e_commerce_app.Adapter.SellerOrderAdapter;
+import rmit.ad.e_commerce_app.HttpClasses.HttpHandler;
+import rmit.ad.e_commerce_app.ModelClasses.Order;
 import rmit.ad.e_commerce_app.R;
 import rmit.ad.e_commerce_app.Utils;
 
@@ -24,12 +31,15 @@ import rmit.ad.e_commerce_app.Utils;
  * create an instance of this fragment.
  */
 public class SellerOrderFragment extends Fragment {
+    private static String accessToken;
     SellerOrderAdapter adapter;
     EditText orderStatus;
     TextView orderTittle;
     View root, temp;
+    Utils utils;
+    ArrayList<Order> orders;
+    RecyclerView recyclerView1;
     ToggleButton orderUpdateButton;
-
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -39,8 +49,8 @@ public class SellerOrderFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public SellerOrderFragment() {
-        // Required empty public constructor
+    public SellerOrderFragment(String accessToken) {
+        this.accessToken = accessToken;
     }
 
     /**
@@ -53,7 +63,7 @@ public class SellerOrderFragment extends Fragment {
      */
     // TODO: Rename and change types and number of parameters
     public static SellerOrderFragment newInstance(String param1, String param2) {
-        SellerOrderFragment fragment = new SellerOrderFragment();
+        SellerOrderFragment fragment = new SellerOrderFragment(accessToken);
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -73,9 +83,10 @@ public class SellerOrderFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        utils = new Utils();
         // Inflate the layout for this fragment
         root = inflater.inflate(R.layout.fragment_seller_order, container, false);
-        RecyclerView recyclerView1 = root.findViewById(R.id.selllerOrder_Rec);
+        recyclerView1 = root.findViewById(R.id.selllerOrder_Rec);
 
         orderTittle = root.findViewById(R.id.orderTitle);
         orderStatus = root.findViewById(R.id.orderStatus);
@@ -84,8 +95,36 @@ public class SellerOrderFragment extends Fragment {
         recyclerView1.setLayoutManager(linearLayoutManager);
         adapter = new SellerOrderAdapter(this.getContext());
 
-        adapter.SetUpProducts(Utils.obtainInstance().getOrders());
-        recyclerView1.setAdapter(adapter);
+        if(orders != null){
+            orders.clear();
+        }
+
+        new geMyOrder().execute();
         return root;
     }
+
+    private class geMyOrder extends AsyncTask<Void, Void, Void> {
+        String jsonString = "";
+        JSONObject payload;
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+
+            jsonString = HttpHandler.getRequest("http://54.151.194.4:3000/getorderseller?accessToken="+accessToken);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void unused) {
+            super.onPostExecute(unused);
+
+            utils.setOrdersData(jsonString);
+            orders = utils.getOrders();
+            adapter.SetUpProducts(orders);
+            recyclerView1.setAdapter(adapter);
+            //Toast.makeText(root.getContext(), "Placed Order", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
 }

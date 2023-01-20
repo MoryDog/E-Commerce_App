@@ -32,7 +32,7 @@ public class SellerActivity extends AppCompatActivity {
     FavoriteFragment favoriteFragment;
     OrderFragment thirdFragment;
     ShoppingCartFragment shoppingCartFragment;
-    SellerOrderFragment sellerOrderFragment = new SellerOrderFragment();
+    SellerOrderFragment sellerOrderFragment;
     FloatingActionButton openAddProductButton;
 
     GlobalUserAccess globalUserAccess;
@@ -46,6 +46,7 @@ public class SellerActivity extends AppCompatActivity {
         favoriteFragment = new FavoriteFragment(globalUserAccess.getAccessToken());
         thirdFragment = new OrderFragment(globalUserAccess.getAccessToken(), globalUserAccess.getUserRole());
         shoppingCartFragment = new ShoppingCartFragment(globalUserAccess.getAccessToken());
+        sellerOrderFragment = new SellerOrderFragment(globalUserAccess.getAccessToken());
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
