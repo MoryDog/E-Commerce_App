@@ -74,6 +74,8 @@ public class HttpHandler {
         return status;
     }
 
+
+
     public static String postLogin(String urlStr, String name, String password){
         String status="";
         try {
@@ -162,6 +164,50 @@ public class HttpHandler {
         return status;
     }
 
+
+
+    public static String postSignOut(String urlStr, String accessToken) {
+        String status="";
+        try {
+            //Step 1 - prepare the connection
+            URL url = new URL(urlStr);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type","application/json");
+            conn.setRequestProperty("Accept", "application/json");
+            //Step 2 - prepare the JSON object
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("accessToken", accessToken);
+            //Step 3 - Writing data to webservice
+            DataOutputStream os = new DataOutputStream(conn.getOutputStream());
+            os.writeBytes(jsonObject.toString());
+            os.flush();
+            os.close();
+
+            BufferedReader br = null;
+            if (100 <= conn.getResponseCode() && conn.getResponseCode() <= 399) {
+                br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            } else {
+                br = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+            }
+            StringBuilder response = new StringBuilder();
+            String currentLine;
+
+            while ((currentLine = br.readLine()) != null)
+                response.append(currentLine);
+
+
+            status = response.toString();
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return status;
+    }
 
 
     public static String postFavorite(String urlStr, String accessToken, long product_id) {

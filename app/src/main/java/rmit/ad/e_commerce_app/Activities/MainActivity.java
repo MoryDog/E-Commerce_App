@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.nav_sign_out:
-                        finish();
+                        new doLogOut().execute();
                         break;
                     case R.id.nav_chat:
                         break;
@@ -158,6 +158,26 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+    }
 
+
+    private class doLogOut extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... voids) {
+            String url = "http://54.151.194.4:3000/signout";
+            jsonString = HttpHandler.postSignOut(url, globalUserAccess.getAccessToken());
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void unused) {
+            super.onPostExecute(unused);
+            globalUserAccess.setAccessToken("");
+            globalUserAccess.setRefreshToken("");
+            globalUserAccess.setIdToken("");
+            globalUserAccess.setUserRole("");
+            Toast.makeText(globalUserAccess, jsonString,  Toast.LENGTH_SHORT).show();
+            finish();
+        }
     }
 }
