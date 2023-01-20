@@ -145,7 +145,7 @@ public class ProductDetails extends AppCompatActivity {
         product_price = findViewById(R.id.PriceText);
         product_colors = findViewById(R.id.colorString);
         product_size = findViewById(R.id.sizeString);
-        product_description = findViewById(R.id.desciptionText);
+        product_description = findViewById(R.id.DescriptionText);
         product_brand = findViewById(R.id.sellerName);
     }
 
@@ -167,7 +167,6 @@ public class ProductDetails extends AppCompatActivity {
             product_size.setText(productModel.getSizes());
             product_brand.setText(productModel.getBrand());
             product_description.setText(productModel.getDescription());
-            System.out.println(productModel.getBrand());
         }catch (NullPointerException e){
             e.printStackTrace();
         }
