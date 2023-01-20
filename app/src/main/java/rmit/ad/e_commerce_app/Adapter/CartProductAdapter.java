@@ -80,6 +80,14 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartViewHolder> {
             }
         });
 
+        holder.deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+
 
 
     }

@@ -21,7 +21,7 @@ public class CartViewHolder extends RecyclerView.ViewHolder {
     ImageButton minusButton;
     TextView quantity;
     CardView parent;
-    Button checkOutButton;
+    Button checkOutButton, deleteButton;
     TextView totalPrice;
     EditText shippingAddress;
 
@@ -38,6 +38,7 @@ public class CartViewHolder extends RecyclerView.ViewHolder {
         checkOutButton = itemView.findViewById(R.id.checkOutButton);
         totalPrice = itemView.findViewById(R.id.totalPrice);
         shippingAddress = itemView.findViewById(R.id.shippingAddress);
+        deleteButton = itemView.findViewById(R.id.deleteButton);
 
     }
 }
