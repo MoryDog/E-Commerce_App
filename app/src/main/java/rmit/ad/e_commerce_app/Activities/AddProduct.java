@@ -113,7 +113,6 @@ public class AddProduct extends AppCompatActivity {
             }
         });
 
-
         addProductButton = findViewById(R.id.addProductButton);
         addProductButton.setOnClickListener(new View.OnClickListener() {
             @Override
