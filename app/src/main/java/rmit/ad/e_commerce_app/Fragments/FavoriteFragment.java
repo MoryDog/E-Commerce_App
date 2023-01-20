@@ -21,6 +21,7 @@ import org.json.JSONObject;
 
 import okhttp3.internal.Util;
 import rmit.ad.e_commerce_app.Activities.GlobalUserAccess;
+import rmit.ad.e_commerce_app.Activities.MainActivity;
 import rmit.ad.e_commerce_app.Adapter.ProductAdapter;
 import rmit.ad.e_commerce_app.HttpClasses.HttpHandler;
 import rmit.ad.e_commerce_app.ModelClasses.Product;
@@ -125,7 +126,7 @@ public class FavoriteFragment extends Fragment {
                     String thumbnail = product.get("thumbnail").toString();
                     String description = product.get("descriptions").toString();
 
-                    Utils.obtainInstance().AddToFavorite(new Product(title, price, thumbnail, id, category, brand, 1, seller_id, color, sizes, description, stars));                }
+                    Utils.obtainInstance().AddToFavorite(new Product(title, price, thumbnail, id, category, brand, 1, seller_id, color, sizes, description, stars)); }
                     adapter.SetUpProducts(Utils.obtainInstance().getFavoriteProducts());
                     recyclerView1.setAdapter(adapter);
             } catch (JSONException e) {
