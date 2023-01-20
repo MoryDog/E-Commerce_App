@@ -4,18 +4,20 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/MASTER Menu/1.RMIT/Android/FinalAssignment/Main/E-Commerce_App/app/src/main/res/layout/activity_add_product.xml" value="0.1265625" />
+        <entry key="..\:/MASTER Menu/1.RMIT/Android/FinalAssignment/Main/E-Commerce_App/app/src/main/res/layout/activity_display_order_content.xml" value="0.1265625" />
         <entry key="..\:/MASTER Menu/1.RMIT/Android/FinalAssignment/Main/E-Commerce_App/app/src/main/res/layout/activity_main.xml" value="0.1265625" />
         <entry key="..\:/MASTER Menu/1.RMIT/Android/FinalAssignment/Main/E-Commerce_App/app/src/main/res/layout/activity_product_details.xml" value="0.264" />
         <entry key="..\:/MASTER Menu/1.RMIT/Android/FinalAssignment/Main/E-Commerce_App/app/src/main/res/layout/activity_register.xml" value="0.1265625" />
         <entry key="..\:/MASTER Menu/1.RMIT/Android/FinalAssignment/Main/E-Commerce_App/app/src/main/res/layout/cart_product_item_list.xml" value="0.4" />
         <entry key="..\:/MASTER Menu/1.RMIT/Android/FinalAssignment/Main/E-Commerce_App/app/src/main/res/layout/category_item_list.xml" value="0.1265625" />
+        <entry key="..\:/MASTER Menu/1.RMIT/Android/FinalAssignment/Main/E-Commerce_App/app/src/main/res/layout/display_order__content_item_list.xml" value="0.22826086956521738" />
         <entry key="..\:/MASTER Menu/1.RMIT/Android/FinalAssignment/Main/E-Commerce_App/app/src/main/res/layout/fragment_favorite.xml" value="0.1265625" />
         <entry key="..\:/MASTER Menu/1.RMIT/Android/FinalAssignment/Main/E-Commerce_App/app/src/main/res/layout/fragment_home.xml" value="0.1265625" />
         <entry key="..\:/MASTER Menu/1.RMIT/Android/FinalAssignment/Main/E-Commerce_App/app/src/main/res/layout/fragment_notification.xml" value="0.1265625" />
         <entry key="..\:/MASTER Menu/1.RMIT/Android/FinalAssignment/Main/E-Commerce_App/app/src/main/res/layout/fragment_order.xml" value="0.140625" />
         <entry key="..\:/MASTER Menu/1.RMIT/Android/FinalAssignment/Main/E-Commerce_App/app/src/main/res/layout/fragment_shopping_cart.xml" value="0.176" />
         <entry key="..\:/MASTER Menu/1.RMIT/Android/FinalAssignment/Main/E-Commerce_App/app/src/main/res/layout/nav_header.xml" value="0.264" />
-        <entry key="..\:/MASTER Menu/1.RMIT/Android/FinalAssignment/Main/E-Commerce_App/app/src/main/res/layout/order_item_list.xml" value="0.140625" />
+        <entry key="..\:/MASTER Menu/1.RMIT/Android/FinalAssignment/Main/E-Commerce_App/app/src/main/res/layout/order_item_list.xml" value="0.176" />
         <entry key="..\:/MASTER Menu/1.RMIT/Android/FinalAssignment/Main/E-Commerce_App/app/src/main/res/layout/product_images_layout.xml" value="0.264" />
         <entry key="..\:/MASTER Menu/1.RMIT/Android/FinalAssignment/Main/E-Commerce_App/app/src/main/res/layout/product_item_list.xml" value="0.1265625" />
         <entry key="..\:/MASTER Menu/1.RMIT/Android/FinalAssignment/Main/E-Commerce_App/app/src/main/res/layout/seller_order__item_list.xml" value="0.2" />

@@ -28,7 +28,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/orderTitle"
+            android:id="@+id/orderItemTitle"
             android:layout_width="100dp"
             android:layout_height="19dp"
             android:layout_marginStart="2dp"
@@ -45,7 +45,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/orderStatus"
+            android:id="@+id/orderItemPrice"
             android:layout_width="150dp"
             android:layout_height="21dp"
             android:layout_marginTop="9dp"
@@ -56,7 +56,7 @@
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/orderTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/orderItemTitle" />
 
         <TextView
             android:id="@+id/textView14"
@@ -69,8 +69,8 @@
             android:text="Status:"
             android:textColor="@color/black"
             android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/orderStatus"
-            app:layout_constraintTop_toBottomOf="@+id/orderTitle" />
+            app:layout_constraintEnd_toStartOf="@+id/orderItemPrice"
+            app:layout_constraintTop_toBottomOf="@+id/orderItemTitle" />
 
         <TextView
             android:id="@+id/textView4"

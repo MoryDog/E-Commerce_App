@@ -23,7 +23,7 @@
             android:src="@drawable/ic_launcher_background" />
 
         <TextView
-            android:id="@+id/orderTitle"
+            android:id="@+id/orderItemTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/product_image"
@@ -36,10 +36,10 @@
             android:textStyle="normal" />
 
         <TextView
-            android:id="@+id/orderStatus"
+            android:id="@+id/orderItemPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/orderTitle"
+            android:layout_below="@+id/orderItemTitle"
             android:autoSizeTextType="uniform"
             android:layout_centerHorizontal="true"
             android:text="price"
@@ -57,7 +57,7 @@
             android:layout_marginStart="33dp"
             android:layout_marginTop="105dp"
             android:layout_marginEnd="2dp"
-            android:layout_toStartOf="@+id/orderStatus"
+            android:layout_toStartOf="@+id/orderItemPrice"
             android:fontFamily="@font/bold"
             android:gravity="center"
             android:text="$"

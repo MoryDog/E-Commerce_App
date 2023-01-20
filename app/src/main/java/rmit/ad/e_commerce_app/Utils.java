@@ -70,13 +70,13 @@ public class Utils {
                 String price = product.get("price").toString();
                 String color = product.get("colors").toString();
                 String sizes = product.get("sizes").toString();
-
+                int quantity = (int) product.get("quantity");
                 int stars  = (int) product.get("stars");
                 String brand = product.get("brand").toString();
                 String thumbnail = product.get("thumbnail").toString();
                 String description = product.get("descriptions").toString();
 
-                Products.add(new Product(title, price, thumbnail, id, category, brand, 1, seller_id, color, sizes, description, stars));
+                Products.add(new Product(title, price, thumbnail, id, category, brand, quantity, seller_id, color, sizes, description, stars));
             }
         } catch (JSONException e) {
             e.printStackTrace();

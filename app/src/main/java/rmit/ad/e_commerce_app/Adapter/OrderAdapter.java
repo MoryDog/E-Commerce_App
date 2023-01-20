@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -58,7 +59,9 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderViewHolder> {
             public void onClick(View view) {
                 //Log.d(TAG, "onClick: Clicked on an image: " + data.get(position).getTitle());
                 Intent intent = new Intent(context, DisplayOrderContent.class);
-                intent.putExtra(KEY_ID_PRODUCT, data.get(position).getOrderId());
+                intent.putExtra("orderId", String.valueOf(data.get(position).getOrderId()));
+                Toast.makeText(context, "What is going on " + data.get(position).getOrderId(),
+                        Toast.LENGTH_LONG).show();
                 context.startActivity(intent);
             }
         });

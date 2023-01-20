@@ -18,8 +18,8 @@ public class OrderViewHolder extends RecyclerView.ViewHolder {
     public OrderViewHolder(@NonNull View orderView) {
         super(orderView);
         product_img = orderView.findViewById(R.id.product_image);
-        orderTitle = orderView.findViewById(R.id.orderTitle);
-        orderStatus = orderView.findViewById(R.id.orderStatus);
+        orderTitle = orderView.findViewById(R.id.orderItemTitle);
+        orderStatus = orderView.findViewById(R.id.orderItemPrice);
         parent = orderView.findViewById(R.id.parent);
     }
 }

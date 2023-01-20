@@ -5,6 +5,7 @@ import static rmit.ad.e_commerce_app.Activities.ProductDetails.KEY_ID_PRODUCT;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,14 +18,17 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 import rmit.ad.e_commerce_app.Activities.ProductDetails;
+import rmit.ad.e_commerce_app.HttpClasses.HttpHandler;
 import rmit.ad.e_commerce_app.ModelClasses.Order;
 import rmit.ad.e_commerce_app.ModelClasses.OrderItems;
+import rmit.ad.e_commerce_app.ModelClasses.Product;
 import rmit.ad.e_commerce_app.R;
+import rmit.ad.e_commerce_app.Utils;
 
 public class DisplayOrderContentAdapter extends RecyclerView.Adapter<DisplayOrderContentViewHolder>{
     private String s3 = "https://androidecommercebucket.s3.ap-southeast-1.amazonaws.com/";
     private static final String TAG = "NotiProductAdapter";
-    private ArrayList<OrderItems> data = new ArrayList<>();
+    private ArrayList<Product> data = new ArrayList<>();
     Context context;
 
     public DisplayOrderContentAdapter(Context context) {
@@ -34,15 +38,15 @@ public class DisplayOrderContentAdapter extends RecyclerView.Adapter<DisplayOrde
     @NonNull
     @Override
     public DisplayOrderContentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.order_item_list, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.display_order__content_item_list, parent, false);
         return new DisplayOrderContentViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull DisplayOrderContentViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        holder.orderTitle.setText(String.valueOf(data.get(position).getID()));
-        holder.orderStatus.setText(data.get(position).getQuantity());
-
+        holder.orderItemTitle.setText(String.valueOf(data.get(position).getID()));
+        holder.orderItemquantity.setText(String.valueOf(data.get(position).getQuantity()));
+        holder.orderItemPrice.setText(String.valueOf(data.get(position).getPrice()));
         Glide.with(context)
                 .asBitmap()
                 .load(s3 + data.get(position).getThumbnail())
@@ -59,6 +63,9 @@ public class DisplayOrderContentAdapter extends RecyclerView.Adapter<DisplayOrde
                 context.startActivity(intent);
             }
         });
+
+
+
     }
 
     @Override
@@ -66,8 +73,9 @@ public class DisplayOrderContentAdapter extends RecyclerView.Adapter<DisplayOrde
         return data.size();
     }
 
-    public void SetUpProducts(ArrayList<OrderItems> productModels) {
+    public void SetUpProducts(ArrayList<Product> productModels) {
         this.data = productModels;
         notifyDataSetChanged();
     }
+
 }

@@ -24,8 +24,8 @@ public class SellerOrderViewHolder extends RecyclerView.ViewHolder {
     public SellerOrderViewHolder(@NonNull View itemView) {
         super(itemView);
         product_image = itemView.findViewById(R.id.product_image);
-        orderTitle = itemView.findViewById(R.id.orderTitle);
-        orderStatus = itemView.findViewById(R.id.orderStatus);
+        orderTitle = itemView.findViewById(R.id.orderItemTitle);
+        orderStatus = itemView.findViewById(R.id.orderItemPrice);
         orderUpdateButton = itemView.findViewById(R.id.orderUpdateButton);
         orderDeleteButton = itemView.findViewById(R.id.orderDeleteButton);
         parent = itemView.findViewById(R.id.parent);

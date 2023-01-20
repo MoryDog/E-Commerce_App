@@ -24,6 +24,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import rmit.ad.e_commerce_app.Activities.DisplayOrderContent;
 import rmit.ad.e_commerce_app.Activities.ProductDetails;
 import rmit.ad.e_commerce_app.HttpClasses.HttpHandler;
 import rmit.ad.e_commerce_app.ModelClasses.Order;
@@ -66,10 +67,10 @@ public class SellerOrderAdapter extends RecyclerView.Adapter<SellerOrderViewHold
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Log.d(TAG, "onClick: Clicked on an image: " + orders.get(position).getTitle());
-//                Intent intent = new Intent(context, ProductDetails.class);
-//                intent.putExtra(KEY_ID_PRODUCT, orders.get(position).getID());
-//                context.startActivity(intent);
+                Intent intent = new Intent(context, DisplayOrderContent.class);
+                intent.putExtra("orderId", String.valueOf(orders.get(position).getOrderId()));
+
+                context.startActivity(intent);
             }
         });
         holder.orderStatus.addTextChangedListener(new TextWatcher() {

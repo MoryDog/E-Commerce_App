@@ -21,8 +21,8 @@ public class ViewHolder extends RecyclerView.ViewHolder {
     public ViewHolder(@NonNull View itemView) {
         super(itemView);
         product_image = itemView.findViewById(R.id.product_image);
-        product_name = itemView.findViewById(R.id.orderTitle);
-        product_price = itemView.findViewById(R.id.orderStatus);
+        product_name = itemView.findViewById(R.id.orderItemTitle);
+        product_price = itemView.findViewById(R.id.orderItemPrice);
         parent = itemView.findViewById(R.id.parent);
         DeleteBtn = itemView.findViewById(R.id.DeleteBtn);
     }

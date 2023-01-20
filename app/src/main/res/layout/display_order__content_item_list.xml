@@ -30,7 +30,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/orderTitle"
+            android:id="@+id/orderItemTitle"
             android:layout_width="160dp"
             android:layout_height="19dp"
             android:layout_marginStart="8dp"
@@ -48,7 +48,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/orderStatus"
+            android:id="@+id/orderItemPrice"
             android:layout_width="53dp"
             android:layout_height="21dp"
             android:layout_marginStart="5dp"
@@ -60,7 +60,7 @@
             android:textSize="17sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/textView14"
-            app:layout_constraintTop_toBottomOf="@+id/orderTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/orderItemTitle" />
 
         <TextView
             android:id="@+id/textView14"
@@ -74,12 +74,12 @@
             android:text="$"
             android:textColor="@color/red"
             android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/orderStatus"
+            app:layout_constraintEnd_toStartOf="@+id/orderItemPrice"
             app:layout_constraintStart_toEndOf="@+id/product_image"
-            app:layout_constraintTop_toBottomOf="@+id/orderTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/orderItemTitle" />
 
         <TextView
-            android:id="@+id/productQuantity"
+            android:id="@+id/orderItemsQuantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
@@ -100,7 +100,7 @@
             android:layout_marginEnd="2dp"
             android:text="x"
             android:textSize="15sp"
-            app:layout_constraintEnd_toStartOf="@+id/productQuantity"
+            app:layout_constraintEnd_toStartOf="@+id/orderItemsQuantity"
             app:layout_constraintTop_toTopOf="parent" />
 
 

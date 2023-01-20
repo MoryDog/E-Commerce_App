@@ -18,7 +18,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import rmit.ad.e_commerce_app.Adapter.CartProductAdapter;
 import rmit.ad.e_commerce_app.Adapter.SellerOrderAdapter;
 import rmit.ad.e_commerce_app.HttpClasses.HttpHandler;
 import rmit.ad.e_commerce_app.ModelClasses.Order;
@@ -88,8 +87,8 @@ public class SellerOrderFragment extends Fragment {
         root = inflater.inflate(R.layout.fragment_seller_order, container, false);
         recyclerView1 = root.findViewById(R.id.selllerOrder_Rec);
 
-        orderTittle = root.findViewById(R.id.orderTitle);
-        orderStatus = root.findViewById(R.id.orderStatus);
+        orderTittle = root.findViewById(R.id.orderItemTitle);
+        orderStatus = root.findViewById(R.id.orderItemPrice);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView1.setLayoutManager(linearLayoutManager);

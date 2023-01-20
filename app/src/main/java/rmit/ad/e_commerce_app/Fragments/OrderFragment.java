@@ -85,6 +85,7 @@ public class OrderFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView1.setLayoutManager(linearLayoutManager);
         adapter = new OrderAdapter(this.getContext());
+
         if(orders != null){
             orders.clear();
         }
