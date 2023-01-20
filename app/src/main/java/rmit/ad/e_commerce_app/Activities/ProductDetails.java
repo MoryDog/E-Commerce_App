@@ -128,7 +128,7 @@ public class ProductDetails extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if (Utils.obtainInstance().AddToCart(cartProductModel)) {
-                        SetBadge();
+                        //SetBadge();
                         Snackbar.make(product_detail_view, "Product added to Cart", Snackbar.LENGTH_SHORT).show();
                     } else {
                         Snackbar.make(product_detail_view, "Something Wrong Happened, try again", Snackbar.LENGTH_SHORT).show();
@@ -261,8 +261,6 @@ public class ProductDetails extends AppCompatActivity {
             try {
                 Utils utils = new Utils();
                 utils.setData(jsonString);
-                Toast.makeText(ProductDetails.this, "This is my product id!" + ProductID,
-                        Toast.LENGTH_LONG).show();
                 UpComingProducts = utils.getAllProducts().get(0);
 
                 InitProductData(UpComingProducts);

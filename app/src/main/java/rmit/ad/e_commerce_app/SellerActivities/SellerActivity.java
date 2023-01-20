@@ -66,8 +66,6 @@ public class SellerActivity extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
 
         Toolbar toolbar = findViewById(R.id.tool_bar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Shoppefy");
 
         drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -154,7 +152,7 @@ public class SellerActivity extends AppCompatActivity {
                     username.setText(product.get("username").toString());
                     userEmail.setText(product.get("email").toString());
                 }
-                Toast.makeText(globalUserAccess, "Logged in as" + username.getText(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(globalUserAccess, "Logged in as: " + username.getText(), Toast.LENGTH_SHORT).show();
             } catch (JSONException e) {
                 e.printStackTrace();
             }
