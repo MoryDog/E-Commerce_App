@@ -20,6 +20,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.badge.BadgeDrawable;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -102,7 +105,6 @@ public class ShoppingCartFragment extends Fragment {
         // Inflate the layout for this fragment
         root = inflater.inflate(R.layout.fragment_shopping_cart, container, false);
         RecyclerView recyclerView1 = root.findViewById(R.id.shoppingCart_rec);
-
         shippingAddress = root.findViewById(R.id.shippingAddress);
         totalPrice = root.findViewById(R.id.totalPrice);
 
