@@ -50,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         globalUserAccess = ((GlobalUserAccess) getApplicationContext());
+        setContentView(R.layout.activity_main);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
                     username.setText(product.get("username").toString());
                     userEmail.setText(product.get("email").toString());
                 }
-                Toast.makeText(globalUserAccess, "Logged in as" + username.getText(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(globalUserAccess, "Logged in as: " + username.getText(), Toast.LENGTH_SHORT).show();
             } catch (JSONException e) {
                 e.printStackTrace();
             }
