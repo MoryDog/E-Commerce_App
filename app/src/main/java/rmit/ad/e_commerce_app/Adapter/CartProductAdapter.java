@@ -92,6 +92,7 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartViewHolder> {
                 System.out.println("Clicked Delete");
                 System.out.println(data.get(position).getID());
                 Utils.obtainInstance().RemoveProductInCart(data.get(position));
+                notifyDataSetChanged();
             }
         });
 
