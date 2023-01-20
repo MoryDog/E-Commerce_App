@@ -42,7 +42,7 @@ public class Verification extends AppCompatActivity {
         ConfirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(confirm_code.isEmpty()) {
+                if(CodeField.getText().toString().trim().isEmpty()) {
                     Snackbar.make(snackbar_view, "Enter your confirmation code to verify your account!)", Snackbar.LENGTH_SHORT).show();
                 } else {
                     confirm_code = CodeField.getText().toString();
