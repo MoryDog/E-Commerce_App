@@ -21,9 +21,10 @@ public class CartViewHolder extends RecyclerView.ViewHolder {
     ImageButton minusButton;
     TextView quantity;
     CardView parent;
-    Button checkOutButton, deleteButton;
+    Button checkOutButton;
     TextView totalPrice;
     EditText shippingAddress;
+    ImageButton deleteButton;
 
 
     public CartViewHolder(@NonNull View itemView) {

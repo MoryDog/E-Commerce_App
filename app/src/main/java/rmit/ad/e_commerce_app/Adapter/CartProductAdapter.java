@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 import rmit.ad.e_commerce_app.Activities.ProductDetails;
+import rmit.ad.e_commerce_app.ModelClasses.OrderItems;
 import rmit.ad.e_commerce_app.ModelClasses.Product;
 import rmit.ad.e_commerce_app.R;
 
@@ -26,6 +27,7 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartViewHolder> {
     private String s3 = "https://androidecommercebucket.s3.ap-southeast-1.amazonaws.com/";
     private static final String TAG = "CartProductAdapter";
     private ArrayList<Product> data = new ArrayList<>();
+    private final ArrayList<OrderItems> orderItems = new ArrayList<>();
     Context context;
 
     public CartProductAdapter(Context context) {
@@ -83,7 +85,9 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartViewHolder> {
         holder.deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                for (OrderItems item : orderItems) {
+                    orderItems.remove(item);
+                }
             }
         });
 
