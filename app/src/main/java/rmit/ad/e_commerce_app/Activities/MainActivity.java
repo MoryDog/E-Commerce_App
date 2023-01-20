@@ -1,4 +1,5 @@
 package rmit.ad.e_commerce_app.Activities;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -65,6 +66,23 @@ public class MainActivity extends AppCompatActivity {
 
         drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.bringToFront();
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.nav_sign_out:
+                        finish();
+                        break;
+                    case R.id.nav_chat:
+                        break;
+                    case R.id.nav_profile:
+                    case R.id.nav_question:
+                    case R.id.nav_about:
+                }
+                return true;
+            }
+        });
         View headerView = navigationView.getHeaderView(0);
         username = (TextView) headerView.findViewById(R.id.UserRegisterName);
         userEmail = (TextView) headerView.findViewById(R.id.UserEmail);
@@ -136,7 +154,6 @@ public class MainActivity extends AppCompatActivity {
                     userEmail.setText(product.get("email").toString());
                 }
                 Toast.makeText(globalUserAccess, "Logged in as" + username.getText(), Toast.LENGTH_SHORT).show();
-                Toast.makeText(globalUserAccess, userEmail.getText(), Toast.LENGTH_SHORT).show();
             } catch (JSONException e) {
                 e.printStackTrace();
             }
