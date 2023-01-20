@@ -150,7 +150,41 @@ public class SellerOrderAdapter extends RecyclerView.Adapter<SellerOrderViewHold
         @Override
         protected void onPostExecute(Void unused) {
             super.onPostExecute(unused);
-            Toast.makeText(context, "This is my Toast message!",
+            Toast.makeText(context, "Order Status Updated",
+                    Toast.LENGTH_LONG).show();
+        }
+
+    }
+
+
+    private class deleteAnOrder extends AsyncTask<Void, Void, Void> {
+        String jsonString = "";
+        JSONObject payload;
+        int orderId;
+        String orderStatus;
+        public deleteAnOrder(int orderId, String orderStatus) {
+            this.orderId = orderId;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            JSONObject payLoadUpdateStatus = new JSONObject();
+            try {
+                payLoadUpdateStatus.put("accessToken", accessToken);
+                payLoadUpdateStatus.put("order_id", orderId);
+                payLoadUpdateStatus.put("order_status", orderStatus);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            jsonString = HttpHandler.postRequest("http://54.151.194.4:3000/updateorderstatus", payLoadUpdateStatus);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void unused) {
+            super.onPostExecute(unused);
+            Toast.makeText(context, "Order Status Updated",
                     Toast.LENGTH_LONG).show();
         }
 

@@ -45,7 +45,7 @@ public class DisplayOrderContentAdapter extends RecyclerView.Adapter<DisplayOrde
     @Override
     public void onBindViewHolder(@NonNull DisplayOrderContentViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.orderItemTitle.setText(String.valueOf(data.get(position).getID()));
-        holder.orderItemquantity.setText(String.valueOf(data.get(position).getQuantity()));
+        holder.orderItemquantity.setText(String.valueOf(data.get(position).getQuantityOrdered()));
         holder.orderItemPrice.setText(String.valueOf(data.get(position).getPrice()));
         Glide.with(context)
                 .asBitmap()

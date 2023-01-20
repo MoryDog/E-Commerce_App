@@ -9,6 +9,15 @@ public class Product {
     private String brand;
     private int quantity;
 
+    public int getQuantityOrdered() {
+        return quantityOrdered;
+    }
+
+    public void setQuantityOrdered(int quantityOrdered) {
+        this.quantityOrdered = quantityOrdered;
+    }
+
+    private int quantityOrdered;
     private int seller_id;
     private String colors;
     private String sizes;
@@ -38,6 +47,22 @@ public class Product {
         this.sizes = sizes;
         this.description = description;
         this.stars = stars;
+    }
+
+    public Product(String title, String price, String thumbnail, long ID, String category, String brand, int quantity, int seller_id, String colors, String sizes, String description, int stars, int quantityOrdered) {
+        this.title = title;
+        this.price = price;
+        this.thumbnail = thumbnail;
+        this.ID = ID;
+        this.category = category;
+        this.brand = brand;
+        this.quantity = quantity;
+        this.seller_id = seller_id;
+        this.colors = colors;
+        this.sizes = sizes;
+        this.description = description;
+        this.stars = stars;
+        this.quantityOrdered = quantityOrdered;
     }
 
     public String getTitle() {

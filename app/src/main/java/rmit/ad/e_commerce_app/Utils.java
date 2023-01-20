@@ -59,6 +59,7 @@ public class Utils {
     }
 
     public void setData(String data){
+        //int quantityOrdered = 0;
         try {
             JSONArray jsonArray = new JSONArray(data);
             for(int i = 0; i< jsonArray.length(); i++){
@@ -76,7 +77,14 @@ public class Utils {
                 String thumbnail = product.get("thumbnail").toString();
                 String description = product.get("descriptions").toString();
 
-                Products.add(new Product(title, price, thumbnail, id, category, brand, quantity, seller_id, color, sizes, description, stars));
+                try{
+                    int quantityOrdered = (int) product.get("quantity_ordered");
+                    Products.add(new Product(title, price, thumbnail, id, category, brand, quantity, seller_id, color, sizes, description, stars,quantityOrdered));
+                }catch (JSONException a){
+                    //a.printStackTrace();
+                    Products.add(new Product(title, price, thumbnail, id, category, brand, quantity, seller_id, color, sizes, description, stars));
+                }
+
             }
         } catch (JSONException e) {
             e.printStackTrace();
