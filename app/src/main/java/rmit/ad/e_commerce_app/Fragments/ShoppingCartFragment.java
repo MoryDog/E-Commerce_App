@@ -109,7 +109,7 @@ public class ShoppingCartFragment extends Fragment {
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView1.setLayoutManager(linearLayoutManager);
-        adapter = new CartProductAdapter(this.getContext());
+        adapter = new CartProductAdapter(this.getContext(), root);
 
         adapter.SetUpProducts(Utils.obtainInstance().getCartProducts());
         recyclerView1.setAdapter(adapter);
@@ -176,6 +176,11 @@ public class ShoppingCartFragment extends Fragment {
         });
 
         return root;
+    }
+
+    public View getPriceView(){
+        TextView price = root.findViewById(R.id.totalPrice);
+        return price;
     }
 
     private class sendOrderPayload extends AsyncTask<Void, Void, Void> {

@@ -122,10 +122,15 @@ public class AddProduct extends AppCompatActivity {
                 //startActivity(intent);
                 String des = description.getText().toString();
                 // Check here
-                new uploadImageAsysnc().execute();
-                Toast.makeText(AddProduct.this, "Uploaded please wait for a moment",
-                        Toast.LENGTH_LONG).show();
-                finish();
+                if(numberOfImage > 4){
+                    Toast.makeText(AddProduct.this, "Maximum Images is 4",
+                            Toast.LENGTH_LONG).show();
+                }else{
+                    new uploadImageAsysnc().execute();
+                    Toast.makeText(AddProduct.this, "Uploaded please wait for a moment",
+                            Toast.LENGTH_LONG).show();
+                    finish();
+                }
             }
         });
 
@@ -177,8 +182,8 @@ public class AddProduct extends AppCompatActivity {
             //ImageView imageView = findViewById(R.id.imageView);
 
             ClipData clipData = data.getClipData();
-            numberOfImage = clipData.getItemCount();
             if(clipData != null){
+                numberOfImage = clipData.getItemCount();
                 for( int i =0; i < clipData.getItemCount(); i++){
                     Uri imageUri = clipData.getItemAt(i).getUri();
                     uris.add(imageUri);
