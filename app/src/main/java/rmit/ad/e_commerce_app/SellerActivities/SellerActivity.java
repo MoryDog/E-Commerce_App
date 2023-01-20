@@ -44,7 +44,7 @@ public class SellerActivity extends AppCompatActivity {
 
         homeFragment = new HomeFragment(globalUserAccess.getAccessToken());
         favoriteFragment = new FavoriteFragment(globalUserAccess.getAccessToken());
-        thirdFragment = new OrderFragment(globalUserAccess.getAccessToken());
+        thirdFragment = new OrderFragment(globalUserAccess.getAccessToken(), globalUserAccess.getUserRole());
         shoppingCartFragment = new ShoppingCartFragment(globalUserAccess.getAccessToken());
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();

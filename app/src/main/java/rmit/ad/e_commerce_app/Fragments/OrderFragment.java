@@ -38,13 +38,15 @@ public class OrderFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     static String accessToken;
+    static String userRole;
     RecyclerView recyclerView1;
     ArrayList<Order> orders;
     Utils utils;
-    public OrderFragment(String accessToken) {
+    public OrderFragment(String accessToken, String userRole) {
 
         // Required empty public constructor
         this.accessToken = accessToken;
+        this.userRole = userRole;
     }
 
     /**
@@ -57,7 +59,7 @@ public class OrderFragment extends Fragment {
      */
     // TODO: Rename and change types and number of parameters
     public static OrderFragment newInstance(String param1, String param2) {
-        OrderFragment fragment = new OrderFragment(accessToken);
+        OrderFragment fragment = new OrderFragment(accessToken, userRole);
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

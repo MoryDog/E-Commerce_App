@@ -9,6 +9,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.Menu;
@@ -24,6 +25,10 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 import rmit.ad.e_commerce_app.Adapter.CartProductAdapter;
@@ -31,6 +36,8 @@ import rmit.ad.e_commerce_app.Fragments.HomeFragment;
 import rmit.ad.e_commerce_app.Fragments.ShoppingCartFragment;
 import rmit.ad.e_commerce_app.Fragments.FavoriteFragment;
 import rmit.ad.e_commerce_app.Fragments.OrderFragment;
+import rmit.ad.e_commerce_app.HttpClasses.HttpHandler;
+import rmit.ad.e_commerce_app.ModelClasses.Product;
 import rmit.ad.e_commerce_app.R;
 import rmit.ad.e_commerce_app.Utils;
 
@@ -63,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
         homeFragment = new HomeFragment(globalUserAccess.getAccessToken());
         favoriteFragment = new FavoriteFragment(globalUserAccess.getAccessToken());
-        thirdFragment = new OrderFragment(globalUserAccess.getAccessToken());
+        thirdFragment = new OrderFragment(globalUserAccess.getAccessToken(), globalUserAccess.getUserRole());
         shoppingCartFragment = new ShoppingCartFragment(globalUserAccess.getAccessToken());
 
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -71,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         View v = getLayoutInflater().inflate(R.layout.nav_header,null);
         TextView username = v.findViewById(R.id.UserRegisterName);
         TextView userEmail = v.findViewById(R.id.UserEmail);
+        new dogetUser().execute();
         Toast.makeText(globalUserAccess, username.getText(), Toast.LENGTH_SHORT).show();
         Toast.makeText(globalUserAccess, userEmail.getText(), Toast.LENGTH_SHORT).show();
         ActionBarDrawerToggle Toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -109,6 +117,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
+
     @Override
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -119,5 +129,30 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Login.class);
         startActivity(intent);
         Utils.obtainInstance().getCartProducts().clear();
+    }
+
+
+
+    private class dogetUser extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... voids) {
+            String url = "http://54.151.194.4:3000/getuserinfor?accessToken=" + globalUserAccess.getAccessToken();
+            jsonString = HttpHandler.getRequest(url);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void unused) {
+            super.onPostExecute(unused);
+            try {
+                System.out.println(jsonString);
+                JSONObject jsonObject = new JSONObject(jsonString);
+                System.out.println(jsonObject.get("email"));
+                System.out.println(jsonObject.get("username"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 }
