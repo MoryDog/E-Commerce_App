@@ -261,8 +261,6 @@ public class ProductDetails extends AppCompatActivity {
             try {
                 Utils utils = new Utils();
                 utils.setData(jsonString);
-                Toast.makeText(ProductDetails.this, "This is my product id!" + ProductID,
-                        Toast.LENGTH_LONG).show();
                 UpComingProducts = utils.getAllProducts().get(0);
 
                 InitProductData(UpComingProducts);
