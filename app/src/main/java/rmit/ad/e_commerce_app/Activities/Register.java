@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
@@ -144,14 +145,16 @@ public class Register extends AppCompatActivity {
             super.onPostExecute(unused);
             System.out.println("-----------------------------");
             System.out.println(jsonString);
-            if (jsonString.equals("Register successfully username: "+user_name)) {
+            if (jsonString.equals("Register successfully username: " + user_name)) {
                 Intent intent = new Intent(Register.this, Verification.class);
                 // Send notification to user about new account creation
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(Register.this,"Notifications");
                 builder.setContentTitle("New Account Created");
                 builder.setContentText("Please check your email to receive confirmation code");
                 builder.setSmallIcon(R.drawable.ic_baseline_lock);
+                builder.setPriority(Notification.PRIORITY_MAX);
                 builder.setAutoCancel(true);
+
                 NotificationManagerCompat managerCompat = NotificationManagerCompat.from(Register.this);
                 managerCompat.notify(10, builder.build());
                 intent.putExtra("username", user_name);

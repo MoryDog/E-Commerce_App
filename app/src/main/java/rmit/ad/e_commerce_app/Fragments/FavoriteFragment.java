@@ -50,7 +50,6 @@ public class FavoriteFragment extends Fragment {
 
     public FavoriteFragment(String accessToken) {
         // Required empty public constructor
-
         this.accessToken = accessToken;
     }
 
