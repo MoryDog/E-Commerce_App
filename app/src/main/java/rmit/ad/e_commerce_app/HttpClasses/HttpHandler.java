@@ -34,7 +34,6 @@ public class HttpHandler {
             e.printStackTrace();
         }
         return builder.toString();
-
     }
 
     public static String postRequest(String urlStr, JSONObject orderPayLoad){

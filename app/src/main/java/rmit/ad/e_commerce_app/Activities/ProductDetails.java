@@ -105,6 +105,7 @@ public class ProductDetails extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     jsonProductId = productModel.getID();
+                    System.out.println(jsonProductId);
                     new doAddFavorite().execute();
                 }
             });
@@ -232,7 +233,7 @@ public class ProductDetails extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            jsonFavoriteString = HttpHandler.postFavorite("http://54.151.194.4:3000/addfavorite", globalUserAccess.getAccessToken(), jsonProductId);
+            jsonFavoriteString = HttpHandler.postFavorite("http://54.151.194.4:3000/addfavorite", globalUserAccess.getAccessToken(), ProductID);
             return null;
         }
         @Override
