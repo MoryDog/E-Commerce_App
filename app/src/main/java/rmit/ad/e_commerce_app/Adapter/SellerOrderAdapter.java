@@ -104,7 +104,7 @@ public class SellerOrderAdapter extends RecyclerView.Adapter<SellerOrderViewHold
         holder.orderDeleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                new deleteAnOrder(orders.get(position).getOrderId()).execute();
             }
         });
 
@@ -161,8 +161,7 @@ public class SellerOrderAdapter extends RecyclerView.Adapter<SellerOrderViewHold
         String jsonString = "";
         JSONObject payload;
         int orderId;
-        String orderStatus;
-        public deleteAnOrder(int orderId, String orderStatus) {
+        public deleteAnOrder(int orderId) {
             this.orderId = orderId;
         }
 
@@ -172,12 +171,11 @@ public class SellerOrderAdapter extends RecyclerView.Adapter<SellerOrderViewHold
             try {
                 payLoadUpdateStatus.put("accessToken", accessToken);
                 payLoadUpdateStatus.put("order_id", orderId);
-                payLoadUpdateStatus.put("order_status", orderStatus);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
-            jsonString = HttpHandler.postRequest("http://54.151.194.4:3000/updateorderstatus", payLoadUpdateStatus);
+            jsonString = HttpHandler.postRequest("http://54.151.194.4:3000/deleteorder", payLoadUpdateStatus);
             return null;
         }
 

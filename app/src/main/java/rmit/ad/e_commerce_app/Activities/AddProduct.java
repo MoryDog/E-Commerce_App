@@ -70,7 +70,7 @@ public class AddProduct extends AppCompatActivity {
    TextInputEditText brand;
    TextInputEditText quantity;
    TextInputEditText description;
-
+    int numberOfImage;
     GlobalUserAccess globalUserAccess;
 
     String local = "http://192.168.10.3:3000/";
@@ -121,7 +121,7 @@ public class AddProduct extends AppCompatActivity {
                 //Intent intent = new Intent(AddProduct.this, HomeFragment.class);
                 //startActivity(intent);
                 String des = description.getText().toString();
-
+                // Check here
                 new uploadImageAsysnc().execute();
                 Toast.makeText(AddProduct.this, "Uploaded please wait for a moment",
                         Toast.LENGTH_LONG).show();
@@ -133,8 +133,6 @@ public class AddProduct extends AppCompatActivity {
         addImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // thieu code lay link URL tu database
-                // new LoadImage().execute(fileUrl) (tren mang);
                 Toast.makeText(AddProduct.this, "Missing add image from url function", Toast.LENGTH_SHORT).show();
                 pickImages();
             }
@@ -179,7 +177,7 @@ public class AddProduct extends AppCompatActivity {
             //ImageView imageView = findViewById(R.id.imageView);
 
             ClipData clipData = data.getClipData();
-
+            numberOfImage = clipData.getItemCount();
             if(clipData != null){
                 for( int i =0; i < clipData.getItemCount(); i++){
                     Uri imageUri = clipData.getItemAt(i).getUri();
