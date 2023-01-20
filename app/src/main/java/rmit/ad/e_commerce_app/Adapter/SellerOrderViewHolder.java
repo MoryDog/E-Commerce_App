@@ -18,6 +18,7 @@ public class SellerOrderViewHolder extends RecyclerView.ViewHolder {
     ImageView product_image;
     TextView orderTitle;
     TextView orderStatus;
+    TextView orderShippingAddress;
     ToggleButton orderUpdateButton;
     ImageButton orderDeleteButton;
     CardView parent;
@@ -28,6 +29,7 @@ public class SellerOrderViewHolder extends RecyclerView.ViewHolder {
         product_image = itemView.findViewById(R.id.product_image);
         orderTitle = itemView.findViewById(R.id.orderItemTitle);
         orderStatus = itemView.findViewById(R.id.orderItemPrice);
+        orderShippingAddress = itemView.findViewById(R.id.orderShipAddress);
         orderUpdateButton = itemView.findViewById(R.id.orderUpdateButton);
         orderDeleteButton = itemView.findViewById(R.id.orderDeleteButton);
         parent = itemView.findViewById(R.id.parent);

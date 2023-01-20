@@ -58,7 +58,7 @@ public class SellerOrderAdapter extends RecyclerView.Adapter<SellerOrderViewHold
     public void onBindViewHolder(@NonNull SellerOrderViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.orderTitle.setText(String.valueOf(orders.get(position).getOrderId()));
         holder.orderStatus.setText(orders.get(position).getOrderStatus());
-
+        holder.orderShippingAddress.setText(orders.get(position).getShippingAddress());
 //        Glide.with(context)
 //                .asBitmap()
 //                .load(s3 + orders.get(position).get..())
