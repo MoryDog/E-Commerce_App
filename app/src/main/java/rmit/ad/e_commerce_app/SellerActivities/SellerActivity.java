@@ -66,8 +66,6 @@ public class SellerActivity extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
 
         Toolbar toolbar = findViewById(R.id.tool_bar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Shoppefy");
 
         drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);

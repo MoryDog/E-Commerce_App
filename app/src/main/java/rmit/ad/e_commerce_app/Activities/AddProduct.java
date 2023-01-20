@@ -140,7 +140,6 @@ public class AddProduct extends AppCompatActivity {
         addImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(AddProduct.this, "Missing add image from url function", Toast.LENGTH_SHORT).show();
                 pickImages();
             }
         });
