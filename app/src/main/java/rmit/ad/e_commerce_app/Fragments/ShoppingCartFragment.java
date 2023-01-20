@@ -20,6 +20,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.badge.BadgeDrawable;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -102,7 +105,6 @@ public class ShoppingCartFragment extends Fragment {
         // Inflate the layout for this fragment
         root = inflater.inflate(R.layout.fragment_shopping_cart, container, false);
         RecyclerView recyclerView1 = root.findViewById(R.id.shoppingCart_rec);
-
         shippingAddress = root.findViewById(R.id.shippingAddress);
         totalPrice = root.findViewById(R.id.totalPrice);
 
@@ -145,6 +147,9 @@ public class ShoppingCartFragment extends Fragment {
                             }
                             orderPayload.put("items",orderItemsArray);
                             System.out.println(orderPayload);
+
+                            adapter.SetUpProducts(new ArrayList<Product>());
+                            recyclerView1.setAdapter(adapter);
                             new sendOrderPayload(orderPayload).execute();
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -158,22 +163,6 @@ public class ShoppingCartFragment extends Fragment {
                     }
                 });
                 b.create().show();
-//                builder.setCancelable(true);
-//                builder.setMessage("Do you want to place order?");
-//                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialogInterface, int i) {
-//                        Toast.makeText(getContext(), "You have placed an order", Toast.LENGTH_SHORT).show();
-//
-//                    }
-//
-//        });builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialogInterface, int i) {
-//                        dialogInterface.cancel();
-//                    }
-//                });
-//                builder.create().show();
             }
         });
         return root;

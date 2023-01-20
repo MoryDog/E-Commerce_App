@@ -25,6 +25,7 @@ import rmit.ad.e_commerce_app.Activities.ProductDetails;
 import rmit.ad.e_commerce_app.HttpClasses.HttpHandler;
 import rmit.ad.e_commerce_app.ModelClasses.Product;
 import rmit.ad.e_commerce_app.R;
+import rmit.ad.e_commerce_app.Utils;
 
 public class ProductAdapter extends RecyclerView.Adapter<ViewHolder> {
     private String s3 = "https://androidecommercebucket.s3.ap-southeast-1.amazonaws.com/";
@@ -85,6 +86,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ViewHolder> {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             jsonProductId = data.get(position).getID();
+                            Utils.obtainInstance().RemoveFavoriteProductList(data.get(position));
                             new doDeleteFavorite().execute();
                             notifyDataSetChanged();
                         }
@@ -117,7 +119,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ViewHolder> {
 
 
     private class doDeleteFavorite extends AsyncTask<Void, Void, Void> {
-
         @Override
         protected Void doInBackground(Void... voids) {
             jsonFavoriteString = HttpHandler.postFavorite("http://54.151.194.4:3000/deletefavorite", accessToken, jsonProductId);

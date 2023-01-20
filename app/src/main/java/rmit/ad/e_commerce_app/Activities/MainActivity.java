@@ -1,5 +1,6 @@
 package rmit.ad.e_commerce_app.Activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,20 +8,28 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.Toast;
 
+import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 
+import java.util.ArrayList;
+
+import rmit.ad.e_commerce_app.Adapter.CartProductAdapter;
 import rmit.ad.e_commerce_app.Fragments.HomeFragment;
 import rmit.ad.e_commerce_app.Fragments.ShoppingCartFragment;
 import rmit.ad.e_commerce_app.Fragments.FavoriteFragment;
 import rmit.ad.e_commerce_app.Fragments.OrderFragment;
 import rmit.ad.e_commerce_app.R;
+import rmit.ad.e_commerce_app.Utils;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -59,6 +68,13 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFragment).commit();
+        BadgeDrawable badgeDrawable = bottomNavigationView.getOrCreateBadge(R.id.shopping_cart);
+        if (Utils.obtainInstance().getCartProducts().isEmpty()){
+            badgeDrawable.setVisible(false);
+        } else {
+            badgeDrawable.setVisible(true);
+            badgeDrawable.setNumber(Utils.obtainInstance().getCartProduct());
+        }
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -89,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
         } else{
             super.onBackPressed();
         }
+        Intent intent = new Intent(this, Login.class);
+        startActivity(intent);
     }
-
 }

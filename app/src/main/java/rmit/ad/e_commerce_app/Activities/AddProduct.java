@@ -123,7 +123,9 @@ public class AddProduct extends AppCompatActivity {
                 String des = description.getText().toString();
 
                 new uploadImageAsysnc().execute();
-
+                Toast.makeText(AddProduct.this, "Uploaded please wait for a moment",
+                        Toast.LENGTH_LONG).show();
+                finish();
             }
         });
 
