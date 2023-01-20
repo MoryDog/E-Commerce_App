@@ -1,6 +1,4 @@
 package rmit.ad.e_commerce_app.Activities;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,10 +10,8 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,22 +19,17 @@ import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
-import com.google.gson.JsonParser;
 
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-
-import rmit.ad.e_commerce_app.Adapter.CartProductAdapter;
 import rmit.ad.e_commerce_app.Fragments.HomeFragment;
 import rmit.ad.e_commerce_app.Fragments.ShoppingCartFragment;
 import rmit.ad.e_commerce_app.Fragments.FavoriteFragment;
 import rmit.ad.e_commerce_app.Fragments.OrderFragment;
 import rmit.ad.e_commerce_app.HttpClasses.HttpHandler;
-import rmit.ad.e_commerce_app.ModelClasses.Product;
 import rmit.ad.e_commerce_app.R;
 import rmit.ad.e_commerce_app.Utils;
 
@@ -50,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
     FavoriteFragment favoriteFragment;
     OrderFragment thirdFragment;
     ShoppingCartFragment shoppingCartFragment;
-    Button openAddProductButton;
     GlobalUserAccess globalUserAccess;
     String jsonString = "";
     TextView username;
@@ -77,10 +67,11 @@ public class MainActivity extends AppCompatActivity {
 
         drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView leftNavigationView = findViewById(R.id.nav_view);
-        View v = getLayoutInflater().inflate(R.layout.nav_header,null);
-        username = v.findViewById(R.id.UserRegisterName);
-        userEmail = v.findViewById(R.id.UserEmail);
-        username.setText("Test");
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+        username = (TextView) headerView.findViewById(R.id.UserRegisterName);
+        userEmail = (TextView) headerView.findViewById(R.id.UserEmail);
+        Toast.makeText(globalUserAccess, username.getText(), Toast.LENGTH_SHORT).show();
         new dogetUser().execute();
         ActionBarDrawerToggle Toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(Toggle);
@@ -117,8 +108,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-
 
     @Override
     public void onBackPressed() {
