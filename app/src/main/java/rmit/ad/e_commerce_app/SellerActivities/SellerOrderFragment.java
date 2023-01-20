@@ -93,7 +93,7 @@ public class SellerOrderFragment extends Fragment {
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView1.setLayoutManager(linearLayoutManager);
-        adapter = new SellerOrderAdapter(this.getContext());
+        adapter = new SellerOrderAdapter(this.getContext(), accessToken);
 
         if(orders != null){
             orders.clear();
