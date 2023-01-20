@@ -34,7 +34,7 @@ public class DisplayOrderContentAdapter extends RecyclerView.Adapter<DisplayOrde
     @NonNull
     @Override
     public DisplayOrderContentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.order_item_list, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.display_order__content_item_list, parent, false);
         return new DisplayOrderContentViewHolder(view);
     }
 

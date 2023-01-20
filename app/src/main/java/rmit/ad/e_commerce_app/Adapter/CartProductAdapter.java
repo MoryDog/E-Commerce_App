@@ -45,7 +45,6 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartViewHolder> {
 
     }
 
-
     @Override
     public void onBindViewHolder(@NonNull CartViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.product_name.setText(data.get(position).getTitle());

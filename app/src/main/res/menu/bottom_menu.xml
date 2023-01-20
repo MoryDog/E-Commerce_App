@@ -13,7 +13,7 @@
     <item
         android:id="@+id/notifications"
         android:title="Orders"
-        android:icon="@drawable/ic_notifications"/>
+        android:icon="@drawable/ic_baseline_list_alt_24"/>
     <item
         android:id="@+id/shopping_cart"
         android:title="Shopping Cart"
