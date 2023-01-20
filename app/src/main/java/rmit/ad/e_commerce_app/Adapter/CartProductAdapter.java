@@ -99,8 +99,8 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartViewHolder> {
                 if(quantity > 1){
                     holder.quantity.setText(String.valueOf(quantity - 1));
                     data.get(position).setQuantity(quantity);
+                    totalPriceText.setText(String.valueOf(calculateTotalPrice()));
                 }
-                totalPriceText.setText(String.valueOf(calculateTotalPrice()));
             }
         });
 
