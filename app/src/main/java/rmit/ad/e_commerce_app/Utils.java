@@ -41,6 +41,23 @@ public class Utils {
 
     }
 
+    public void setOrdersData(String data){
+        try {
+            JSONArray jsonArray = new JSONArray(data);
+            for(int i = 0; i< jsonArray.length(); i++){
+                JSONObject product = jsonArray.getJSONObject(i);
+
+                int id = Integer.parseInt(product.getString("Id"));
+                int total = Integer.parseInt(product.getString("total"));
+                String shipping_address = product.getString("shipping_adress");
+                String order_status = product.getString("order_status");
+                Orders.add(new Order(id, total,shipping_address,order_status));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void setData(String data){
         try {
             JSONArray jsonArray = new JSONArray(data);
@@ -65,6 +82,8 @@ public class Utils {
             e.printStackTrace();
         }
     }
+
+
 
     public void SetInitialData() {
         /*

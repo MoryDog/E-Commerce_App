@@ -7,12 +7,13 @@ public class Order {
     private String shippingAddress, orderTitle, orderStatus;
     private ArrayList<OrderItems> orderItemsList = new ArrayList<>();
 
+    private int orderId;
 
-    public Order(int total, String shippingAddress, String orderTitle, String orderStatus) {
+    public Order(int id, int total, String shippingAddress, String orderStatus) {
         this.total = total;
         this.shippingAddress = shippingAddress;
-        this.orderTitle = orderTitle;
         this.orderStatus = orderStatus;
+        this.orderId = id;
     }
 
     public Order(int total, String shippingAddress, String orderTitle, String orderStatus, ArrayList<OrderItems> orderItemsList) {
@@ -21,6 +22,14 @@ public class Order {
         this.orderTitle = orderTitle;
         this.orderStatus = orderStatus;
         this.orderItemsList = orderItemsList;
+    }
+
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 
     public int getTotal() {

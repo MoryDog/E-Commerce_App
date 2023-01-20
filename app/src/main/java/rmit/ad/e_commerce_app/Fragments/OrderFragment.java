@@ -14,8 +14,11 @@ import android.widget.Toast;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 import rmit.ad.e_commerce_app.Adapter.OrderAdapter;
 import rmit.ad.e_commerce_app.HttpClasses.HttpHandler;
+import rmit.ad.e_commerce_app.ModelClasses.Order;
 import rmit.ad.e_commerce_app.R;
 import rmit.ad.e_commerce_app.Utils;
 
@@ -35,7 +38,8 @@ public class OrderFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     static String accessToken;
-
+    RecyclerView recyclerView1;
+    ArrayList<Order> orders = new ArrayList<>();
     public OrderFragment(String accessToken) {
 
         // Required empty public constructor
@@ -74,34 +78,36 @@ public class OrderFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_notification, container, false);
-        RecyclerView recyclerView1 = root.findViewById(R.id.notifications_rec);
+        recyclerView1 = root.findViewById(R.id.notifications_rec);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView1.setLayoutManager(linearLayoutManager);
         adapter = new OrderAdapter(this.getContext());
-        adapter.SetUpProducts(Utils.obtainInstance().getCartProducts());
-        recyclerView1.setAdapter(adapter);
+        if(orders != null){
+            orders.clear();
+        }
+        new geMyOrder().execute();
 
         return root;
     }
 
-    private class sendOrderPayload extends AsyncTask<Void, Void, Void> {
+    private class geMyOrder extends AsyncTask<Void, Void, Void> {
         String jsonString = "";
         JSONObject payload;
-        public sendOrderPayload(JSONObject orderPayload) {
-            this.payload = orderPayload;
-        }
 
         @Override
         protected Void doInBackground(Void... voids) {
-            jsonString = HttpHandler.postRequest("http://54.151.194.4:3000/neworder", payload);
-
+            jsonString = HttpHandler.getRequest("http://54.151.194.4:3000/getmyorder?accessToken="+accessToken);
             return null;
         }
 
         @Override
         protected void onPostExecute(Void unused) {
             super.onPostExecute(unused);
-
+            Utils utils = new Utils();
+            utils.setOrdersData(jsonString);
+            orders = utils.getOrders();
+            adapter.SetUpProducts(orders);
+            recyclerView1.setAdapter(adapter);
             //Toast.makeText(root.getContext(), "Placed Order", Toast.LENGTH_SHORT).show();
         }
 
